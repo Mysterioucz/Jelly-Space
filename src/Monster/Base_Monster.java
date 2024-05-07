@@ -3,9 +3,8 @@ package Monster;
 import java.util.ArrayList;
 
 public abstract class Base_Monster {
-
-    private String Element;
     private String name;
+    private String element;
     private int maxHp;
     private int hp;
     private int maxMana;
@@ -15,12 +14,17 @@ public abstract class Base_Monster {
     private int baseDef;
     private int def;
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
+    public Base_Monster(String name,String element,int maxHp,int maxMana,int baseDmg,int baseDef){
         this.name = name;
+        this.element = element;
+        this.setMaxHp(maxHp);
+        this.setHp(maxHp);
+        this.setMaxMana(maxMana);
+        this.setMana(maxMana);
+        this.setBaseDmg(baseDmg);
+        this.setDmg(baseDmg);
+        this.setBaseDef(baseDef);
+        this.setDef(baseDef);
     }
 
     public int getMaxHp() {
@@ -69,14 +73,6 @@ public abstract class Base_Monster {
 
     public void setDef(int def) {
         this.def = Math.max(0,def);
-    }
-
-    public String getElement() {
-        return Element;
-    }
-
-    public void setElement(String element) {
-        Element = element;
     }
 
     public int getBaseDmg() {
