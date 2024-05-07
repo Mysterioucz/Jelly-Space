@@ -3,6 +3,8 @@ package Monster;
 import java.util.ArrayList;
 
 public abstract class Base_Monster {
+
+    private String Element;
     private String name;
     private int maxHp;
     private int hp;
