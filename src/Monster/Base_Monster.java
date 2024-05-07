@@ -13,14 +13,16 @@ public abstract class Base_Monster {
     private int dmg;
     private int baseDef;
     private int def;
+    private int manaReg;
 
-    public Base_Monster(String name,String element,int maxHp,int maxMana,int baseDmg,int baseDef){
+    public Base_Monster(String name,String element,int maxHp,int maxMana,int manaReg,int baseDmg,int baseDef){
         this.name = name;
         this.element = element;
         this.setMaxHp(maxHp);
         this.setHp(maxHp);
         this.setMaxMana(maxMana);
         this.setMana(maxMana);
+        this.setManaReg(manaReg);
         this.setBaseDmg(baseDmg);
         this.setDmg(baseDmg);
         this.setBaseDef(baseDef);
@@ -89,5 +91,13 @@ public abstract class Base_Monster {
 
     public void setBaseDef(int baseDef) {
         this.baseDef = Math.max(0,baseDef);
+    }
+
+    public int getManaReg() {
+        return manaReg;
+    }
+
+    public void setManaReg(int manaReg) {
+        this.manaReg = manaReg;
     }
 }
