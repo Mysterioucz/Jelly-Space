@@ -13,6 +13,10 @@ public class Inventory {
     }
 
     public void addItem(Base_Item item){
-        this.Items.add(item);
+        if (Items.size() < MAX_ITEMS){
+            Items.add(item);
+        }else {
+            System.out.println("Your inventory is full");
+        }
     }
 }
