@@ -10,9 +10,9 @@ public abstract class Base_Monster {
     private int hp;
     private int maxMana;
     private int mana;
-    private int MaxDmg;
+    private int baseDmg;
     private int dmg;
-    private int MaxDef;
+    private int baseDef;
     private int def;
 
     public String getName() {
@@ -55,28 +55,12 @@ public abstract class Base_Monster {
         this.mana = Math.max(0,Math.min(mana,maxMana));
     }
 
-    public int getMaxDmg() {
-        return MaxDmg;
-    }
-
-    public void setMaxDmg(int maxDmg) {
-        MaxDmg = Math.max(0,maxDmg);
-    }
-
     public int getDmg() {
         return dmg;
     }
 
     public void setDmg(int dmg) {
-        this.dmg = Math.max(0,Math.min(dmg,MaxDmg));
-    }
-
-    public int getMaxDef() {
-        return MaxDef;
-    }
-
-    public void setMaxDef(int maxDef) {
-        MaxDef = Math.max(0,maxDef);
+        this.dmg = Math.max(0,dmg);
     }
 
     public int getDef() {
@@ -84,6 +68,30 @@ public abstract class Base_Monster {
     }
 
     public void setDef(int def) {
-        this.def = Math.max(0,Math.min(def,MaxDef));
+        this.def = Math.max(0,def);
+    }
+
+    public String getElement() {
+        return Element;
+    }
+
+    public void setElement(String element) {
+        Element = element;
+    }
+
+    public int getBaseDmg() {
+        return baseDmg;
+    }
+
+    public void setBaseDmg(int baseDmg) {
+        this.baseDmg = Math.max(0,baseDmg);
+    }
+
+    public int getBaseDef() {
+        return baseDef;
+    }
+
+    public void setBaseDef(int baseDef) {
+        this.baseDef = Math.max(0,baseDef);
     }
 }
