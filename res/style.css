@@ -1,6 +1,18 @@
-.button {
+.start-pane-button {
     -fx-font-family: "VCR OSD Mono";
     -fx-font-size: 30;
-    -fx-text-fill: white;
+    -fx-text-fill: black;
+    -fx-border-color: #B51B75;
+    -fx-border-width: 5;
+    -fx-border-radius: 10;
+    -fx-overlap: false;
+    -fx-background-color: #FF5580;
+    -fx-background-radius: 10;
+    -fx-background-insets: 1; /* make background not overflow border */
+}
+.start-pane-button:hover {
+    animation-timing-function: ease-in-out;
+    -fx-border-color: #640D6B;
     -fx-background-color: #FF6347;
+    -fx-text-fill: white;
 }
