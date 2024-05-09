@@ -37,41 +37,36 @@ public class MapSelectPane extends GridPane {
 
     }
     public void initializePlanet(){
-        // Create planet image
-        Image planet1 = new Image(ClassLoader.getSystemResource("img/planets/planet1.png").toString());
-        ImageView planetView1 = new ImageView(planet1);
-        planetView1.setFitWidth(200);
-        planetView1.setFitHeight(200);
-        setValignment(planetView1, VPos.TOP);
-        Image planet2 = new Image(ClassLoader.getSystemResource("img/planets/planet2.png").toString());
-        ImageView planetView2 = new ImageView(planet2);
-        planetView2.setFitWidth(200);
-        planetView2.setFitHeight(200);
-        Image planet3 = new Image(ClassLoader.getSystemResource("img/planets/planet3.png").toString());
-        ImageView planetView3 = new ImageView(planet3);
-        planetView3.setFitWidth(200);
-        planetView3.setFitHeight(200);
-        setValignment(planetView3, VPos.BOTTOM);
-        Image earth = new Image(ClassLoader.getSystemResource("img/planets/earth.png").toString());
-        ImageView earthView = new ImageView(earth);
-        earthView.setFitWidth(200);
-        earthView.setFitHeight(200);
-        setHalignment(earthView, HPos.CENTER);
-        setValignment(earthView, VPos.TOP);
-        Image blackhole = new Image(ClassLoader.getSystemResource("img/planets/Blackhole.png").toString());
-        ImageView blackholeView = new ImageView(blackhole);
-        blackholeView.setFitWidth(250);
-        blackholeView.setFitHeight(250);
-        setHalignment(blackholeView, HPos.CENTER);
+        // Create and configure ImageView for each planet
+        ImageView planetView1 = createPlanetView("img/planets/planet1.png", 200, 200, VPos.TOP);
+        ImageView planetView2 = createPlanetView("img/planets/planet2.png", 200, 200, null);
+        ImageView planetView3 = createPlanetView("img/planets/planet3.png", 200, 200, VPos.BOTTOM);
+        ImageView earthView = createPlanetView("img/planets/earth.png", 200, 200, VPos.TOP, HPos.CENTER);
+        ImageView blackholeView = createPlanetView("img/planets/Blackhole.png", 250, 250, null, HPos.CENTER);
+
         // Set planet position
         setHgap(20);
         setVgap(20);
+
         // Add planet to grid
         add(planetView1, 4, 2,1,1);
         add(planetView2, 1, 0,1,2);
         add(planetView3, 4, 0,1,1);
         add(earthView, 1, 2,2,1);
         add(blackholeView, 2, 1,2,1);
+    }
 
+    private ImageView createPlanetView(String imagePath, int width, int height, VPos vPos) {
+        return createPlanetView(imagePath, width, height, vPos, null);
+    }
+
+    private ImageView createPlanetView(String imagePath, int width, int height, VPos vPos, HPos hPos) {
+        Image planet = new Image(ClassLoader.getSystemResource(imagePath).toString());
+        ImageView planetView = new ImageView(planet);
+        planetView.setFitWidth(width);
+        planetView.setFitHeight(height);
+        if (vPos != null) setValignment(planetView, vPos);
+        if (hPos != null) setHalignment(planetView, hPos);
+        return planetView;
     }
 }
