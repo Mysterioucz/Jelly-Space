@@ -1,5 +1,7 @@
 package Items.Base;
 
+import Monster.Base_Monster;
+
 public interface Consumeable {
-    void drink();
+    void drink(Base_Monster monster);
 }
