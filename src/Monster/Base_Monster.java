@@ -1,10 +1,12 @@
 package Monster;
 
+import Monster.Abilities.Elements;
+
 import java.util.ArrayList;
 
 public abstract class Base_Monster {
     private String name;
-    private String element;
+    private Elements element;
     private int maxHp;
     private int hp;
     private int maxMana;
@@ -15,7 +17,7 @@ public abstract class Base_Monster {
     private int def;
     private int manaReg;
 
-    public Base_Monster(String name,String element,int maxHp,int maxMana,int manaReg,int baseDmg,int baseDef){
+    public Base_Monster(String name,Elements element,int maxHp,int maxMana,int manaReg,int baseDmg,int baseDef){
         this.name = name;
         this.element = element;
         this.setMaxHp(maxHp);
@@ -27,6 +29,37 @@ public abstract class Base_Monster {
         this.setDmg(baseDmg);
         this.setBaseDef(baseDef);
         this.setDef(baseDef);
+    }
+
+    public void statBuff(Base_Monster monster){
+        Elements e = monster.element;
+        Elements m = this.element;
+
+        if (e == Elements.CODING){
+            this.setDmg(this.getDmg()+10);
+        } else if (m == Elements.CODING) {
+            this.setDmg(this.getDmg()+10);
+        }
+
+        if (e == Elements.CALCULUS){
+            if (m == Elements.CHEMISTRY){
+                this.setDmg(this.getDmg()+10);
+            } else if (m == Elements.PHYSICS) {
+                this.setDmg(this.getDmg()-10);
+            }
+        } else if (e == Elements.PHYSICS) {
+            if (m == Elements.CHEMISTRY){
+                this.setDmg(this.getDmg()-10);
+            } else if (m == Elements.CALCULUS) {
+                this.setDmg(this.getDmg()+10);
+            }
+        } else if (e == Elements.CHEMISTRY) {
+            if (m == Elements.CALCULUS){
+                this.setDmg(this.getDmg()-10);
+            } else if (m == Elements.PHYSICS) {
+                this.setDmg(this.getDmg()+10);
+            }
+        }
     }
 
     public int getMaxHp() {

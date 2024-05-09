@@ -1,17 +1,19 @@
 package Monster;
 
 import Monster.Abilities.Attackable;
+import Monster.Abilities.Elements;
 import Monster.Abilities.Guardable;
 import Monster.Abilities.Unique_Ability;
 
 public class Chanatda extends Base_Monster implements Attackable, Unique_Ability {
     public Chanatda(){
-        super("Chanatda","Calculus",300,300,30,10,30);
+        super("Chanatda", Elements.CALCULUS,300,300,30,10,30);
     }
 
 
     @Override
     public void attack(Base_Monster otherMonster) {
+        statBuff(otherMonster);
         if (this.getMana() >= 50) {
             int netDmg = this.getDmg() - otherMonster.getDef();
             otherMonster.setHp(otherMonster.getHp() - netDmg);
@@ -27,6 +29,7 @@ public class Chanatda extends Base_Monster implements Attackable, Unique_Ability
         if (this.getMana()>=100){
             monster.setHp(monster.getHp()+50);
             monster.setDmg(monster.getDmg()+20);
+            this.setMana(this.getMana()-100);
         }else{
             System.out.println("You don't have enough mana");
         }

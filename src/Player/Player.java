@@ -11,6 +11,7 @@ public class Player {
     private int hp;
     private My_Monster my_monster;
     private Inventory inventory;
+    private final int ACTION_POINT = 3;
 
     public Player(String name){
         this.name = name;
