@@ -1,6 +1,6 @@
 package Player;
 
-import Items.Base_Item;
+import Items.Base.Base_Item;
 
 import java.util.ArrayList;
 
@@ -17,6 +17,17 @@ public class Inventory {
             Items.add(item);
         }else {
             System.out.println("Your inventory is full");
+        }
+    }
+
+    public void deleteUsedItem(){
+        int i = 0;
+        while (i<Items.size()){
+            if (Items.get(i).isUsed()){
+                Items.remove(i);
+            }else {
+                i ++;
+            }
         }
     }
 }
