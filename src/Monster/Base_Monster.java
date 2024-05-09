@@ -16,8 +16,9 @@ public abstract class Base_Monster {
     private int baseDef;
     private int def;
     private int manaReg;
+    private boolean owned;
 
-    public Base_Monster(String name,Elements element,int maxHp,int maxMana,int manaReg,int baseDmg,int baseDef){
+    public Base_Monster(String name,Elements element,int maxHp,int maxMana,int manaReg,int baseDmg,int baseDef,boolean owned){
         this.name = name;
         this.element = element;
         this.setMaxHp(maxHp);
@@ -29,6 +30,7 @@ public abstract class Base_Monster {
         this.setDmg(baseDmg);
         this.setBaseDef(baseDef);
         this.setDef(baseDef);
+        this.owned = owned;
     }
 
     public void statBuff(Base_Monster monster){
@@ -132,5 +134,9 @@ public abstract class Base_Monster {
 
     public void setManaReg(int manaReg) {
         this.manaReg = manaReg;
+    }
+
+    public boolean isOwned(){
+        return owned;
     }
 }

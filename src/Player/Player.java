@@ -6,33 +6,60 @@ import Monster.Chatrin;
 import java.util.ArrayList;
 
 public class Player {
-    private String name;
-    private int maxHp;
-    private int hp;
-    private My_Monster my_monster;
-    private Inventory inventory;
-    private final int ACTION_POINT = 3;
+    private static String name;
+    private static int maxHp = 100;
+    private static int hp;
+    private static My_Monster my_monster;
+    private static Inventory inventory;
+    private static final int ACTION_POINT = 3;
+    private static int Used_Point;
 
     public Player(String name){
-        this.name = name;
+        Player.name = name;
         my_monster = new My_Monster();
         inventory = new Inventory();
         my_monster.addMonster(new Chatrin());
+        Player.setHp(maxHp);
+        Used_Point = 0;
     }
 
-    public int getMaxHp() {
+    public static int getMaxHp() {
         return maxHp;
     }
 
-    public void setMaxHp(int maxHp) {
-        this.maxHp = maxHp;
+    public static void setMaxHp(int maxHp) {
+        Player.maxHp = maxHp;
     }
 
-    public int getHp() {
+    public static int getHp() {
         return hp;
     }
 
-    public void setHp(int hp) {
-        this.hp = hp;
+    public static void setHp(int hp) {
+        Player.hp = hp;
+    }
+
+    public static String getName() {
+        return name;
+    }
+
+    public static My_Monster getMy_monster() {
+        return my_monster;
+    }
+
+    public static Inventory getInventory() {
+        return inventory;
+    }
+
+    public static int getACTION_POINT() {
+        return ACTION_POINT;
+    }
+
+    public static int getUsed_Point() {
+        return Used_Point;
+    }
+
+    public static void setUsed_Point(int used_Point) {
+        Used_Point = used_Point;
     }
 }

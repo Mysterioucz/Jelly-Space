@@ -4,11 +4,12 @@ import Monster.Abilities.Attackable;
 import Monster.Abilities.Elements;
 import Monster.Abilities.Guardable;
 import Monster.Abilities.Unique_Ability;
+import Player.Player;
 
 public class Chatrin extends Base_Monster implements Attackable, Guardable, Unique_Ability {
 
     public Chatrin(){
-        super("Chatrin", Elements.CODING,200,50,20,70,20);
+        super("Chatrin", Elements.CODING,200,50,20,70,20,true);
     }
 
     @Override
@@ -16,6 +17,9 @@ public class Chatrin extends Base_Monster implements Attackable, Guardable, Uniq
         statBuff(otherMonster);
         int dmgNet = this.getDmg()-otherMonster.getDef();
         otherMonster.setHp(otherMonster.getHp()-dmgNet);
+        if (this.isOwned()){
+            Player.setUsed_Point(Player.getUsed_Point()+1);
+        }
     }
 
     @Override
@@ -23,6 +27,9 @@ public class Chatrin extends Base_Monster implements Attackable, Guardable, Uniq
         if (this.getMana() >= 20) {
             this.setDef(this.getDef() + 10);
             this.setMana(this.getMana() - 20);
+            if (this.isOwned()){
+                Player.setUsed_Point(Player.getUsed_Point()+1);
+            }
         }else{
             System.out.println("You don't have enough mana");
         }
@@ -32,5 +39,8 @@ public class Chatrin extends Base_Monster implements Attackable, Guardable, Uniq
     public void unique_ability(Base_Monster monster) {
         monster.setHp(monster.getHp()-this.getHp()*2);
         this.setHp(0);
+        if (this.isOwned()){
+            Player.setUsed_Point(Player.getUsed_Point()+1);
+        }
     }
 }

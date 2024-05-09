@@ -27,4 +27,8 @@ public class My_Monster {
             }
         }
     }
+
+    public ArrayList<Base_Monster> getMyMonster() {
+        return myMonster;
+    }
 }
