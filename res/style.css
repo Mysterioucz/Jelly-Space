@@ -1,0 +1,6 @@
+.button {
+    -fx-font-family: "VCR OSD Mono";
+    -fx-font-size: 30;
+    -fx-text-fill: white;
+    -fx-background-color: #FF6347;
+}
