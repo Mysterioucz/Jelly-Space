@@ -10,7 +10,7 @@ import static Player.Player.getMy_monster;
 
 public class Faith extends Base_Monster implements Attackable, Guardable, Unique_Ability {
     public Faith(){
-        super("Faith", null,1000,1000,300,100,50,false);
+        super("Faith", null,1000,1000,300,100,60,false);
     }
 
 

@@ -9,7 +9,7 @@ import Player.Player;
 public class Chatrin extends Base_Monster implements Attackable, Guardable, Unique_Ability {
 
     public Chatrin(){
-        super("Chatrin", Elements.EARTHLINGS,250,50,10,80,20,true);
+        super("Chatrin", Elements.EARTHLINGS,250,50,10,50,20,true);
     }
 
     @Override

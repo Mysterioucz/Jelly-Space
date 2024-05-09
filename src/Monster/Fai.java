@@ -8,7 +8,7 @@ import Player.Player;
 
 public class Fai extends Base_Monster implements Attackable, Unique_Ability {
     public Fai(boolean owned){
-        super("Fai", Elements.MACHINE,300,300,30,40,30,owned);
+        super("Fai", Elements.MACHINE,300,300,30,30,50,owned);
     }
 
 
