@@ -9,7 +9,7 @@ import Player.Player;
 public class Chatrin extends Base_Monster implements Attackable, Guardable, Unique_Ability {
 
     public Chatrin(){
-        super("Chatrin", Elements.CODING,200,50,20,70,20,true);
+        super("Chatrin", Elements.EARTHLINGS,250,50,10,80,20,true);
     }
 
     @Override
@@ -24,7 +24,7 @@ public class Chatrin extends Base_Monster implements Attackable, Guardable, Uniq
 
     @Override
     public void guard(Base_Monster ChosenMonster) {
-        if (this.getMana() >= 20) {
+        if (this.getMana() >= 30) {
             this.setDef(this.getDef() + 10);
             this.setMana(this.getMana() - 20);
             if (this.isOwned()){
@@ -37,7 +37,7 @@ public class Chatrin extends Base_Monster implements Attackable, Guardable, Uniq
 
     @Override
     public void unique_ability(Base_Monster monster) {
-        monster.setHp(monster.getHp()-this.getHp()*2);
+        monster.setHp(monster.getHp()-this.getHp());
         this.setHp(0);
         if (this.isOwned()){
             Player.setUsed_Point(Player.getUsed_Point()+1);

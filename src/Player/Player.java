@@ -43,8 +43,8 @@ public class Player {
         return name;
     }
 
-    public static My_Monster getMy_monster() {
-        return my_monster;
+    public static ArrayList<Base_Monster> getMy_monster() {
+        return my_monster.getMyMonster();
     }
 
     public static Inventory getInventory() {
