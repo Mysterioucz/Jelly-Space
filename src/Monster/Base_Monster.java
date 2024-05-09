@@ -37,29 +37,23 @@ public abstract class Base_Monster {
         Elements e = monster.element;
         Elements m = this.element;
 
-        if (e == Elements.CODING){
-            this.setDmg(this.getDmg()+10);
-        } else if (m == Elements.CODING) {
-            this.setDmg(this.getDmg()+10);
-        }
-
-        if (e == Elements.CALCULUS){
-            if (m == Elements.CHEMISTRY){
+        if (e == Elements.ALIEN){
+            if (m == Elements.MACHINE){
                 this.setDmg(this.getDmg()+10);
-            } else if (m == Elements.PHYSICS) {
+            } else if (m == Elements.EARTHLINGS) {
                 this.setDmg(this.getDmg()-10);
             }
-        } else if (e == Elements.PHYSICS) {
-            if (m == Elements.CHEMISTRY){
+        } else if (e == Elements.MACHINE){
+            if (m == Elements.ALIEN){
                 this.setDmg(this.getDmg()-10);
-            } else if (m == Elements.CALCULUS) {
+            } else if (m == Elements.EARTHLINGS) {
                 this.setDmg(this.getDmg()+10);
             }
-        } else if (e == Elements.CHEMISTRY) {
-            if (m == Elements.CALCULUS){
-                this.setDmg(this.getDmg()-10);
-            } else if (m == Elements.PHYSICS) {
+        } else if (e == Elements.EARTHLINGS){
+            if (m == Elements.ALIEN){
                 this.setDmg(this.getDmg()+10);
+            } else if (m == Elements.MACHINE) {
+                this.setDmg(this.getDmg()-10);
             }
         }
     }

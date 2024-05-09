@@ -10,7 +10,7 @@ import static Player.Player.getMy_monster;
 
 public class Faith extends Base_Monster implements Attackable, Guardable, Unique_Ability {
     public Faith(){
-        super("Faith", null,1000,1000,300,50,30,false);
+        super("Faith", null,1000,1000,300,100,50,false);
     }
 
 
@@ -40,7 +40,7 @@ public class Faith extends Base_Monster implements Attackable, Guardable, Unique
             this.setDef(0);
             monster.setBaseDef(0);
             monster.setDef(0);
-            for (Base_Monster e: Player.getMy_monster().getMyMonster()){
+            for (Base_Monster e: Player.getMy_monster()){
                 int netDmg = this.getDmg()-e.getDef();
                 e.setHp(e.getHp()-netDmg);
             }
