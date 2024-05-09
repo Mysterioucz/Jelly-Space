@@ -7,8 +7,6 @@ import java.util.ArrayList;
 
 public class Player {
     private static String name;
-    private static int maxHp = 100;
-    private static int hp;
     private static My_Monster my_monster;
     private static Inventory inventory;
     private static final int ACTION_POINT = 3;
@@ -19,24 +17,7 @@ public class Player {
         my_monster = new My_Monster();
         inventory = new Inventory();
         my_monster.addMonster(new Chatrin());
-        Player.setHp(maxHp);
         Used_Point = 0;
-    }
-
-    public static int getMaxHp() {
-        return maxHp;
-    }
-
-    public static void setMaxHp(int maxHp) {
-        Player.maxHp = maxHp;
-    }
-
-    public static int getHp() {
-        return hp;
-    }
-
-    public static void setHp(int hp) {
-        Player.hp = hp;
     }
 
     public static String getName() {

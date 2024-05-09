@@ -19,6 +19,7 @@ public class Faith extends Base_Monster implements Attackable, Guardable, Unique
         // True Damage
         if (getMana()>=300){
             otherMonster.setHp(otherMonster.getHp()-this.getDmg());
+            this.setMana(this.getMana() - 300);
         }else{
             System.out.println("You don't have enough mana");
         }
@@ -28,6 +29,7 @@ public class Faith extends Base_Monster implements Attackable, Guardable, Unique
     public void guard(Base_Monster ChosenMonster) {
         if (this.getMana()>=400){
             ChosenMonster.setDef(0);
+            this.setMana(this.getMana() - 400);
         }else{
             System.out.println("You don't have enough mana");
         }
@@ -44,6 +46,7 @@ public class Faith extends Base_Monster implements Attackable, Guardable, Unique
                 int netDmg = this.getDmg()-e.getDef();
                 e.setHp(e.getHp()-netDmg);
             }
+            this.setMana(this.getMana() - 900);
         }else{
             System.out.println("You don't have enough mana");
         }

@@ -25,8 +25,8 @@ public class Chatrin extends Base_Monster implements Attackable, Guardable, Uniq
     @Override
     public void guard(Base_Monster ChosenMonster) {
         if (this.getMana() >= 30) {
-            this.setDef(this.getDef() + 10);
-            this.setMana(this.getMana() - 20);
+            this.setHp(this.getDef() + 10);
+            this.setMana(this.getMana() - 30);
             if (this.isOwned()){
                 Player.setUsed_Point(Player.getUsed_Point()+1);
             }
@@ -40,7 +40,7 @@ public class Chatrin extends Base_Monster implements Attackable, Guardable, Uniq
         monster.setHp(monster.getHp()-this.getHp());
         this.setHp(0);
         if (this.isOwned()){
-            Player.setUsed_Point(Player.getUsed_Point()+1);
+            Player.setUsed_Point(Player.getUsed_Point()+2);
         }
     }
 }
