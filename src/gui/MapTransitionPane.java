@@ -36,12 +36,18 @@ public class MapTransitionPane extends Pane {
         setDotAnimation(); // set Dot Animation
 
         // After 5 seconds, change to MapPane
-        PauseTransition pause = new PauseTransition(Duration.seconds(5));
+        PauseTransition pause = new PauseTransition(Duration.seconds(3));
+        // Change the root of the scene to the new MapPane after the fade out
         pause.setOnFinished(e -> {
             FadeTransition ft = new FadeTransition(Duration.millis(1000), this);
             ft.setFromValue(1.0);
             ft.setToValue(0.0);
-            ft.setOnFinished(e2 -> getScene().setRoot(new MapPane())); // Change the root of the scene to the new MapPane after the fade out
+            // Change the root of the scene to the new MapPane after the fade out
+            ft.setOnFinished(e2 -> {
+                MapPane mapPane = new MapPane();
+                getScene().setRoot(mapPane);
+                mapPane.requestFocus();
+            });
             ft.play();
         });
         pause.play();

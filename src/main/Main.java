@@ -39,6 +39,7 @@ public class Main extends Application{
         });
 
         primaryStage.show();
+        root.setFocusTraversable(true);
         root.requestFocus();
     }
 

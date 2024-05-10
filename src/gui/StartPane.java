@@ -28,8 +28,6 @@ public class StartPane extends BorderPane {
         Image img = new Image(ClassLoader.getSystemResource("img/background/StartPaneBG.png").toString());
         BackgroundSize backgroundSize = new BackgroundSize(100, 100, true, true, false, true);
         this.setBackground(new Background(new BackgroundImage(img, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT,BackgroundPosition.DEFAULT, backgroundSize)));
-        // add keyEvent
-        this.setOnKeyPressed(new KeyboardInputs());
 
     }
     public void initializeTitle(){
