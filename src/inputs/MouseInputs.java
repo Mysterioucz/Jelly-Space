@@ -1,30 +1,23 @@
 package inputs;
 
-import java.awt.event.MouseListener;
+import javafx.event.EventHandler;
+import javafx.scene.input.MouseEvent;
 
-public class MouseInputs implements MouseListener {
-    @Override
-    public void mouseClicked(java.awt.event.MouseEvent e) {
-        System.out.println("Mouse Clicked");
-    }
+public class MouseInputs implements EventHandler<MouseEvent> {
 
     @Override
-    public void mousePressed(java.awt.event.MouseEvent e) {
-        System.out.println("Mouse Pressed");
-    }
-
-    @Override
-    public void mouseReleased(java.awt.event.MouseEvent e) {
-        System.out.println("Mouse Released");
-    }
-
-    @Override
-    public void mouseEntered(java.awt.event.MouseEvent e) {
-        System.out.println("Mouse Entered");
-    }
-
-    @Override
-    public void mouseExited(java.awt.event.MouseEvent e) {
-        System.out.println("Mouse Exited");
+    public void handle(MouseEvent event) {
+        if (event.getEventType() == MouseEvent.MOUSE_CLICKED) {
+            System.out.println("Mouse Clicked");
+        } else if (event.getEventType() == MouseEvent.MOUSE_PRESSED) {
+            System.out.println("Mouse Pressed");
+        } else if (event.getEventType() == MouseEvent.MOUSE_RELEASED) {
+            System.out.println("Mouse Released");
+        } else if (event.getEventType() == MouseEvent.MOUSE_ENTERED) {
+            System.out.println("Mouse Entered");
+        } else if (event.getEventType() == MouseEvent.MOUSE_EXITED) {
+            System.out.println("Mouse Exited");
+        }
     }
 }
+
