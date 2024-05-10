@@ -1,12 +1,18 @@
 package gui;
 
+import javafx.animation.FadeTransition;
 import javafx.geometry.HPos;
 import javafx.geometry.VPos;
+import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
+import javafx.util.Duration;
 
 public class MapSelectPane extends GridPane {
+
+    public static String mapName;
+
     public MapSelectPane() {
         super();
         // Set background image
@@ -50,11 +56,11 @@ public class MapSelectPane extends GridPane {
         setVgap(20);
 
         // Add event handlers to show planet name
-        addPlanetClickHandler(planetView1, "Planet 1");
-        addPlanetClickHandler(planetView2, "Planet 2");
-        addPlanetClickHandler(planetView3, "Planet 3");
-        addPlanetClickHandler(earthView, "Earth");
-        addPlanetClickHandler(blackholeView, "Black Hole");
+        addPlanetClickHandler(planetView1, "planet1");
+        addPlanetClickHandler(planetView2, "planet2");
+        addPlanetClickHandler(planetView3, "planet3");
+        addPlanetClickHandler(earthView, "earth");
+        addPlanetClickHandler(blackholeView, "blackhole");
 
         // Add planet to grid
         add(planetView1, 4, 2,1,1);
@@ -81,7 +87,18 @@ public class MapSelectPane extends GridPane {
     private void addPlanetClickHandler(ImageView imageView, String planetName) {
         imageView.setOnMouseClicked(event -> {
             System.out.println("Clicked on " + planetName);
-            // You can replace the println with any action you want, like displaying a label with the planet name
+            mapName = planetName;
+            FadeTransition ft = new FadeTransition(Duration.millis(1000), this); // set FadeTransition
+            ft.setFromValue(1.0);
+            ft.setToValue(0.0);
+            ft.setOnFinished(e2 -> {
+                        Scene scene = new Scene(new MapTransitionPane());
+                        scene.getStylesheets().add(ClassLoader.getSystemResource("style.css").toExternalForm());
+                        this.getScene().setRoot(new StackPane(new Pane(), scene.getRoot()));
+                        scene.getRoot().requestFocus();
+                    }); // Change the root of the scene to the new MapPane after the fade out
+            ft.play();
+
         });
     }
 }
