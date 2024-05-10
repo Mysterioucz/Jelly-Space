@@ -35,10 +35,10 @@ public class StartPane extends BorderPane {
     public void initializeTitle(){
         //create Text & set Position
         Text title = new Text("Jelly Space");
-        title.setFont(Font.font("VCR OSD Mono", 100));
-        title.setFill(Color.WHITE);
-        title.setStrokeWidth(2);
-        title.setStroke(Color.CYAN);
+        title.setFont(Font.font("Verdana", 100));
+        title.setFill(Color.HONEYDEW);
+        title.setStrokeWidth(3.5);
+        title.setStroke(Color.DARKRED);
         title.setTranslateY(100);
         title.setTextAlignment(TextAlignment.CENTER);
         //create Text Container
