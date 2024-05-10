@@ -1,10 +1,10 @@
-package Monster;
+package entities.Monster;
 
-import Monster.Abilities.Elements;
+import entities.Monster.Abilities.Elements;
+import entities.Sprite;
+import javafx.scene.image.Image;
 
-import java.util.ArrayList;
-
-public abstract class Base_Monster {
+public abstract class Base_Monster extends Sprite {
     private String name;
     private Elements element;
     private int maxHp;
@@ -18,7 +18,8 @@ public abstract class Base_Monster {
     private int manaReg;
     private boolean owned;
 
-    public Base_Monster(String name,Elements element,int maxHp,int maxMana,int manaReg,int baseDmg,int baseDef,boolean owned){
+    public Base_Monster(String name,Elements element,int maxHp,int maxMana,int manaReg,int baseDmg,int baseDef,boolean owned, double x, double y, double width, double height, double speed, Image img){
+        super(x,y,width,height,speed,img);
         this.name = name;
         this.element = element;
         this.setMaxHp(maxHp);

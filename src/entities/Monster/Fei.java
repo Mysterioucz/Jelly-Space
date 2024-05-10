@@ -1,10 +1,8 @@
-package Monster;
+package entities.Monster;
 
-import Monster.Abilities.Attackable;
-import Monster.Abilities.Elements;
-import Monster.Abilities.Guardable;
-import Monster.Abilities.Unique_Ability;
-import Player.Player;
+import entities.Monster.Abilities.Elements;
+import entities.Monster.Abilities.Unique_Ability;
+import entities.Player.Player;
 
 public class Fei extends Base_Monster implements Unique_Ability {
     public Fei(boolean owned){

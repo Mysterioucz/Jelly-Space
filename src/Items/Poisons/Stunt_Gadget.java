@@ -1,7 +1,7 @@
 package Items.Poisons;
 
 import Items.Base.Splashable;
-import Monster.Base_Monster;
+import entities.Monster.Base_Monster;
 
 public class Stunt_Gadget implements Splashable {
     @Override

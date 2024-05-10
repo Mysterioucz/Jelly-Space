@@ -1,6 +1,6 @@
-package Monster.Abilities;
+package entities.Monster.Abilities;
 
-import Monster.Base_Monster;
+import entities.Monster.Base_Monster;
 
 public interface Attackable {
     void attack(Base_Monster otherMonster);

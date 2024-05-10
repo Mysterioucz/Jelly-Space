@@ -1,6 +1,6 @@
-package Player;
+package entities.Player;
 
-import Monster.Base_Monster;
+import entities.Monster.Base_Monster;
 
 import java.util.ArrayList;
 

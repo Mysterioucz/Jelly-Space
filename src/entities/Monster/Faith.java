@@ -1,12 +1,9 @@
-package Monster;
+package entities.Monster;
 
-import Monster.Abilities.Attackable;
-import Monster.Abilities.Elements;
-import Monster.Abilities.Guardable;
-import Monster.Abilities.Unique_Ability;
-import Player.Player;
-
-import static Player.Player.getMy_monster;
+import entities.Monster.Abilities.Attackable;
+import entities.Monster.Abilities.Guardable;
+import entities.Monster.Abilities.Unique_Ability;
+import entities.Player.Player;
 
 public class Faith extends Base_Monster implements Attackable, Guardable, Unique_Ability {
     public Faith(){

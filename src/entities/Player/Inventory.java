@@ -1,4 +1,4 @@
-package Player;
+package entities.Player;
 
 import Items.Base.Base_Item;
 

@@ -1,6 +1,6 @@
 package Items.Base;
 
-import Monster.Base_Monster;
+import entities.Monster.Base_Monster;
 
 public abstract class Base_Poison extends Base_Item implements Splashable{
     Type type;

@@ -1,10 +1,9 @@
-package Monster;
+package entities.Monster;
 
-import Monster.Abilities.Attackable;
-import Monster.Abilities.Elements;
-import Monster.Abilities.Unique_Ability;
-import Monster.Base_Monster;
-import Player.Player;
+import entities.Monster.Abilities.Attackable;
+import entities.Monster.Abilities.Elements;
+import entities.Monster.Abilities.Unique_Ability;
+import entities.Player.Player;
 
 public class TU_Force extends Base_Monster implements Attackable, Unique_Ability {
     TU_Force(boolean owned){
