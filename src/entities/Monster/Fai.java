@@ -4,10 +4,15 @@ import entities.Monster.Abilities.Attackable;
 import entities.Monster.Abilities.Elements;
 import entities.Monster.Abilities.Unique_Ability;
 import entities.Player.Player;
+import javafx.scene.image.Image;
 
 public class Fai extends Base_Monster implements Attackable, Unique_Ability {
+    private Image Idle = new Image(ClassLoader.getSystemResource("img/entities/monster/fai/Idle.gif").toString());
+    private Image special = new Image(ClassLoader.getSystemResource("img/entities/monster/fai/special.gif").toString());
+
     public Fai(int x,int y,boolean owned){
-        super("Fai", Elements.MACHINE,300,300,100,30,50,owned,x,y,100,200,200,null);
+        super("Fai", Elements.MACHINE,300,300,100,30,50,owned,x,y,96,96,200,null);
+        setImage(Idle);
     }
 
 

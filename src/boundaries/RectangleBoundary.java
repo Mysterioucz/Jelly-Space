@@ -17,7 +17,7 @@ public class RectangleBoundary extends Boundary{
 
     @Override
     public void drawBoundary(GraphicsContext gc) {
-        System.out.println("Drawing Rectangle Boundary");
+//        System.out.println("Drawing Rectangle Boundary");
         gc.setStroke(Color.CYAN);
         gc.strokeRect(x1, y1, x2-x1, y2-y1);
     }

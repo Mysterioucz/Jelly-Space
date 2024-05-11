@@ -4,10 +4,17 @@ import entities.Monster.Abilities.Attackable;
 import entities.Monster.Abilities.Elements;
 import entities.Monster.Abilities.Unique_Ability;
 import entities.Player.Player;
+import javafx.scene.image.Image;
 
 public class TU_Force extends Base_Monster implements Attackable, Unique_Ability {
-    TU_Force(int x,int y,boolean owned){
-        super("TU Force", Elements.ALIEN,500,400,50,60,60,owned,x,y,100,200,200,null);
+    private Image Idle_battle = new Image(ClassLoader.getSystemResource("img/entities/monster/tu_force/Idle_battle.gif").toString());
+    private Image Idle_right = new Image(ClassLoader.getSystemResource("img/entities/monster/tu_force/Idle_right.gif").toString());
+    private Image special = new Image(ClassLoader.getSystemResource("img/entities/monster/tu_force/special.gif").toString());
+
+
+    public TU_Force(int x, int y, boolean owned){
+        super("TU Force", Elements.ALIEN,500,400,50,60,60,owned,x,y,188,100,200,null);
+        setImage(Idle_right);
     }
 
 

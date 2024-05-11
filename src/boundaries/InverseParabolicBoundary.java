@@ -16,8 +16,8 @@ public class InverseParabolicBoundary extends Boundary {
     }
 
     public boolean isWithinBoundary(double x, double y) {
-        System.out.println("ParabolicBoundary: " + (y - k) + " >= " + c * Math.pow((x - h), 2));
-        System.out.println("Current Position: " + x + ", " + y);
+//        System.out.println("ParabolicBoundary: " + (y - k) + " >= " + c * Math.pow((x - h), 2));
+//        System.out.println("Current Position: " + x + ", " + y);
         return (y - k) >= -c * Math.pow((x - h), 2);
     }
 

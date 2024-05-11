@@ -15,7 +15,7 @@ public class EllipseBoundary extends Boundary{
         return Math.pow((x-centerX)/radiusX,2) + Math.pow((y-centerY)/radiusY,2) <= 1;
     }
     public void drawBoundary(GraphicsContext gc){
-        System.out.println("EllipseBoundary: (" + centerX + ", " + centerY + ") " + radiusX + " " + radiusY);
+//        System.out.println("EllipseBoundary: (" + centerX + ", " + centerY + ") " + radiusX + " " + radiusY);
         gc.strokeOval(centerX-radiusX, centerY-radiusY, 2*radiusX, 2*radiusY);
     }
 }

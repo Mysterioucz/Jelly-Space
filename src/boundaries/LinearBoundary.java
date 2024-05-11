@@ -15,7 +15,7 @@ public class LinearBoundary extends Boundary{
         return y <= m*x + c;
     }
     public void drawBoundary(GraphicsContext gc){
-        System.out.println("LinearBoundary: y = " + m + "x + " + c);
+//        System.out.println("LinearBoundary: y = " + m + "x + " + c);
         gc.setStroke(Color.CYAN);
         gc.strokeLine(0, c, 1280, m*1280 + c);
     }

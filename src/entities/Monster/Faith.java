@@ -4,10 +4,16 @@ import entities.Monster.Abilities.Attackable;
 import entities.Monster.Abilities.Guardable;
 import entities.Monster.Abilities.Unique_Ability;
 import entities.Player.Player;
+import javafx.scene.image.Image;
 
 public class Faith extends Base_Monster implements Attackable, Guardable, Unique_Ability {
+    private Image Idle = new Image(ClassLoader.getSystemResource("img/entities/monster/faith/Idle.gif").toString());
+    private Image special = new Image(ClassLoader.getSystemResource("img/entities/monster/faith/special.gif").toString());
+
+
     public Faith(int x, int y){
-        super("Faith", null,1000,1000,300,100,60,false,x,y,100,200,200,null);
+        super("Faith", null,1000,1000,300,100,60,false,x,y,192,192,0,null);
+        setImage(Idle);
     }
 
 

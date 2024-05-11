@@ -3,12 +3,16 @@ package entities.Monster;
 import entities.Monster.Abilities.Elements;
 import entities.Monster.Abilities.Unique_Ability;
 import entities.Player.Player;
+import javafx.scene.image.Image;
 
 public class Fei extends Base_Monster implements Unique_Ability {
-    public Fei(int x,int y,boolean owned){
-        super("Fei", Elements.EARTHLINGS,300,100,50,50,50,owned,x,y,100,200,200,null);
-    }
+    private Image Idle = new Image(ClassLoader.getSystemResource("img/entities/monster/fei/Idle.gif").toString());
+    private Image special = new Image(ClassLoader.getSystemResource("img/entities/monster/fei/special.gif").toString());
 
+    public Fei(int x,int y,boolean owned){
+        super("Fei", Elements.EARTHLINGS,300,100,50,50,50,owned,x,y,96,96,200,null);
+        setImage(Idle);
+    }
 
     @Override
     public void unique_ability(Base_Monster monster) {

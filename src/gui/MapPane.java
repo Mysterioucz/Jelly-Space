@@ -1,41 +1,37 @@
 package gui;
 
 import inputs.KeyboardInputs;
-import javafx.animation.AnimationTimer;
+import javafx.application.Platform;
+import javafx.geometry.Insets;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
 import entities.Player.Player;
+import javafx.scene.paint.Color;
+import main.Main;
 import map.*;
 
 public class MapPane extends Pane {
-    private AnimationTimer gameLoop;
+    private static MapPane instance;
+    private Thread gameLoop;
+    private volatile boolean running = true;
     public static KeyboardInputs keyHandler = new KeyboardInputs();
     private Boolean Battle = false;
     private Canvas canvas;
     private GraphicsContext gc;
-    private static Player player;
+    private Player player;
     private static GameMap gameMap;
 
     public MapPane() {
         init();
-        // Create GameLoop
-        gameLoop = new AnimationTimer() {
-            @Override
-            public void handle(long now) {
-                // TODO Auto-generated method stub
-                update();
-                draw();
-            }
-        };
-        gameLoop.start();
-
+        createGameLoop();
+        instance = this;
     }
     private void update() {
-        // TODO Auto-generated method stub
         // update player postion and game state
         player.update();
+        //TODO implement battle update
 
     }
     private void draw() {
@@ -47,6 +43,23 @@ public class MapPane extends Pane {
         gameMap.drawBoundary(gc); // for debugging map boundaries
 
     }
+    public void handleCollideWithRocket(){
+        //TODO something when collide with rocket
+        // When the player collides with the rocket, fade out the current scene and change the root of the scene to the new MapSelectPane
+        running = false; // Stop the game loop
+        Main.changeSceneStatic(new MapSelectPane(),true);
+
+    }
+    public void handleCollideWithBoss(){
+        // Create a new scene with a white background
+        Pane whitePane = new Pane();
+        whitePane.setBackground(new Background(new BackgroundFill(Color.WHITE, CornerRadii.EMPTY, Insets.EMPTY)));
+
+//        running = false; // Stop the game loop
+//        // Get the current stage and set the new scene
+//        Main.changeSceneStatic(whitePane,false);
+    }
+
     private void init(){
         // TODO Auto-generated method stub
         // initialize game state
@@ -70,6 +83,9 @@ public class MapPane extends Pane {
         canvas.heightProperty().bind(this.heightProperty());
         setGc(canvas.getGraphicsContext2D());
         getChildren().add(canvas);
+        generateGameMap();
+    }
+    public static void generateGameMap(){
         switch (MapSelectPane.mapName){
             case "earth":
                 gameMap = new MapEarth();
@@ -88,6 +104,25 @@ public class MapPane extends Pane {
                 break;
         }
     }
+    public void createGameLoop(){
+        gameLoop = new Thread(() -> {
+            while (running) {
+                Platform.runLater(() -> {
+                    System.out.println("GameLoop Running");
+                    update();
+                    draw();
+                });
+//                 For Fix FPS
+                    try {
+                        Thread.sleep(1000 / 60); // Sleep for approximately 60 FPS
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+            }
+        });
+        gameLoop.start();
+    }
+
 
     public Boolean getBattle() {
         return Battle;
@@ -110,10 +145,10 @@ public class MapPane extends Pane {
     public void setPlayer(Player player) {
         this.player = player;
     }
-    public static Player getPlayer() {
-        return player;
-    }
     public static GameMap getGameMap() {
         return gameMap;
+    }
+    public static MapPane getInstance() {
+        return instance;
     }
 }
