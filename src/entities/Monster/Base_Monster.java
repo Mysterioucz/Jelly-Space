@@ -59,6 +59,14 @@ public abstract class Base_Monster extends Sprite {
         }
     }
 
+    public boolean isDead(){
+        if (this.getHp() == 0){
+            return  true;
+        }else{
+            return false;
+        }
+    }
+
     public int getMaxHp() {
         return maxHp;
     }

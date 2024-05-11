@@ -22,7 +22,7 @@ public class My_Monster {
 
     public void deleteDeadMonster(){
         for (Base_Monster m:myMonster){
-            if (m.getHp()==0){
+            if (m.isDead()){
                 myMonster.remove(m);
             }
         }
