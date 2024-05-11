@@ -15,22 +15,22 @@ public class KeyboardInputs implements EventHandler<KeyEvent> {
             switch (event.getCode()) {
                 case W:
                 case UP:
-                    System.out.println("Up");
+//                    System.out.println("Up");
                     up = true;
                     break;
                 case S:
                 case DOWN:
-                    System.out.println("Down");
+//                    System.out.println("Down");
                     down = true;
                     break;
                 case A:
                 case LEFT:
-                    System.out.println("Left");
+//                    System.out.println("Left");
                     left = true;
                     break;
                 case D:
                 case RIGHT:
-                    System.out.println("Right");
+//                    System.out.println("Right");
                     right = true;
                     break;
                 default:
@@ -41,22 +41,22 @@ public class KeyboardInputs implements EventHandler<KeyEvent> {
             switch (event.getCode()) {
                 case W:
                 case UP:
-                    System.out.println("Up Released");
+//                    System.out.println("Up Released");
                     up = false;
                     break;
                 case S:
                 case DOWN:
-                    System.out.println("Down Released");
+//                    System.out.println("Down Released");
                     down = false;
                     break;
                 case A:
                 case LEFT:
-                    System.out.println("Left Released");
+//                    System.out.println("Left Released");
                     left = false;
                     break;
                 case D:
                 case RIGHT:
-                    System.out.println("Right Released");
+//                    System.out.println("Right Released");
                     right = false;
                     break;
                 default:

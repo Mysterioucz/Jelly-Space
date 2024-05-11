@@ -20,7 +20,7 @@ public class MapSelectPane extends GridPane {
         BackgroundSize backgroundSize = new BackgroundSize(100, 100, true, true, false, true);
         this.setBackground(new Background(new BackgroundImage(img, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, backgroundSize)));
 
-        setGridLinesVisible(true);// for debugging
+//        setGridLinesVisible(true);// for debugging
 
         // Set GridPane to grow with window size
         setPrefSize(1280, 720);
@@ -32,7 +32,7 @@ public class MapSelectPane extends GridPane {
             column.setPercentWidth(100.0 / 6);
             getColumnConstraints().add(column);
         }
-// Set the percentHeight for each row
+        // Set the percentHeight for each row
         for (int i = 0; i < 3; i++) {
             RowConstraints row = new RowConstraints();
             row.setPercentHeight(100.0 / 3);

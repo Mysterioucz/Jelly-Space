@@ -5,11 +5,14 @@ import entities.Monster.Abilities.Elements;
 import entities.Monster.Abilities.Guardable;
 import entities.Monster.Abilities.Unique_Ability;
 import entities.Player.Player;
+import javafx.scene.image.Image;
 
 public class Chatrin extends Base_Monster implements Attackable, Guardable, Unique_Ability {
+    private Image img = new Image(ClassLoader.getSystemResource("img/entities/monster/chatrin/Idle.gif").toString()) ;
 
     public Chatrin(int x,int y){
-        super("Chatrin", Elements.EARTHLINGS,250,50,10,50,20,true,x,y,100,200,200,null);
+        super("Chatrin", Elements.EARTHLINGS,250,50,10,50,20,true,x,y,96,96,0,null);
+        setImage(img);
     }
 
     @Override

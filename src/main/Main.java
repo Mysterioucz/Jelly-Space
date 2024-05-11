@@ -18,7 +18,7 @@ public class Main extends Application{
     public void start(Stage primaryStage) throws Exception{
         Font.loadFont(ClassLoader.getSystemResource("fonts/VCR_OSD.ttf").toExternalForm(), 20); // Load custom font
         Pane root = new StartPane();
-        Scene scene = new Scene(root);
+        Scene scene = new Scene(root,1280,720);
         scene.getStylesheets().add(ClassLoader.getSystemResource("style.css").toExternalForm()); // Load custom CSS
         primaryStage.setScene(scene);
         primaryStage.setTitle("Jelly Space");

@@ -1,5 +1,6 @@
 package entities.Player;
 
+import boundaries.Boundary;
 import entities.Monster.Base_Monster;
 import entities.Monster.Chatrin;
 import entities.Sprite;
@@ -35,17 +36,27 @@ public class Player extends Sprite {
         Used_Point = 0;
     }
     public void update(){
+        double newX = getX();
+        double newY = getY();
 
         if(keyHandler.up){
-            move(0,-getSpeed());
+            newY -= getSpeed();
         } else if (keyHandler.down) {
-            move(0,getSpeed());
+            newY += getSpeed();
         }else if(keyHandler.left){
-            move(-getSpeed(),0);
+            newX -= getSpeed();
             setImage(imgLeft);
         } else if (keyHandler.right) {
-            move(getSpeed(),0);
+            newX += getSpeed();
             setImage(imgRight);
+        }
+
+        // Check if the new position is inside the boundary
+        if (MapPane.getGameMap().checkBoundary(newX, newY)) {
+            // If it is, Check if the new position is inside the Screen
+            if((newX >= 0 && newX <= (1280-getWidth())) && (newY >= 0 && newY <= 720-getHeight())){
+                move(newX, newY);
+            }
         }
     }
     public void draw(GraphicsContext gc){
