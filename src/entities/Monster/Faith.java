@@ -6,8 +6,8 @@ import entities.Monster.Abilities.Unique_Ability;
 import entities.Player.Player;
 
 public class Faith extends Base_Monster implements Attackable, Guardable, Unique_Ability {
-    public Faith(){
-        super("Faith", null,1000,1000,300,100,60,false);
+    public Faith(int x, int y){
+        super("Faith", null,1000,1000,300,100,60,false,x,y,100,200,200,null);
     }
 
 

@@ -6,8 +6,8 @@ import entities.Monster.Abilities.Unique_Ability;
 import entities.Player.Player;
 
 public class Fai extends Base_Monster implements Attackable, Unique_Ability {
-    public Fai(boolean owned){
-        super("Fai", Elements.MACHINE,300,300,100,30,50,owned);
+    public Fai(int x,int y,boolean owned){
+        super("Fai", Elements.MACHINE,300,300,100,30,50,owned,x,y,100,200,200,null);
     }
 
 

@@ -6,8 +6,8 @@ import entities.Monster.Abilities.Unique_Ability;
 import entities.Player.Player;
 
 public class TU_Force extends Base_Monster implements Attackable, Unique_Ability {
-    TU_Force(boolean owned){
-        super("TU Force", Elements.ALIEN,500,400,50,60,60,owned);
+    TU_Force(int x,int y,boolean owned){
+        super("TU Force", Elements.ALIEN,500,400,50,60,60,owned,x,y,100,200,200,null);
     }
 
 

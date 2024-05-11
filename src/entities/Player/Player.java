@@ -31,7 +31,7 @@ public class Player extends Sprite {
         Player.name = name;
         my_monster = new My_Monster();
         inventory = new Inventory();
-        my_monster.addMonster(new Chatrin());
+        my_monster.addMonster(new Chatrin(620,360));
         Used_Point = 0;
     }
     public void update(){
