@@ -11,7 +11,7 @@ public class MapBlackHole extends GameMap{
         this.boundary = new RectangleBoundary(0,267,1280,425);
         Player.getPlayer().setX(200);
         Player.getPlayer().setY(267);
-        boss = new Faith(1103, 267);
+        boss = new Faith(1180, 300);
         rocket = new Rocket(0,275,"normal");
     }
     public boolean checkBoundary(double x, double y) {
