@@ -17,7 +17,7 @@ public class Fai extends Base_Monster implements Attackable, Unique_Ability {
 
 
     @Override
-    public void attack(Base_Monster otherMonster) {
+    public boolean attack(Base_Monster otherMonster) {
         statBuff(otherMonster);
         if (this.getMana() >= 200) {
             otherMonster.setMana(otherMonster.getMana() - this.getDmg());
@@ -27,13 +27,20 @@ public class Fai extends Base_Monster implements Attackable, Unique_Ability {
             if (this.isOwned()){
                 Player.setUsed_Point(Player.getUsed_Point()+2);
             }
+            return true;
         }else{
             System.out.println("You don't have enough mana");
+            return false;
         }
     }
 
     @Override
-    public void unique_ability(Base_Monster monster) {
+    public String getAttack() {
+        return Base_Monster.toString("s","d");
+    }
+
+    @Override
+    public boolean unique_ability(Base_Monster monster) {
         if (this.getMana()>=100){
             monster.setHp(monster.getHp()+50);
             monster.setMana(monster.getMana()+50);
@@ -41,8 +48,15 @@ public class Fai extends Base_Monster implements Attackable, Unique_Ability {
             if (this.isOwned()){
                 Player.setUsed_Point(Player.getUsed_Point()+2);
             }
+            return true;
         }else{
             System.out.println("You don't have enough mana");
+            return false;
         }
+    }
+
+    @Override
+    public String getUnique() {
+        return Base_Monster.toString("s","b");
     }
 }

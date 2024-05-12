@@ -19,7 +19,7 @@ public class TU_Force extends Base_Monster implements Attackable, Unique_Ability
 
 
     @Override
-    public void attack(Base_Monster otherMonster) {
+    public boolean attack(Base_Monster otherMonster) {
         if (this.getMana()>=100){
             this.setMana(this.getMana() - 100);
             if (this.isOwned()){
@@ -35,13 +35,20 @@ public class TU_Force extends Base_Monster implements Attackable, Unique_Ability
                     e.setHp(e.getHp()-netDmg);
                 }
             }
+            return true;
         }else{
             System.out.println("You don't have enough mana");
+            return false;
         }
     }
 
     @Override
-    public void unique_ability(Base_Monster monster) {
+    public String getAttack() {
+        return Base_Monster.toString("s","d");
+    }
+
+    @Override
+    public boolean unique_ability(Base_Monster monster) {
         if (this.getMana()>=300){
             monster.setDmg(monster.getDmg()+50);
             monster.setDef(monster.getDef()+50);
@@ -49,8 +56,15 @@ public class TU_Force extends Base_Monster implements Attackable, Unique_Ability
             if (this.isOwned()){
                 Player.setUsed_Point(Player.getUsed_Point()+2);
             }
+            return true;
         }else{
             System.out.println("You don't have enough mana");
+            return false;
         }
+    }
+
+    @Override
+    public String getUnique() {
+        return Base_Monster.toString("s","b");
     }
 }

@@ -15,16 +15,25 @@ public class Fei extends Base_Monster implements Unique_Ability {
     }
 
     @Override
-    public void unique_ability(Base_Monster monster) {
+    public boolean unique_ability(Base_Monster monster) {
         if (this.getMana() >= 200){
             int netDmg = this.getDmg()+100-monster.getDef();
             this.setHp(getHp()-50);
             monster.setHp(monster.getHp()-netDmg);
+            this.setMana(this.getMana()-200);
             if (this.isOwned()){
                 Player.setUsed_Point(Player.getUsed_Point()+1);
-            }else{
-                System.out.println("You don't have enough mana");
+
             }
+            return true;
+        }else{
+            System.out.println("You don't have enough mana");
+            return false;
         }
+    }
+
+    @Override
+    public String getUnique() {
+        return Base_Monster.toString("s","d");
     }
 }

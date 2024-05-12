@@ -68,6 +68,28 @@ public abstract class Base_Monster extends Sprite {
         }
     }
 
+    public static String toString(String amount,String type){
+        if (type == "b"){
+            if (amount == "m"){
+                return "Buff --> Multiple Targets";
+            }else if (amount == "s"){
+                return "Buff --> Single Target";
+            } else{
+                return null;
+            }
+        }else if (type == "d"){
+            if (amount == "m"){
+                return "Damage --> Multiple Targets";
+            }else if (amount == "s"){
+                return "Damage --> Single Target";
+            } else{
+                return null;
+            }
+        }else {
+            return null;
+        }
+    }
+
     public int getMaxHp() {
         return maxHp;
     }

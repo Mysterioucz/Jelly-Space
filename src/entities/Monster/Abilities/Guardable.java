@@ -3,5 +3,6 @@ package entities.Monster.Abilities;
 import entities.Monster.Base_Monster;
 
 public interface Guardable {
-    void guard(Base_Monster ChosenMonster);
+    boolean guard(Base_Monster ChosenMonster);
+    String getGuard();
 }
