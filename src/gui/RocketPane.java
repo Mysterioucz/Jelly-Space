@@ -1,6 +1,8 @@
 package gui;
 
+import javafx.geometry.HPos;
 import javafx.geometry.Insets;
+import javafx.geometry.VPos;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
@@ -12,24 +14,57 @@ import main.Main;
 public class RocketPane extends GridPane {
     private int BTN_WIDTH = 173;
     private int BTN_HEIGHT = 42;
+    private Button confirmBtn;
+    private Button cancelBtn;
+    private Text Title;
+    private Image BgImage  = new Image(ClassLoader.getSystemResource("img/background/rocket/RocketPaneBG.png").toString());
+
     public RocketPane() {
         super();
+        init();
+//        setGridLinesVisible(true); // for debugging
+    }
+    public void init(){
+        createTitle(); // Create Title
+        initializeButtons();// Initialize buttons with actions
 
-        //Create Pane Title
-        Text Title = new Text("Confirm to launch the rocket");
-        Title.setFont(Font.font("VCR OSD Mono", 25));
+        // Create a ColumnConstraints object
+        ColumnConstraints columnConstraints = new ColumnConstraints();
+        columnConstraints.setPrefWidth(BgImage.getWidth()/2);
+        // Set the column constraints for each column in the GridPane
+        for (int i = 0; i < 2; i++) {
+            this.getColumnConstraints().add(columnConstraints);
+        }
 
         //Set Background Image
         setBackground(new Background(new BackgroundImage(
-                new Image(ClassLoader.getSystemResource("img/background/rocket/RocketPaneBG.png").toString()),
+                BgImage,
                 BackgroundRepeat.NO_REPEAT,
                 BackgroundRepeat.NO_REPEAT,
                 BackgroundPosition.CENTER,
                 BackgroundSize.DEFAULT
         )));
-        //initialize buttons with actions
-        Button confirmBtn = new Button("Yes");
-        Button cancelBtn = new Button("No");
+
+        //Add components to the pane
+        add(Title, 0, 0, 2, 1);
+        add(confirmBtn, 0, 1);
+        add(cancelBtn, 1, 1);
+        // Set margin and alignment
+        setHalignment(Title, HPos.CENTER);
+        setValignment(confirmBtn, VPos.CENTER);
+        setValignment(cancelBtn, VPos.CENTER);
+        setHalignment(confirmBtn, HPos.CENTER);
+        setHalignment(cancelBtn, HPos.CENTER);
+        setVgap(40);
+    }
+
+    public void createTitle() {
+        Title = new Text("Confirm to launch the rocket");
+        Title.setFont(Font.font("VCR OSD Mono", 25));
+    }
+    public void initializeButtons() {
+        confirmBtn = new Button("Yes");
+        cancelBtn = new Button("No");
         Background btnIdle = new Background(new BackgroundImage(
                 new Image(ClassLoader.getSystemResource("img/background/rocket/button.png").toString()),
                 BackgroundRepeat.NO_REPEAT,
@@ -56,25 +91,17 @@ public class RocketPane extends GridPane {
         cancelBtn.setOnMouseExited(e -> cancelBtn.setBackground(btnIdle));
         confirmBtn.setOnAction(e -> confirmLaunch());
         cancelBtn.setOnAction(e -> cancelLaunch());
-        add(Title, 0, 0, 2, 1);
-        add(confirmBtn, 0, 1);
-        add(cancelBtn, 1, 1);
-        setGridLinesVisible(true);
-        setHalignment(Title, javafx.geometry.HPos.CENTER);
-        setValignment(confirmBtn, javafx.geometry.VPos.CENTER);
-        setValignment(cancelBtn, javafx.geometry.VPos.CENTER);
-        setMargin(Title, new Insets(60, 0, 0, 40));
-        setMargin(confirmBtn, new Insets(0, 0, 0, 40));
-        setMargin(cancelBtn, new Insets(0, 0, 0, 40));
-        setVgap(40);
     }
     public void confirmLaunch() {
-        //TODO implement launch rocket
         Main.changeSceneStatic(new MapSelectPane(), true);
     }
     public void cancelLaunch() {
-        //TODO implement cancel rocket
+        // Reset player position and resume game loop
+//        MapPane.getGameMap().resetPlayerPosition();
         MapPane.getInstance().setGameLoopState(true);
+        MapPane.getInstance().createGameLoop();
+        // Remove the rocket pane and request focus to the map pane
         MapPane.getInstance().getChildren().remove(this);
+        MapPane.getInstance().requestFocus();
     }
 }

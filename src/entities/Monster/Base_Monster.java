@@ -2,6 +2,7 @@ package entities.Monster;
 
 import entities.Monster.Abilities.Elements;
 import entities.Sprite;
+import gui.MapPane;
 import javafx.scene.image.Image;
 
 public abstract class Base_Monster extends Sprite {
@@ -142,4 +143,5 @@ public abstract class Base_Monster extends Sprite {
     public boolean isOwned(){
         return owned;
     }
+
 }

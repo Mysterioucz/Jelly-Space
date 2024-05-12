@@ -13,9 +13,11 @@ public class MapEarth extends GameMap {
 
     public MapEarth(){
         this.boundary = new EllipseBoundary(559,375,400,125);
-        Player.getPlayer().setX(229);
-        Player.getPlayer().setY(375);
-        boss = new Chatrin(897, 326);
+        // set player position to initial position
+        setInitialPosition(229,375);
+        resetPlayerPosition();
+        // Create map entities
+        setBoss(new Chatrin(897, 326));
         rocket = new Rocket(48,263,"normal");
     }
     public boolean checkBoundary(double x, double y) {
@@ -29,8 +31,5 @@ public class MapEarth extends GameMap {
     public void drawBoundary(GraphicsContext gc) {
         boundary.drawBoundary(gc);
     }
-    public void draw(GraphicsContext gc) {
-        gc.drawImage(boss.getImage(),boss.getX(),boss.getY());
-        gc.drawImage(rocket.getImage(),rocket.getX(),rocket.getY());
-    }
+
 }

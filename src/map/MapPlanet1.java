@@ -15,9 +15,11 @@ public class MapPlanet1 extends GameMap{
         this.boundary = new InverseParabolicBoundary(976,400,0.0015); // tuned
         this.boundary2 = new ParabolicBoundary(990,670,0.00049); // tuned
         this.boundary3 = new LinearBoundary(0,100); // tuned
-        Player.getPlayer().setX(720);
-        Player.getPlayer().setY(475);
-        boss = new TU_Force(165,195,false);
+        // set player position to initial position
+        setInitialPosition(720,475);
+        resetPlayerPosition();
+        // Create map entities
+        setBoss(new TU_Force(165,195,false));
         rocket = new Rocket(833,542,"normal");
     }
     public boolean checkBoundary(double x, double y) {
@@ -29,10 +31,4 @@ public class MapPlanet1 extends GameMap{
         boundary3.drawBoundary(gc);
     }
 
-    @Override
-    public void draw(GraphicsContext gc) {
-        // TODO
-        gc.drawImage(boss.getImage(),boss.getX(),boss.getY());
-        gc.drawImage(rocket.getImage(),rocket.getX(),rocket.getY());
-    }
 }
