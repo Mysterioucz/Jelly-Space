@@ -8,7 +8,7 @@ import javafx.scene.image.Image;
 
 public class TU_Force extends Base_Monster implements Attackable, Unique_Ability {
     private Image Idle_battle = new Image(ClassLoader.getSystemResource("img/entities/monster/tu_force/Idle_battle.gif").toString());
-    private Image Idle_right = new Image(ClassLoader.getSystemResource("img/entities/monster/tu_force/Idle_right.gif").toString());
+    private Image Idle_right = new Image(ClassLoader.getSystemResource("img/entities/monster/tu_force/Idle.gif").toString());
     private Image special = new Image(ClassLoader.getSystemResource("img/entities/monster/tu_force/special.gif").toString());
 
 
