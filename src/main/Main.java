@@ -85,6 +85,11 @@ public class Main extends Application{
     public static void changeSceneStatic(Pane newPane,Boolean transition) {
         instance.changeScene(newPane,transition);
     }
+    public void addPaneToStackPane(StackPane stackPane, Pane pane) {
+        // Add the new Pane to the StackPane
+        stackPane.getChildren().add(pane);
+    }
+
     public static void main(String[] args) {
         launch(args);
     }

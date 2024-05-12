@@ -3,6 +3,7 @@ package gui;
 import inputs.KeyboardInputs;
 import javafx.application.Platform;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
@@ -12,7 +13,7 @@ import javafx.scene.paint.Color;
 import main.Main;
 import map.*;
 
-public class MapPane extends Pane {
+public class MapPane extends StackPane {
     private static MapPane instance;
     private Thread gameLoop;
     private volatile boolean running = true;
@@ -27,6 +28,7 @@ public class MapPane extends Pane {
         init();
         createGameLoop();
         instance = this;
+
     }
     private void update() {
         // update player postion and game state
@@ -46,8 +48,10 @@ public class MapPane extends Pane {
     public void handleCollideWithRocket(){
         //TODO something when collide with rocket
         // When the player collides with the rocket, fade out the current scene and change the root of the scene to the new MapSelectPane
-        running = false; // Stop the game loop
-        Main.changeSceneStatic(new MapSelectPane(),true);
+        setGameLoopState(false); // Stop the game loop
+        RocketPane rocketPane = new RocketPane();
+        getChildren().addLast(rocketPane);
+        rocketPane.setAlignment(Pos.CENTER);
 
     }
     public void handleCollideWithBoss(){
@@ -55,9 +59,9 @@ public class MapPane extends Pane {
         Pane whitePane = new Pane();
         whitePane.setBackground(new Background(new BackgroundFill(Color.WHITE, CornerRadii.EMPTY, Insets.EMPTY)));
 
-//        running = false; // Stop the game loop
-//        // Get the current stage and set the new scene
-//        Main.changeSceneStatic(whitePane,false);
+        setGameLoopState(false); // Stop the game loop
+        // Get the current stage and set the new scene
+        Main.changeSceneStatic(whitePane,false);
     }
 
     private void init(){
@@ -150,5 +154,9 @@ public class MapPane extends Pane {
     }
     public static MapPane getInstance() {
         return instance;
+    }
+
+    public void setGameLoopState(boolean b ) {
+        running = b;
     }
 }
