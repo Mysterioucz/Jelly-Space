@@ -27,6 +27,8 @@ public class Player extends Sprite {
     private static final int height = 80;
     private static final Image imgRight = new Image(ClassLoader.getSystemResource("img/entities/player/right.gif").toString());
     private static final Image imgLeft = new Image(ClassLoader.getSystemResource("img/entities/player/left.gif").toString());
+    private static double newX, newY;
+    private static Rectangle playerRect, bossRect, rocketRect;
 
     public Player(String name,double x, double y, double width, double height){
         super(x,y,width,height,2,imgRight); // set initial image to be right
@@ -38,13 +40,6 @@ public class Player extends Sprite {
     }
     public void update(){
         movePlayer(); //Called move player method
-
-        // Create rectangles for the player, the boss and rocket
-        Rectangle playerRect = new Rectangle(getX(), getY(), getWidth(), getHeight());
-        Sprite boss = MapPane.getGameMap().getBoss();
-        Rectangle bossRect = new Rectangle(boss.getX(), boss.getY(), boss.getWidth(), boss.getHeight());
-        Rocket rocket = MapPane.getGameMap().getRocket();
-        Rectangle rocketRect = new Rectangle(rocket.getX(), rocket.getY(), rocket.getWidth(), rocket.getHeight());
         // Check if the player collides with the boss
         if(playerRect.intersects(bossRect.getBoundsInLocal())){
             System.out.println("Collided with Boss");
@@ -55,8 +50,8 @@ public class Player extends Sprite {
         }
     }
     public void movePlayer() {
-        double newX = getX();
-        double newY = getY();
+        newX = getX();
+        newY = getY();
         if(keyHandler.up){
             newY -= getSpeed();
         } else if (keyHandler.down) {
@@ -68,12 +63,17 @@ public class Player extends Sprite {
             newX += getSpeed();
             setImage(imgRight);
         }
+        // Create rectangles for the player, the boss and rocket
+        createEntitiesBound();
         // Calculate the Center position of the player
         int posX = (int) (newX+getWidth()/2);
         int posY = (int) (newY+getHeight()/2);
         if((MapPane.getGameMap().checkBoundary(newX+getWidth()/2,newY+getHeight()/2)) & (posX >= 0 && posX <= (1280-getWidth())) && (posY >= 0 && posY <= 720-getHeight())){
-            // If the new position is within the boundary, update the player's position
-            move(newX, newY);
+            // If the new position is within the boundary, check if the player collides with the boss or rocket
+            if(!playerRect.intersects(bossRect.getBoundsInLocal())&!playerRect.intersects(rocketRect.getBoundsInLocal())){
+                // if not move the player
+                move(newX, newY);
+            }
         }
     }
     public void draw(GraphicsContext gc){
@@ -85,6 +85,13 @@ public class Player extends Sprite {
         gc.strokeRect(getX(), getY(), getWidth(), getHeight());
         gc.strokeRect(boss.getX(), boss.getY(), boss.getWidth(), boss.getHeight());
         gc.strokeRect(rocket.getX(), rocket.getY(), rocket.getWidth(), rocket.getHeight());
+    }
+    public void createEntitiesBound(){
+        playerRect = new Rectangle(newX, newY, getWidth(), getHeight());
+        Sprite boss = MapPane.getGameMap().getBoss();
+        bossRect = new Rectangle(boss.getX(), boss.getY(), boss.getWidth(), boss.getHeight());
+        Rocket rocket = MapPane.getGameMap().getRocket();
+        rocketRect = new Rectangle(rocket.getX(), rocket.getY(), rocket.getWidth(), rocket.getHeight());
     }
 
     public static String getName() {
