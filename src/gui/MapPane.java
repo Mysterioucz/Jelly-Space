@@ -37,7 +37,6 @@ public class MapPane extends StackPane {
 
     }
     private void draw() {
-        // TODO Auto-generated method stub
         // render player and game state
         gc.clearRect(0, 0, getPrefWidth(), getPrefHeight());
         player.draw(gc);
@@ -46,7 +45,6 @@ public class MapPane extends StackPane {
 
     }
     public void handleCollideWithRocket(){
-        //TODO something when collide with rocket
         // When the player collides with the rocket, fade out the current scene and change the root of the scene to the new MapSelectPane
         setGameLoopState(false); // Stop the game loop
         RocketPane rocketPane = new RocketPane();
@@ -65,7 +63,6 @@ public class MapPane extends StackPane {
     }
 
     private void init(){
-        // TODO Auto-generated method stub
         // initialize game state
         setPrefWidth(1280);
         setPrefHeight(720);
