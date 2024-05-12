@@ -7,8 +7,11 @@ import entities.Player.Player;
 import entities.Player.Rocket;
 import gui.MapPane;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.image.Image;
 
 public class MapPlanet2 extends GameMap{
+    private Image tree = new Image(ClassLoader.getSystemResource("img/mapComponent/tree.png").toString());
+    private Image tree_Rock= new Image(ClassLoader.getSystemResource("img/mapComponent/tree_rock.png").toString());
     private Boundary boundary2;
     public MapPlanet2(){
         this.boundary = new LinearBoundary(1,100);
@@ -29,5 +32,8 @@ public class MapPlanet2 extends GameMap{
         // TODO
         gc.drawImage(boss.getImage(),boss.getX(),boss.getY());
         gc.drawImage(rocket.getImage(),rocket.getX(),rocket.getY());
+        gc.drawImage(tree,325,287);
+        gc.drawImage(tree,569,560);
+        gc.drawImage(tree_Rock,0,108);
     }
 }
