@@ -13,7 +13,7 @@ public class MapPlanet1 extends GameMap{
 
     public MapPlanet1(){
         this.boundary = new InverseParabolicBoundary(976,400,0.0015); // tuned
-        this.boundary2 = new ParabolicBoundary(976,750,0.0005); // tuned
+        this.boundary2 = new ParabolicBoundary(990,670,0.00049); // tuned
         this.boundary3 = new LinearBoundary(0,100); // tuned
         Player.getPlayer().setX(720);
         Player.getPlayer().setY(475);
