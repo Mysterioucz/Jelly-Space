@@ -40,6 +40,6 @@ public class Fei extends Base_Monster implements Unique_Ability {
 
     @Override
     public String getUnique() {
-        return Base_Monster.toString("s","d",1);
+        return Base_Monster.toString("s","d",50,"True Damage");
     }
 }
