@@ -50,8 +50,7 @@ public class TU_Force extends Base_Monster implements Attackable, Unique_Ability
     @Override
     public boolean unique_ability(Base_Monster monster) {
         if (this.getMana()>=300){
-            monster.setDmg(monster.getDmg()+50);
-            monster.setDef(monster.getDef()+50);
+            monster.setDmg(monster.getDmg()+100);
             this.setMana(this.getMana() - 300);
             if (this.isOwned()){
                 Player.setUsed_Point(Player.getUsed_Point()+2);
