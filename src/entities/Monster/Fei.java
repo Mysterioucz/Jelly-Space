@@ -3,6 +3,7 @@ package entities.Monster;
 import entities.Monster.Abilities.Elements;
 import entities.Monster.Abilities.Unique_Ability;
 import entities.Player.Player;
+import gui.battle.BattleFieldPane;
 import javafx.scene.image.Image;
 
 public class Fei extends Base_Monster implements Unique_Ability {
@@ -32,6 +33,7 @@ public class Fei extends Base_Monster implements Unique_Ability {
             return true;
         }else{
             System.out.println("You don't have enough mana");
+            BattleFieldPane.getInstance().handleBattle("You don't have enough mana");
             return false;
         }
     }

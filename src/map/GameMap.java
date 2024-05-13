@@ -1,6 +1,7 @@
 package map;
 
 import boundaries.Boundary;
+import entities.Monster.Base_Monster;
 import entities.Player.Player;
 import entities.Player.Rocket;
 import entities.Sprite;
@@ -11,7 +12,7 @@ public abstract class GameMap {
     protected Sprite boss;
     protected Rocket rocket;
     protected double initialX,initialY;
-    protected Boolean isCleared = false;
+    protected static Boolean earthIsCleared = false,blackHoleIsCleared = false,planet1IsCleared = false,planet2IsCleared = false,planet3IsCleared = false;
 
     public abstract boolean checkBoundary(double x, double y);
     public Boundary getBoundary(){
@@ -21,16 +22,20 @@ public abstract class GameMap {
     public void draw(GraphicsContext gc) {
         // Draw the boss and rocket
         try {
-            gc.drawImage(boss.getImage(),boss.getX(),boss.getY());
+            if(!((Base_Monster) boss).isDead()){
+                gc.drawImage(boss.getImage(),boss.getX(),boss.getY());
+            }
         } catch (NullPointerException e) {
         }
         gc.drawImage(rocket.getImage(),rocket.getX(),rocket.getY());
     }
 
     public void setBoss(Sprite boss){
-        if(!isCleared){
+        if(!isCleared()){
+            // if map not cleared create the boss
             this.boss = boss;
         }else{
+            // if cleared set boss to null
             this.boss = null;
         }
     }
@@ -53,12 +58,8 @@ public abstract class GameMap {
         initialY = y;
     }
 
-    public Boolean isCleared() {
-        return isCleared;
-    }
-    public void setIsCleared(Boolean b) {
-        this.isCleared = b;
-    }
+    public abstract void setIsCleared(Boolean b);
+    public abstract Boolean isCleared();
 }
 
 

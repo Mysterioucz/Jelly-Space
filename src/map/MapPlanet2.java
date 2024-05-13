@@ -11,6 +11,7 @@ public class MapPlanet2 extends GameMap{
     private Image tree = new Image(ClassLoader.getSystemResource("img/Components/mapComponent/tree.png").toString());
     private Image tree_Rock= new Image(ClassLoader.getSystemResource("img/Components/mapComponent/tree_rock.png").toString());
     private Boundary boundary2;
+    private static Boolean isCleared = false;
 
     public MapPlanet2(){
         this.boundary = new LinearBoundary(1,100);
@@ -41,5 +42,13 @@ public class MapPlanet2 extends GameMap{
         gc.drawImage(tree,325,287);
         gc.drawImage(tree,569,560);
         gc.drawImage(tree_Rock,0,108);
+    }
+
+    public Boolean isCleared() {
+        return isCleared;
+    }
+
+    public void setIsCleared(Boolean isCleared) {
+        MapPlanet2.isCleared = isCleared;
     }
 }

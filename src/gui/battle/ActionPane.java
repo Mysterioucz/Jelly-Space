@@ -141,8 +141,8 @@ public class ActionPane extends GridPane {
                 }
                 break;
             case "Unique":
-                // TODO Change the text to the unique ability of activeMonster by using getUniqueDesc()
-                actionText.setText("Unique ability: Use unique ability");
+                // Done Change the text to the unique ability of activeMonster by using getUniqueDesc()
+                actionText.setText("Unique ability: " + ((Unique_Ability) monster).getUnique());
                 break;
         }
 
@@ -157,7 +157,6 @@ public class ActionPane extends GridPane {
             BattleFieldPane.getInstance().handleBattle(myMonster.getName() + " use Attack! ");
             // Attack the boss
             ((Attackable) myMonster).attack(boss);
-            createActionPoint(); // update action point
         }else{
             System.out.println("This monster can't attack");
         }
@@ -170,7 +169,6 @@ public class ActionPane extends GridPane {
             BattleFieldPane.getInstance().handleBattle(myMonster.getName() + " use Guard! ");
             // Guard the boss
             ((Guardable) myMonster).guard(myMonster);
-            createActionPoint(); // update action point
         }
 
     }
@@ -187,7 +185,6 @@ public class ActionPane extends GridPane {
             // Debuff/Attack the boss
             ((Unique_Ability) myMonster).unique_ability(boss);
         }
-        createActionPoint(); // update action point
         // Change the active monster image to the special image
         BattleFieldPane.getInstance().setActiveMonsterImage(myMonster.getSpecial_ally_img());
         // Create a PauseTransition
@@ -196,6 +193,9 @@ public class ActionPane extends GridPane {
         pause.setOnFinished(event -> BattleFieldPane.getInstance().setActiveMonsterImage(myMonster.getIdle_ally_img()));
         // Start the pause
         pause.play();
+    }
+    public void update(){
+        createActionPoint();
     }
     public void setItemDetail(String detail){
         itemDetail.setText("Item Detail: " + detail);
@@ -206,7 +206,7 @@ public class ActionPane extends GridPane {
         // Set new monsterDetail and add it to the ActionPane
         this.monsterDetail = monsterDetail;
         add(monsterDetail, 1, 1,1,2);
-        System.out.println("Monster Detail set");
+//        System.out.println("Monster Detail set");
     }
     public void setActionText(String action){
         actionText.setText(action);

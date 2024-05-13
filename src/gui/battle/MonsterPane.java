@@ -35,19 +35,47 @@ public class MonsterPane extends GridPane {
         // Create Monster Image
         for(int i =0 ; i<Player.getMy_monster().getMonsters().size() ; i++){
             Base_Monster monster = Player.getMy_monster().getMonsters().get(i);
-            // TODO Change Image to dead image if monster is dead
+            // Done Change Image to dead image if monster is dead
             // Done Load AllyImage instead of EnemyImage
-            ImageView monsterImage = new ImageView(monster.getIdle_ally_img());
+            ImageView monsterImage;
+            if(monster.isDead()){
+                monsterImage = new ImageView(monster.getDead_img());
+            }else{
+                monsterImage = new ImageView(monster.getIdle_ally_img());
+            }
             monsterImage.setOnMouseEntered(e -> handleHover(monster));
             monsterImage.setOnMouseClicked(e -> handleOnClick(monster));
             add(monsterImage,i,0);
             setHalignment(monsterImage, HPos.CENTER);
         }
     }
+    public void update(){
+        for(int i =0 ; i<Player.getMy_monster().getMonsters().size() ; i++){
+            Base_Monster monster = Player.getMy_monster().getMonsters().get(i);
+            ImageView monsterImage;
+            if(monster.isDead()){
+                monsterImage = new ImageView(monster.getDead_img());
+            }else{
+                monsterImage = new ImageView(monster.getIdle_ally_img());
+            }
+            monsterImage.setOnMouseEntered(e -> handleHover(monster));
+            monsterImage.setOnMouseClicked(e -> handleOnClick(monster));
+            if((((ImageView) getChildren().get(i)).getImage()).getUrl().equals(monsterImage.getImage().getUrl())){
+                // if equal do nothing
+            }else{
+                // if not equal update the image
+                add(monsterImage,i,0);
+                setHalignment(monsterImage, HPos.CENTER);
+                System.out.println("Monster Image Updated" + monster.getName());
+            }
+
+
+        }
+    }
 
     public void handleHover(Base_Monster monster) {
         // Done make Monster detail in ActionPane Change to current monster detail that mouse hovering
-        System.out.println("handleMonsterHover running"); // for debugging
+//        System.out.println("handleMonsterHover running"); // for debugging
         MonsterDetail monsterDetail = new MonsterDetail(monster.getName(), String.valueOf(monster.getDmg()), String.valueOf(monster.getDef()), String.valueOf(monster.getHp()), String.valueOf(monster.getMana()));
         ActionPane.getInstance().setMonsterDetail(monsterDetail);
     }
@@ -55,6 +83,7 @@ public class MonsterPane extends GridPane {
         // Done clicked monster to be Player's active monster
         // Don't forget to change the monster detail in BattleFieldPane
         // Don't forget to check if the monster is already on BattleFieldPane or not
+        System.out.println("Monster Clicked");
         if(Player.getActiveMonster().equals(monster)){
             System.out.println("Monster already active");
         }else{

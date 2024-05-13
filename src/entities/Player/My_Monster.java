@@ -20,14 +20,6 @@ public class My_Monster {
         }
     }
 
-    public void deleteDeadMonster(){
-        for (Base_Monster m:monsters){
-            if (m.isDead()){
-                monsters.remove(m);
-            }
-        }
-    }
-
     public ArrayList<Base_Monster> getMonsters() {
         return monsters;
     }

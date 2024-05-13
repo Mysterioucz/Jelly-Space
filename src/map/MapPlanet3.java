@@ -8,6 +8,7 @@ import javafx.scene.image.Image;
 
 public class MapPlanet3 extends GameMap{
     private Image component = new Image(ClassLoader.getSystemResource("img/Components/mapComponent/planet3.png").toString());
+    private static Boolean isCleared = false;
 
     public MapPlanet3(){
         this.boundary = new InverseParabolicBoundary(390,450,0.0005);
@@ -34,5 +35,13 @@ public class MapPlanet3 extends GameMap{
         }
         gc.drawImage(rocket.getImage(),rocket.getX(),rocket.getY());
         gc.drawImage(component,-250,360,1673,377);
+    }
+
+    public Boolean isCleared() {
+        return GameMap.planet3IsCleared;
+    }
+
+    public void setIsCleared(Boolean isCleared) {
+        MapPlanet3.isCleared = isCleared;
     }
 }
