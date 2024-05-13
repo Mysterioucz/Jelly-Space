@@ -21,6 +21,8 @@ public class MonsterDetail extends VBox {
         setMonsterMana(monsterMana);
         getChildren().addAll(this.monsterName, this.monsterHp, this.monsterDamage, this.monsterDef, this.monsterMana);
         setSpacing(5);
+        setPrefSize(120,110);
+        setMaxSize(120,110);
 
     }
 

@@ -15,6 +15,8 @@ public class InventoryPane extends GridPane {
 
     public InventoryPane() {
         super();
+        setPrefSize(400,90);
+        setMaxSize(400,90);
         // Set Background color
         Background bg = new Background(new BackgroundFill(Color.BLACK, new CornerRadii(15), null));
         setBackground(bg);
@@ -32,16 +34,19 @@ public class InventoryPane extends GridPane {
     public void handleItem(Base_Item item){
         if(item instanceof Base_Potion){
             Base_Potion potion = (Base_Potion) item;
-//            potion.use(Player.getActiveMonster()); // TODO: Use on active monster
+            potion.use(Player.getActiveMonster()); // Done: Use on active monster
         }else{
             Base_Poison poison = (Base_Poison) item;
             Base_Monster enemy = (Base_Monster) MapPane.getGameMap().getBoss();
-            poison.use(enemy); // TODO: Use on active monster
+            poison.use(enemy); // Done: Use on active monster
         }
     }
     public void handleHover(Base_Item item){
-        // TODO make Item detail in ActionPane Change to current item detail that mouse hovering
-//        ActionPane.getInstance().setItemDetail(item.getName() + ": " + item.getDescription());
+
+        // Done make Item detail in ActionPane Change to current item detail that mouse hovering
+        // TODO Override toString method in Base_Item
+        ActionPane.getInstance().setItemDetail(item.toString());
+
     }
 
     public static InventoryPane getInstance(){

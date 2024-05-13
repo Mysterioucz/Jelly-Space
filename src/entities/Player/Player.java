@@ -29,6 +29,7 @@ public class Player extends Sprite {
     private static final Image imgLeft = new Image(ClassLoader.getSystemResource("img/entities/player/left.gif").toString());
     private static double newX, newY;
     private static Rectangle playerRect, bossRect, rocketRect;
+    private static Base_Monster activeMonster;
 
     public Player(String name,double x, double y, double width, double height){
         super(x,y,width,height,2,imgRight); // set initial image to be right
@@ -37,6 +38,7 @@ public class Player extends Sprite {
         inventory = new Inventory();
         my_monster.addMonster(new Chatrin(620,360));
         Used_Point = 0;
+        activeMonster = my_monster.getMyMonster().getFirst();
     }
     public void update(){
         movePlayer(); //Called move player method
@@ -126,8 +128,13 @@ public class Player extends Sprite {
     }
 
     public static Base_Monster getActiveMonster(){
-        // TODO Fix this shit
-//        return my_monster.getActiveMonster();
-        return null;
+        // Done
+        return activeMonster;
     }
+    public static void setActiveMonster(Base_Monster monster){
+        // Done
+        activeMonster = monster;
+    }
+
+
 }

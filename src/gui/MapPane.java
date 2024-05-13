@@ -10,6 +10,7 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.*;
 import entities.Player.Player;
 import javafx.scene.paint.Color;
+import gui.battle.BattlePane;
 import main.Main;
 import map.*;
 
@@ -53,13 +54,13 @@ public class MapPane extends StackPane {
 
     }
     public void handleCollideWithBoss(){
+        // Stop the game loop
+        setGameLoopState(false);
         // Create a new scene with a white background
-        Pane whitePane = new Pane();
-        whitePane.setBackground(new Background(new BackgroundFill(Color.WHITE, CornerRadii.EMPTY, Insets.EMPTY)));
-
-        setGameLoopState(false); // Stop the game loop
+        BattlePane battlePane = new BattlePane();
         // Get the current stage and set the new scene
-        Main.changeSceneStatic(whitePane,false);
+        Main.changeSceneStatic(battlePane,true);
+        battlePane.requestFocus();
     }
 
     private void init(){

@@ -3,6 +3,7 @@ package main;
 import gui.RocketPane;
 import gui.StartPane;
 import gui.battle.ActionPane;
+import gui.battle.BattlePane;
 import gui.battle.MonsterPane;
 import inputs.KeyboardInputs;
 import javafx.animation.FadeTransition;
