@@ -3,13 +3,14 @@ package entities.Monster;
 import entities.Monster.Abilities.Elements;
 import entities.Monster.Abilities.Unique_Ability;
 import entities.Player.Player;
+import gui.battle.BattleFieldPane;
 import javafx.scene.image.Image;
 
 public class Fei extends Base_Monster implements Unique_Ability {
     private Image img = new Image(ClassLoader.getSystemResource("img/entities/monster/Fei/Idle.gif").toString());
 
     public Fei(int x,int y,boolean owned){
-        super("Fei", Elements.EARTHLINGS,300,100,50,50,50,owned,x,y,96,96,200,null);
+        super("Fei", Elements.EARTHLINGS,300,300,50,50,50,owned,x,y,96,96,200,null);
         setImage(img);
         setDead_img(getName());
         setIdle_ally_img(getName());
@@ -32,6 +33,7 @@ public class Fei extends Base_Monster implements Unique_Ability {
             return true;
         }else{
             System.out.println("You don't have enough mana");
+            BattleFieldPane.getInstance().handleBattle("You don't have enough mana");
             return false;
         }
     }

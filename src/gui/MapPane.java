@@ -1,9 +1,11 @@
 package gui;
 
 import inputs.KeyboardInputs;
+import javafx.animation.FadeTransition;
 import javafx.application.Platform;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
@@ -11,6 +13,7 @@ import javafx.scene.layout.*;
 import entities.Player.Player;
 import javafx.scene.paint.Color;
 import gui.battle.BattlePane;
+import javafx.util.Duration;
 import main.Main;
 import map.*;
 
@@ -58,9 +61,23 @@ public class MapPane extends StackPane {
         setGameLoopState(false);
         // Create a new scene with a white background
         BattlePane battlePane = new BattlePane();
-        // Get the current stage and set the new scene
-        Main.changeSceneStatic(battlePane,true);
-        battlePane.requestFocus();
+        // Create a FadeTransition for the old scene
+        FadeTransition fadeOut = new FadeTransition(Duration.millis(1000), battlePane);
+        fadeOut.setFromValue(1.0);
+        fadeOut.setToValue(0.0);
+        // Set an action to be performed when the fade out transition finishes
+        fadeOut.setOnFinished(e -> {
+            // Create a FadeTransition for the new scene
+            FadeTransition fadeIn = new FadeTransition(Duration.millis(1000), battlePane);
+            fadeIn.setFromValue(0.0);
+            fadeIn.setToValue(1.0);
+            // Start the fade in transition
+            fadeIn.play();
+            battlePane.requestFocus();
+            getChildren().addLast(battlePane);
+        });
+        // Start the fade out transition
+        fadeOut.play();
     }
 
     private void init(){

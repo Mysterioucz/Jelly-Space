@@ -13,6 +13,7 @@ import javafx.scene.shape.Rectangle;
 import gui.MapPane;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 import static gui.MapPane.keyHandler;// import static constant
 
@@ -102,7 +103,9 @@ public class Player extends Sprite {
     public void createEntitiesBound(){
         playerRect = new Rectangle(newX, newY, getWidth(), getHeight());
         Sprite boss = MapPane.getGameMap().getBoss();
-        bossRect = new Rectangle(boss.getX(), boss.getY(), boss.getWidth(), boss.getHeight());
+        if(!((Base_Monster) MapPane.getGameMap().getBoss()).isDead()){ // if the boss is not dead, create a rectangle for the boss
+            bossRect = new Rectangle(boss.getX(), boss.getY(), boss.getWidth(), boss.getHeight());
+        }
         Rocket rocket = MapPane.getGameMap().getRocket();
         rocketRect = new Rectangle(rocket.getX(), rocket.getY(), rocket.getWidth(), rocket.getHeight());
     }

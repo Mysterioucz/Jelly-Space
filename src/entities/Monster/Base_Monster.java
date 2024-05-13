@@ -248,4 +248,9 @@ public abstract class Base_Monster extends Sprite {
     public void setSpecial_ally_img(String name) {
         this.special_ally_img = new Image(ClassLoader.getSystemResource("img/entities/monster/"+name+"/special_ally.gif").toString());;
     }
+    public void startTurn(){
+        this.setMana(this.getMana()+this.getManaReg());
+        this.setBaseDef(getBaseDef());
+        this.setDmg(getBaseDmg());
+    }
 }

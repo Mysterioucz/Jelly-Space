@@ -1,6 +1,7 @@
 package map;
 
 import boundaries.Boundary;
+import entities.Monster.Base_Monster;
 import entities.Player.Player;
 import entities.Player.Rocket;
 import entities.Sprite;
@@ -21,7 +22,9 @@ public abstract class GameMap {
     public void draw(GraphicsContext gc) {
         // Draw the boss and rocket
         try {
-            gc.drawImage(boss.getImage(),boss.getX(),boss.getY());
+            if(!((Base_Monster) boss).isDead()){
+                gc.drawImage(boss.getImage(),boss.getX(),boss.getY());
+            }
         } catch (NullPointerException e) {
         }
         gc.drawImage(rocket.getImage(),rocket.getX(),rocket.getY());
