@@ -1,6 +1,10 @@
 package entities.Player;
 
 import Items.Poisons.Mana_Poison;
+import Items.Poisons.Mega_Health_Poison;
+import Items.Poisons.Mega_Mana_Poison;
+import Items.Potions.Health_Potion;
+import Items.Potions.Mana_Potion;
 import boundaries.Boundary;
 import entities.Monster.*;
 import entities.Sprite;
@@ -45,11 +49,11 @@ public class Player extends Sprite {
         my_monster.addMonster(new Fai(0,0,true));
         my_monster.addMonster(new Fei(0,0,true));
 
-        inventory.addItem(new Mana_Poison());
-        inventory.addItem(new Mana_Poison());
-        inventory.addItem(new Mana_Poison());
-        inventory.addItem(new Mana_Poison());
-        inventory.addItem(new Mana_Poison());
+        inventory.addItem(new Health_Potion());
+        inventory.addItem(new Mega_Health_Poison());
+        inventory.addItem(new Mana_Potion());
+        inventory.addItem(new Mega_Mana_Poison());
+        inventory.addItem(new Mega_Health_Poison());
         //***************************************************************************************************
     }
     public void update(){
