@@ -10,7 +10,7 @@ public class Faith extends Base_Monster implements Attackable, Guardable, Unique
     private Image img = new Image(ClassLoader.getSystemResource("img/entities/monster/Faith/Idle.gif").toString());
 
     public Faith(int x, int y){
-        super("Faith", null,1000,1000,300,100,60,false,x,y,192,192,0,null);
+        super("Faith", null,1000,1000,300,200,60,false,x,y,192,192,0,null);
         setImage(img);
         setIdle_battle_img(getName());
         setSpecial_img(getName());
@@ -60,7 +60,7 @@ public class Faith extends Base_Monster implements Attackable, Guardable, Unique
             monster.setBaseDef(0);
             monster.setDef(0);
             for (Base_Monster e: Player.getMy_monster().getMonsters()){
-                int netDmg = this.getDmg()-e.getDef();
+                int netDmg = Math.max(this.getDmg()-e.getDef(),0);
                 e.setHp(e.getHp()-netDmg);
             }
             this.setMana(this.getMana() - 900);

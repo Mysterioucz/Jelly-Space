@@ -41,7 +41,7 @@ public class Fai extends Base_Monster implements Attackable, Unique_Ability {
 
     @Override
     public String getAttack() {
-        return Base_Monster.toString("s","d",100,"(Debuff)");
+        return Base_Monster.toString("s","d",100,"");
     }
 
     @Override
