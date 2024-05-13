@@ -28,7 +28,7 @@ public class Fai extends Base_Monster implements Attackable, Unique_Ability {
             otherMonster.setHp(otherMonster.getHp() - netDmg);
             this.setMana(this.getMana() - 200);
             if (this.isOwned()){
-                Player.setUsed_Point(Player.getUsed_Point()-2);
+                Player.setUsed_Point(Player.getUsed_Point()-1);
             }
             return true;
         }else{
@@ -39,7 +39,7 @@ public class Fai extends Base_Monster implements Attackable, Unique_Ability {
 
     @Override
     public String getAttack() {
-        return Base_Monster.toString("s","d",2);
+        return Base_Monster.toString("s","d",1);
     }
 
     @Override
