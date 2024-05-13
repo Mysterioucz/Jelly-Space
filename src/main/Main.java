@@ -1,6 +1,9 @@
 package main;
 
+import gui.RocketPane;
 import gui.StartPane;
+import gui.battle.ActionPane;
+import gui.battle.MonsterPane;
 import inputs.KeyboardInputs;
 import javafx.animation.FadeTransition;
 import javafx.application.Application;
@@ -21,7 +24,7 @@ public class Main extends Application{
     public void start(Stage primaryStage) throws Exception{
         instance = this;
         Font.loadFont(ClassLoader.getSystemResource("fonts/VCR_OSD.ttf").toExternalForm(), 20); // Load custom font
-        Pane root = new StartPane();
+        Pane root = new MonsterPane();
         Scene scene = new Scene(root,1280,720);
         scene.getStylesheets().add(ClassLoader.getSystemResource("style.css").toExternalForm()); // Load custom CSS
         primaryStage.setScene(scene);

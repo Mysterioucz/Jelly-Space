@@ -2,14 +2,12 @@ package map;
 
 import boundaries.InverseParabolicBoundary;
 import entities.Monster.Fai;
-import entities.Player.Player;
 import entities.Player.Rocket;
-import gui.MapPane;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 
 public class MapPlanet3 extends GameMap{
-    private Image component = new Image(ClassLoader.getSystemResource("img/mapComponent/planet3.png").toString());
+    private Image component = new Image(ClassLoader.getSystemResource("img/Components/mapComponent/planet3.png").toString());
 
     public MapPlanet3(){
         this.boundary = new InverseParabolicBoundary(390,450,0.0005);

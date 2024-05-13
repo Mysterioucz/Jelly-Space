@@ -30,4 +30,8 @@ public class Inventory {
             }
         }
     }
+
+    public ArrayList<Base_Item> getItems() {
+        return Items;
+    }
 }

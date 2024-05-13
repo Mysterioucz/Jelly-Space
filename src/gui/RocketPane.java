@@ -24,6 +24,7 @@ public class RocketPane extends GridPane {
         init();
 //        setGridLinesVisible(true); // for debugging
     }
+
     public void init(){
         createTitle(); // Create Title
         initializeButtons();// Initialize buttons with actions

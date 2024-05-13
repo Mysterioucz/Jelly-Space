@@ -11,7 +11,7 @@ public abstract class Base_Potion extends Base_Item implements Consumeable{
     }
 
     @Override
-    public void drink(Base_Monster monster) {
+    public void use(Base_Monster monster) {
         if (getType() == Type.HEALTH){
             monster.setHp(monster.getHp()+this.getPower());
         } else if (getType() == Type.MANA) {

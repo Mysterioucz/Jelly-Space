@@ -90,6 +90,10 @@ public abstract class Base_Monster extends Sprite {
         }
     }
 
+    public String getName() {
+        return name;
+    }
+
     public int getMaxHp() {
         return maxHp;
     }

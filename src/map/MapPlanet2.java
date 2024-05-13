@@ -3,15 +3,13 @@ package map;
 import boundaries.Boundary;
 import boundaries.LinearBoundary;
 import entities.Monster.Fei;
-import entities.Player.Player;
 import entities.Player.Rocket;
-import gui.MapPane;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 
 public class MapPlanet2 extends GameMap{
-    private Image tree = new Image(ClassLoader.getSystemResource("img/mapComponent/tree.png").toString());
-    private Image tree_Rock= new Image(ClassLoader.getSystemResource("img/mapComponent/tree_rock.png").toString());
+    private Image tree = new Image(ClassLoader.getSystemResource("img/Components/mapComponent/tree.png").toString());
+    private Image tree_Rock= new Image(ClassLoader.getSystemResource("img/Components/mapComponent/tree_rock.png").toString());
     private Boundary boundary2;
 
     public MapPlanet2(){

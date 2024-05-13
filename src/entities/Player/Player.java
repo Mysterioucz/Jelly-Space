@@ -124,4 +124,9 @@ public class Player extends Sprite {
         }
         return player;
     }
+
+    public static Base_Monster getActiveMonster(){
+        // TODO Fix this shit
+//        return my_monster.getActiveMonster();
+    }
 }
