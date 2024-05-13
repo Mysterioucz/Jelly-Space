@@ -62,13 +62,13 @@ public class Chatrin extends Base_Monster implements Attackable, Guardable, Uniq
         monster.setHp(monster.getHp()-this.getHp()-50);
         this.setHp(0);
         if (this.isOwned()){
-            Player.setUsed_Point(Player.getUsed_Point()-2);
+            Player.setUsed_Point(Player.getUsed_Point()-1);
         }
         return true;
     }
 
     @Override
     public String getUnique() {
-        return Base_Monster.toString("s","d",2);
+        return Base_Monster.toString("s","d",1);
     }
 }
