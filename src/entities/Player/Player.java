@@ -128,7 +128,7 @@ public class Player extends Sprite {
     }
 
     public static void setUsed_Point(int used_Point) {
-        Used_Point = used_Point;
+        Used_Point = Math.max(0,Math.min(getACTION_POINT(),used_Point));
     }
 
     public static Player getPlayer() {

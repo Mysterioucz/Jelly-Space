@@ -44,31 +44,6 @@ public abstract class Base_Monster extends Sprite {
         this.owned = owned;
     }
 
-    public void statBuff(Base_Monster monster){
-        Elements e = monster.element;
-        Elements m = this.element;
-
-        if (e == Elements.ALIEN){
-            if (m == Elements.MACHINE){
-                this.setDmg(this.getDmg()+10);
-            } else if (m == Elements.EARTHLINGS) {
-                this.setDmg(this.getDmg()-10);
-            }
-        } else if (e == Elements.MACHINE){
-            if (m == Elements.ALIEN){
-                this.setDmg(this.getDmg()-10);
-            } else if (m == Elements.EARTHLINGS) {
-                this.setDmg(this.getDmg()+10);
-            }
-        } else if (e == Elements.EARTHLINGS){
-            if (m == Elements.ALIEN){
-                this.setDmg(this.getDmg()+10);
-            } else if (m == Elements.MACHINE) {
-                this.setDmg(this.getDmg()-10);
-            }
-        }
-    }
-
     public boolean isDead(){
         if (this.getHp() == 0){
             return  true;

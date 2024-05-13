@@ -22,7 +22,6 @@ public class Fai extends Base_Monster implements Attackable, Unique_Ability {
 
     @Override
     public boolean attack(Base_Monster otherMonster) {
-        statBuff(otherMonster);
         if (this.getMana() >= 200) {
             otherMonster.setMana(otherMonster.getMana() - this.getDmg());
             int netDmg = this.getDmg() - otherMonster.getDef();
