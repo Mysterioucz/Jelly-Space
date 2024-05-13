@@ -23,7 +23,6 @@ public class Chatrin extends Base_Monster implements Attackable, Guardable, Uniq
 
     @Override
     public boolean attack(Base_Monster otherMonster) {
-        statBuff(otherMonster);
         int dmgNet = this.getDmg()-otherMonster.getDef();
         otherMonster.setHp(otherMonster.getHp()-dmgNet);
         if (this.isOwned()){
