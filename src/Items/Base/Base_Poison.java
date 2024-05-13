@@ -3,7 +3,6 @@ package Items.Base;
 import entities.Monster.Base_Monster;
 
 public abstract class Base_Poison extends Base_Item implements Splashable{
-    Type type;
 
     public Base_Poison(Type type,int power) {
         super(power);
@@ -17,13 +16,5 @@ public abstract class Base_Poison extends Base_Item implements Splashable{
         } else if (getType() == Type.MANA) {
             monster.setMana(monster.getMana()-getPower());
         }
-    }
-
-    public Type getType() {
-        return type;
-    }
-
-    public void setType(Type type) {
-        this.type = type;
     }
 }
