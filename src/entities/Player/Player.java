@@ -1,8 +1,11 @@
 package entities.Player;
 
+import Items.Poisons.Mana_Poison;
 import boundaries.Boundary;
 import entities.Monster.Base_Monster;
 import entities.Monster.Chatrin;
+import entities.Monster.Fai;
+import entities.Monster.TU_Force;
 import entities.Sprite;
 import inputs.KeyboardInputs;
 import javafx.scene.Scene;
@@ -38,7 +41,18 @@ public class Player extends Sprite {
         inventory = new Inventory();
         my_monster.addMonster(new Chatrin(620,360));
         Used_Point = 0;
-        activeMonster = my_monster.getMyMonster().getFirst();
+        activeMonster = my_monster.getMonsters().getFirst();
+
+        //For test only**************************************************************************************
+        my_monster.addMonster(new Fai(0,0,true));
+        my_monster.addMonster(new TU_Force(0,0,true));
+
+        inventory.addItem(new Mana_Poison());
+        inventory.addItem(new Mana_Poison());
+        inventory.addItem(new Mana_Poison());
+        inventory.addItem(new Mana_Poison());
+        inventory.addItem(new Mana_Poison());
+        //***************************************************************************************************
     }
     public void update(){
         movePlayer(); //Called move player method
@@ -100,8 +114,8 @@ public class Player extends Sprite {
         return name;
     }
 
-    public static ArrayList<Base_Monster> getMy_monster() {
-        return my_monster.getMyMonster();
+    public static My_Monster getMy_monster() {
+        return my_monster;
     }
 
     public static Inventory getInventory() {

@@ -59,7 +59,7 @@ public class Faith extends Base_Monster implements Attackable, Guardable, Unique
             this.setDef(0);
             monster.setBaseDef(0);
             monster.setDef(0);
-            for (Base_Monster e: Player.getMy_monster()){
+            for (Base_Monster e: Player.getMy_monster().getMonsters()){
                 int netDmg = this.getDmg()-e.getDef();
                 e.setHp(e.getHp()-netDmg);
             }

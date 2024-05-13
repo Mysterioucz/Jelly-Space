@@ -5,30 +5,30 @@ import entities.Monster.Base_Monster;
 import java.util.ArrayList;
 
 public class My_Monster {
-    private ArrayList<Base_Monster> myMonster;
+    private ArrayList<Base_Monster> monsters;
     private final int MAX_MONSTER = 3;
 
     public My_Monster(){
-        myMonster = new ArrayList<>();
+        monsters = new ArrayList<>();
     }
 
     public void addMonster(Base_Monster monster){
-        if (myMonster.size() < MAX_MONSTER){
-            myMonster.add(monster);
+        if (monsters.size() < MAX_MONSTER){
+            monsters.add(monster);
         }else {
             System.out.println("You can only have three monsters");
         }
     }
 
     public void deleteDeadMonster(){
-        for (Base_Monster m:myMonster){
+        for (Base_Monster m:monsters){
             if (m.isDead()){
-                myMonster.remove(m);
+                monsters.remove(m);
             }
         }
     }
 
-    public ArrayList<Base_Monster> getMyMonster() {
-        return myMonster;
+    public ArrayList<Base_Monster> getMonsters() {
+        return monsters;
     }
 }

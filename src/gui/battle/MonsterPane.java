@@ -18,8 +18,8 @@ public class MonsterPane extends GridPane {
         setBackground(bg);
         setBorder(new Border(new BorderStroke(Color.WHITE, BorderStrokeStyle.SOLID, new CornerRadii(15), new BorderWidths(5))));
         // Create Monster Image
-        for(int i =0 ; i<Player.getMy_monster().size() ; i++){
-            Base_Monster monster = Player.getMy_monster().get(i);
+        for(int i =0 ; i<Player.getMy_monster().getMonsters().size() ; i++){
+            Base_Monster monster = Player.getMy_monster().getMonsters().get(i);
             ImageView monsterImage = new ImageView(monster.getImage());
             monsterImage.setOnMouseEntered(e -> handleHover(monster));
             monsterImage.setOnMouseClicked(e -> handleOnClick(monster));
