@@ -6,12 +6,16 @@ import entities.Player.Player;
 import javafx.scene.image.Image;
 
 public class Fei extends Base_Monster implements Unique_Ability {
-    private Image Idle = new Image(ClassLoader.getSystemResource("img/entities/monster/fei/Idle.gif").toString());
-    private Image special = new Image(ClassLoader.getSystemResource("img/entities/monster/fei/special.gif").toString());
+    private Image img = new Image(ClassLoader.getSystemResource("img/entities/monster/Fei/Idle.gif").toString());
 
     public Fei(int x,int y,boolean owned){
         super("Fei", Elements.EARTHLINGS,300,100,50,50,50,owned,x,y,96,96,200,null);
-        setImage(Idle);
+        setImage(img);
+        setDead_img(getName());
+        setIdle_ally_img(getName());
+        setIdle_battle_img(getName());
+        setSpecial_img(getName());
+        setSpecial_ally_img(getName());
     }
 
     @Override

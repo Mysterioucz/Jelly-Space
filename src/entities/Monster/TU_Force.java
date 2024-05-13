@@ -7,14 +7,17 @@ import entities.Player.Player;
 import javafx.scene.image.Image;
 
 public class TU_Force extends Base_Monster implements Attackable, Unique_Ability {
-    private Image Idle_battle = new Image(ClassLoader.getSystemResource("img/entities/monster/tu_force/Idle_battle.gif").toString());
-    private Image Idle_right = new Image(ClassLoader.getSystemResource("img/entities/monster/tu_force/Idle.gif").toString());
-    private Image special = new Image(ClassLoader.getSystemResource("img/entities/monster/tu_force/special.gif").toString());
-
+    private Image img = new Image(ClassLoader.getSystemResource("img/entities/monster/TU_Force/Idle.gif").toString());
+    private Image single_img = new Image(ClassLoader.getSystemResource("img/entities/monster/TU_Force/single.gif").toString());
 
     public TU_Force(int x, int y, boolean owned){
-        super("TU Force", Elements.ALIEN,500,400,50,60,60,owned,x,y,188,100,200,null);
-        setImage(Idle_right);
+        super("TU_Force", Elements.ALIEN,500,400,50,60,60,owned,x,y,188,100,200,null);
+        setImage(img);
+        setDead_img(getName());
+        setIdle_ally_img(getName());
+        setIdle_battle_img(getName());
+        setSpecial_img(getName());
+        setSpecial_ally_img(getName());
     }
 
 
@@ -65,5 +68,9 @@ public class TU_Force extends Base_Monster implements Attackable, Unique_Ability
     @Override
     public String getUnique() {
         return Base_Monster.toString("s","b");
+    }
+
+    public Image getSingle_img() {
+        return single_img;
     }
 }

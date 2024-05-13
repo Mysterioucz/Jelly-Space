@@ -18,6 +18,11 @@ public abstract class Base_Monster extends Sprite {
     private int def;
     private int manaReg;
     private boolean owned;
+    private Image special_img;
+    private Image dead_img;
+    private Image idle_ally_img;
+    private Image idle_battle_img;
+    private Image special_ally_img;
 
     public Base_Monster(String name,Elements element,int maxHp,int maxMana,int manaReg,int baseDmg,int baseDef,boolean owned, double x, double y, double width, double height, double speed, Image img){
         super(x,y,width,height,speed,img);
@@ -170,4 +175,43 @@ public abstract class Base_Monster extends Sprite {
         return owned;
     }
 
+    public Image getSpecial_img() {
+        return special_img;
+    }
+
+    public void setSpecial_img(String name) {
+        this.special_img = new Image(ClassLoader.getSystemResource("img/entities/monster/"+name+"/special.gif").toString());;
+    }
+
+    public Image getDead_img() {
+        return dead_img;
+    }
+
+    public void setDead_img(String name) {
+        this.dead_img = new Image(ClassLoader.getSystemResource("img/entities/monster/"+name+"/Dead.gif").toString());
+    }
+
+    public Image getIdle_ally_img() {
+        return idle_ally_img;
+    }
+
+    public void setIdle_ally_img(String name) {
+        this.idle_ally_img = new Image(ClassLoader.getSystemResource("img/entities/monster/"+name+"/Idle_ally.gif").toString());;
+    }
+
+    public Image getIdle_battle_img() {
+        return idle_battle_img;
+    }
+
+    public void setIdle_battle_img(String name) {
+        this.idle_battle_img = new Image(ClassLoader.getSystemResource("img/entities/monster/"+name+"/Idle_battle.gif").toString());;
+    }
+
+    public Image getSpecial_ally_img() {
+        return special_ally_img;
+    }
+
+    public void setSpecial_ally_img(String name) {
+        this.special_ally_img = new Image(ClassLoader.getSystemResource("img/entities/monster/"+name+"/special_ally.gif").toString());;
+    }
 }

@@ -7,12 +7,16 @@ import entities.Player.Player;
 import javafx.scene.image.Image;
 
 public class Fai extends Base_Monster implements Attackable, Unique_Ability {
-    private Image Idle = new Image(ClassLoader.getSystemResource("img/entities/monster/fai/Idle.gif").toString());
-    private Image special = new Image(ClassLoader.getSystemResource("img/entities/monster/fai/special.gif").toString());
+    private Image img = new Image(ClassLoader.getSystemResource("img/entities/monster/Fai/Idle.gif").toString());
 
     public Fai(int x,int y,boolean owned){
         super("Fai", Elements.MACHINE,300,300,100,30,50,owned,x,y,96,96,200,null);
-        setImage(Idle);
+        setImage(img);
+        setDead_img(getName());
+        setIdle_ally_img(getName());
+        setIdle_battle_img(getName());
+        setSpecial_img(getName());
+        setSpecial_ally_img(getName());
     }
 
 
