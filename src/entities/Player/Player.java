@@ -51,9 +51,9 @@ public class Player extends Sprite {
         my_monster.addMonster(new Fai(0,0,true));
         my_monster.addMonster(new Fei(0,0,true));
 
+        inventory.addItem(new Health_Potion());
         inventory.addItem(new Mega_Health_Potion());
-        inventory.addItem(new Mega_Health_Potion());
-        inventory.addItem(new Mega_Mana_Potion());
+        inventory.addItem(new Mana_Potion());
         inventory.addItem(new Mega_Mana_Poison());
         inventory.addItem(new Mega_Health_Poison());
         //***************************************************************************************************
