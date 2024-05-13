@@ -2,6 +2,7 @@ package map;
 
 import boundaries.Boundary;
 import boundaries.LinearBoundary;
+import entities.Monster.Base_Monster;
 import entities.Monster.Fei;
 import entities.Player.Rocket;
 import javafx.scene.canvas.GraphicsContext;
@@ -35,7 +36,9 @@ public class MapPlanet2 extends GameMap{
     public void draw(GraphicsContext gc) {
         // Draw map components
         try {
-            gc.drawImage(boss.getImage(),boss.getX(),boss.getY());
+            if(!((Base_Monster) boss).isDead()){ // if boss is not dead draw the boss
+                gc.drawImage(boss.getImage(),boss.getX(),boss.getY());
+            }
         } catch (Exception e) {
         }
         gc.drawImage(rocket.getImage(),rocket.getX(),rocket.getY());

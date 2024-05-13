@@ -4,6 +4,8 @@ import javafx.animation.*;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
@@ -17,6 +19,7 @@ public class MapTransitionPane extends Pane {
     private ArrayList<Text> dots = new ArrayList<>();
     private int dotSize;
     private Text loading;
+    private MediaPlayer mediaPlayer;
 
     public MapTransitionPane() {
         super();
@@ -33,7 +36,7 @@ public class MapTransitionPane extends Pane {
         loading.translateYProperty().bind(heightProperty().subtract(loading.getLayoutBounds().getHeight()));
         loading.setFill(Color.WHITE);
         getChildren().add(loading);
-
+        playMusic(); // Play Music
         initializeDot(); // initialize Dot
         setDotAnimation(); // set Dot Animation
         // After 5 seconds, change to MapPane
@@ -41,6 +44,7 @@ public class MapTransitionPane extends Pane {
         // Change the root of the scene to the new MapPane after the fade out
         pause.setOnFinished(e -> {
             Main.changeSceneStatic(new MapPane(),true);
+            Main.fadeAudio(mediaPlayer,2);
         });
         pause.play();
     }
@@ -82,5 +86,13 @@ public class MapTransitionPane extends Pane {
             });
             timeline.play();
         }
+    }
+    public void playMusic(){
+        // Play Music
+        Media media = new Media(ClassLoader.getSystemResource("sound/transition.wav").toString());
+        mediaPlayer = new MediaPlayer(media);
+        mediaPlayer.setVolume(0.05);
+        mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
+        mediaPlayer.play();
     }
 }

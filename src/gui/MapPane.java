@@ -11,6 +11,8 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
 import entities.Player.Player;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import gui.battle.BattlePane;
 import javafx.util.Duration;
@@ -27,10 +29,12 @@ public class MapPane extends StackPane {
     private GraphicsContext gc;
     private Player player;
     private static GameMap gameMap;
+    private MediaPlayer mediaPlayer;
 
     public MapPane() {
         init();
         createGameLoop();
+        playMusic();
         instance = this;
 
     }
@@ -74,6 +78,7 @@ public class MapPane extends StackPane {
             fadeIn.play();
             battlePane.requestFocus();
             getChildren().addLast(battlePane);
+            Main.fadeAudio(mediaPlayer,2);
         });
         // Start the fade out transition
         fadeOut.play();
@@ -139,6 +144,14 @@ public class MapPane extends StackPane {
             }
         });
         gameLoop.start();
+    }
+    public void playMusic(){
+        // Play Music
+        Media sound = new Media(ClassLoader.getSystemResource("sound/map.mp3").toString());
+        mediaPlayer = new MediaPlayer(sound);
+        mediaPlayer.setVolume(0.05);
+        mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
+        mediaPlayer.play();
     }
 
 

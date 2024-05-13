@@ -12,6 +12,8 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.util.Duration;
 import main.Main;
 
@@ -30,6 +32,7 @@ public class BattlePane extends GridPane {
     protected MonsterPane monsterPane;
     private int cellWidth = 250;
     private int cellHeight = 128;
+    private MediaPlayer mediaPlayer;
 
     public BattlePane() {
         super();
@@ -76,7 +79,7 @@ public class BattlePane extends GridPane {
         add(inventoryContainer,3,0,2,2);
         // Set some childPane alignment
         setHalignment(inventoryContainer, HPos.RIGHT);
-
+        playMusic(); // Play Music
         instance = this;
 
     }
@@ -143,6 +146,7 @@ public class BattlePane extends GridPane {
             }
         });
         pause.play();
+        Main.fadeAudio(mediaPlayer,2); // Fade out the music
     }
 
     public void draw(){
@@ -241,6 +245,15 @@ public class BattlePane extends GridPane {
         }
         this.turn = turn;
 
+    }
+
+    public void playMusic(){
+        // Play Music
+        Media sound = new Media(ClassLoader.getSystemResource("sound/battle.mp3").toString());
+        mediaPlayer = new MediaPlayer(sound);
+        mediaPlayer.setVolume(0.05);
+        mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
+        mediaPlayer.play();
     }
 
     public static BattlePane getInstance(){

@@ -7,12 +7,16 @@ import gui.battle.BattlePane;
 import gui.battle.MonsterPane;
 import inputs.KeyboardInputs;
 import javafx.animation.FadeTransition;
+import javafx.animation.KeyFrame;
+import javafx.animation.KeyValue;
+import javafx.animation.Timeline;
 import javafx.application.Application;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import javafx.util.Duration;
@@ -86,14 +90,25 @@ public class Main extends Application{
     public static void changeSceneStatic(Pane newPane,Boolean transition) {
         instance.changeScene(newPane,transition);
     }
-    public void addPaneToStackPane(StackPane stackPane, Pane pane) {
-        // Add the new Pane to the StackPane
-        stackPane.getChildren().add(pane);
+    public static void fadeAudio(MediaPlayer mediaPlayer, int durationInSeconds) {
+        // Create a new timeline
+        Timeline timeline = new Timeline();
+
+        // Add a key frame at the start with the current volume
+        timeline.getKeyFrames().add(new KeyFrame(Duration.ZERO, new KeyValue(mediaPlayer.volumeProperty(), mediaPlayer.getVolume())));
+
+        // Add a key frame at the end with the volume set to 0
+        timeline.getKeyFrames().add(new KeyFrame(Duration.seconds(durationInSeconds), new KeyValue(mediaPlayer.volumeProperty(), 0)));
+
+        // Play the timeline
+        timeline.play();
     }
+
 
     public static void main(String[] args) {
         launch(args);
     }
+
 
     public Main getInstance(){
         return instance;
