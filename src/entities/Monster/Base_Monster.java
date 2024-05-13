@@ -1,6 +1,10 @@
 package entities.Monster;
 
+import entities.Monster.Abilities.Attackable;
 import entities.Monster.Abilities.Elements;
+import entities.Monster.Abilities.Guardable;
+import entities.Monster.Abilities.Unique_Ability;
+import entities.Player.Player;
 import entities.Sprite;
 import gui.MapPane;
 import javafx.scene.image.Image;
@@ -93,6 +97,36 @@ public abstract class Base_Monster extends Sprite {
         }else {
             return null;
         }
+    }
+
+    public static String Choose_Boss_Ability(Base_Monster monster) {
+        Base_Monster active_monster = Player.getActiveMonster();
+        if (monster instanceof Unique_Ability) {
+            if (monster instanceof Fai || monster instanceof TU_Force) {
+                if (((Unique_Ability) monster).unique_ability(monster)) {
+                    ((Unique_Ability) monster).unique_ability(monster);
+                    return "Unique Ability";
+                }
+            } else {
+                if (((Unique_Ability) monster).unique_ability(active_monster)) {
+                    ((Unique_Ability) monster).unique_ability(active_monster);
+                    return "Unique Ability";
+                }
+            }
+        }
+        if (monster instanceof Guardable) {
+            if (((Guardable) monster).guard(active_monster)) {
+                ((Guardable) monster).guard(active_monster);
+                return "Guard";
+            }
+        }
+        if (monster instanceof Attackable){
+            if (((Attackable) monster).attack(active_monster)){
+                ((Attackable) monster).attack(active_monster);
+                return "Attack";
+            }
+        }
+        return "Nothing";
     }
 
     public String getName() {
