@@ -22,11 +22,6 @@ public class MapEarth extends GameMap {
         rocket = new Rocket(48,263,"normal");
     }
     public boolean checkBoundary(double x, double y) {
-        if (!boundary.isWithinBoundary(x, y)) {
-//            System.out.println("Out of Boundary");
-        } else {
-//            System.out.println("Within Boundary");
-        }
         return boundary.isWithinBoundary(x, y);
     }
     public void drawBoundary(GraphicsContext gc) {

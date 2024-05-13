@@ -8,6 +8,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.util.Duration;
+import main.Main;
 
 public class MapSelectPane extends GridPane {
 
@@ -92,11 +93,9 @@ public class MapSelectPane extends GridPane {
             ft.setFromValue(1.0);
             ft.setToValue(0.0);
             ft.setOnFinished(e2 -> {
-                        Scene scene = new Scene(new MapTransitionPane());
-                        scene.getStylesheets().add(ClassLoader.getSystemResource("style.css").toExternalForm());
-                        this.getScene().setRoot(new StackPane(new Pane(), scene.getRoot()));
-                        scene.getRoot().requestFocus();
-                    }); // Change the root of the scene to the new MapPane after the fade out
+                Main.changeSceneStatic(new MapTransitionPane(), true); // Change the root of the scene to the new MapPane after the fade out
+
+                    });
             ft.play();
 
         });

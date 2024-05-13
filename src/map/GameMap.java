@@ -22,7 +22,7 @@ public abstract class GameMap {
     public void draw(GraphicsContext gc) {
         // Draw the boss and rocket
         try {
-            if(!((Base_Monster) boss).isDead()){
+            if(!((Base_Monster) boss).isDead()){ // if boss is not dead draw the boss
                 gc.drawImage(boss.getImage(),boss.getX(),boss.getY());
             }
         } catch (NullPointerException e) {

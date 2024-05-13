@@ -1,6 +1,6 @@
 package gui;
 
-import inputs.KeyboardInputs;
+
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
@@ -10,15 +10,21 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+import main.Main;
 
 public class StartPane extends BorderPane {
     private int BTN_WIDTH = 250;
     private int BTN_HEIGHT = 75;
+    private MediaPlayer mediaPlayer;
 
 
     public StartPane() {
         setPrefWidth(1280);
         setPrefHeight(720);
+        //  Play Music
+        playMusic();
         // initialize title text
         initializeTitle();
         //  initialize buttons
@@ -28,7 +34,6 @@ public class StartPane extends BorderPane {
         Image img = new Image(ClassLoader.getSystemResource("img/background/StartPaneBG.png").toString());
         BackgroundSize backgroundSize = new BackgroundSize(100, 100, true, true, false, true);
         this.setBackground(new Background(new BackgroundImage(img, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT,BackgroundPosition.DEFAULT, backgroundSize)));
-
     }
     public void initializeTitle(){
         //create Text & set Position
@@ -54,6 +59,7 @@ public class StartPane extends BorderPane {
             scene.getStylesheets().add(ClassLoader.getSystemResource("style.css").toExternalForm());
             this.getScene().setRoot(new StackPane(new Pane(), scene.getRoot()));
             scene.getRoot().requestFocus();
+            Main.fadeAudio(mediaPlayer, 2);
         });
         setCenter(button);  // set position of button
     }
@@ -68,6 +74,13 @@ public class StartPane extends BorderPane {
         });
         setBottom(button);  // set position of button
     }
-
+    public void playMusic(){
+        // play music
+        Media sound = new Media(ClassLoader.getSystemResource("sound/startPane.mp3").toString());
+        mediaPlayer = new MediaPlayer(sound);
+        mediaPlayer.setVolume(0.05);
+        mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
+        mediaPlayer.play();
+    }
 
 }
