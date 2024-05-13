@@ -141,8 +141,8 @@ public class ActionPane extends GridPane {
                 }
                 break;
             case "Unique":
-                // TODO Change the text to the unique ability of activeMonster by using getUniqueDesc()
-                actionText.setText("Unique ability: Use unique ability");
+                // Done Change the text to the unique ability of activeMonster by using getUniqueDesc()
+                actionText.setText("Unique ability: " + ((Unique_Ability) monster).getUnique());
                 break;
         }
 
@@ -206,7 +206,7 @@ public class ActionPane extends GridPane {
         // Set new monsterDetail and add it to the ActionPane
         this.monsterDetail = monsterDetail;
         add(monsterDetail, 1, 1,1,2);
-        System.out.println("Monster Detail set");
+//        System.out.println("Monster Detail set");
     }
     public void setActionText(String action){
         actionText.setText(action);

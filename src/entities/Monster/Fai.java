@@ -23,11 +23,11 @@ public class Fai extends Base_Monster implements Attackable, Unique_Ability {
 
     @Override
     public boolean attack(Base_Monster otherMonster) {
-        if (this.getMana() >= 200) {
+        if (this.getMana() >= 100) {
             otherMonster.setMana(otherMonster.getMana() - this.getDmg());
-            int netDmg = this.getDmg() - otherMonster.getDef();
+            int netDmg = Math.max(0,(this.getDmg() - otherMonster.getDef()));
             otherMonster.setHp(otherMonster.getHp() - netDmg);
-            this.setMana(this.getMana() - 200);
+            this.setMana(this.getMana() - 100);
             if (this.isOwned()){
                 Player.setUsed_Point(Player.getUsed_Point()-1);
             }

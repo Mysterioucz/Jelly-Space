@@ -62,17 +62,14 @@ public class Main extends Application{
                 // Create the new scene
                 Scene scene = new Scene(newPane);
                 scene.getStylesheets().add(ClassLoader.getSystemResource("style.css").toExternalForm());
-
-                // Set the new scene on the primaryStage
-                primaryStage.setScene(scene);
-
                 // Create a FadeTransition for the new scene
                 FadeTransition fadeIn = new FadeTransition(Duration.millis(1000), newPane);
                 fadeIn.setFromValue(0.0);
                 fadeIn.setToValue(1.0);
-
                 // Start the fade in transition
                 fadeIn.play();
+                // Set the new scene on the primaryStage
+                primaryStage.setScene(scene);
                 newPane.requestFocus();
             });
             // Start the fade out transition

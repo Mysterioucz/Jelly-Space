@@ -37,7 +37,6 @@ public class MapPane extends StackPane {
     private void update() {
         // update player postion and game state
         player.update();
-        //TODO implement battle update
 
     }
     private void draw() {
@@ -62,13 +61,13 @@ public class MapPane extends StackPane {
         // Create a new scene with a white background
         BattlePane battlePane = new BattlePane();
         // Create a FadeTransition for the old scene
-        FadeTransition fadeOut = new FadeTransition(Duration.millis(1000), battlePane);
+        FadeTransition fadeOut = new FadeTransition(Duration.millis(1000), this);
         fadeOut.setFromValue(1.0);
         fadeOut.setToValue(0.0);
         // Set an action to be performed when the fade out transition finishes
         fadeOut.setOnFinished(e -> {
             // Create a FadeTransition for the new scene
-            FadeTransition fadeIn = new FadeTransition(Duration.millis(1000), battlePane);
+            FadeTransition fadeIn = new FadeTransition(Duration.millis(1000), this);
             fadeIn.setFromValue(0.0);
             fadeIn.setToValue(1.0);
             // Start the fade in transition

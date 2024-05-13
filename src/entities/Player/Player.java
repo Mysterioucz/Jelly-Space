@@ -97,14 +97,25 @@ public class Player extends Sprite {
         Rocket rocket = MapPane.getGameMap().getRocket();
         gc.setStroke(Color.RED);
         gc.strokeRect(getX(), getY(), getWidth(), getHeight());
-        gc.strokeRect(boss.getX(), boss.getY(), boss.getWidth(), boss.getHeight());
+        try {
+            if(!((Base_Monster) boss).isDead()){ // if the boss is not dead, draw a rectangle for the boss
+                gc.strokeRect(boss.getX(), boss.getY(), boss.getWidth(), boss.getHeight());
+            }
+        } catch (NullPointerException e) {
+        }
         gc.strokeRect(rocket.getX(), rocket.getY(), rocket.getWidth(), rocket.getHeight());
     }
     public void createEntitiesBound(){
         playerRect = new Rectangle(newX, newY, getWidth(), getHeight());
         Sprite boss = MapPane.getGameMap().getBoss();
-        if(!((Base_Monster) MapPane.getGameMap().getBoss()).isDead()){ // if the boss is not dead, create a rectangle for the boss
-            bossRect = new Rectangle(boss.getX(), boss.getY(), boss.getWidth(), boss.getHeight());
+        try{
+            if(!((Base_Monster) boss).isDead()){ // if the boss is not dead, create a rectangle for the boss
+                bossRect = new Rectangle(boss.getX(), boss.getY(), boss.getWidth(), boss.getHeight());
+            }else{
+                bossRect = new Rectangle(0,0,0,0);
+            }
+        }catch (NullPointerException e){
+            bossRect = new Rectangle(0,0,0,0);
         }
         Rocket rocket = MapPane.getGameMap().getRocket();
         rocketRect = new Rectangle(rocket.getX(), rocket.getY(), rocket.getWidth(), rocket.getHeight());

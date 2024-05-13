@@ -3,6 +3,7 @@ package gui.battle;
 import entities.Monster.Base_Monster;
 import entities.Player.Player;
 import gui.MapPane;
+import javafx.animation.FadeTransition;
 import javafx.animation.PauseTransition;
 import javafx.application.Platform;
 import gui.MapSelectPane;
@@ -11,13 +12,17 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
+import javafx.util.Duration;
 import main.Main;
+
+import java.util.concurrent.atomic.AtomicBoolean;
 
 
 public class BattlePane extends GridPane {
     protected static BattlePane instance;
     protected Thread battleLoop;
     protected volatile boolean gameEnd = false;
+    private AtomicBoolean isBossTurnStarted = new AtomicBoolean(false);
     protected Boolean turn = true; // true for player, false for monster
     protected ActionPane actionPane;
     protected BattleFieldPane battleFieldPane;
@@ -90,14 +95,16 @@ public class BattlePane extends GridPane {
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-                System.out.println("BattleLoop running");
+//                System.out.println("BattleLoop running"); // for debugging
             }
         });
         battleLoop.start();
+        checkGameState();
     }
 
     public void endBattle(Boolean win){
-        // TODO when battle end reset all stat of myMonster and show message that player got defeated for 5 second
+        // Done when battle end reset all stat of myMonster and show message that player got defeated for 5 second
+        gameEnd = true;
         PauseTransition pause = new PauseTransition(javafx.util.Duration.seconds(5));
         if(win){
             BattleFieldPane.getInstance().handleBattle("You win! returning to map in 5 seconds");
@@ -105,7 +112,6 @@ public class BattlePane extends GridPane {
         }else{
             BattleFieldPane.getInstance().handleBattle("You got defeated try again next time");
         }
-        gameEnd = true;
         pause.setOnFinished(e -> {
             // Reset Player's used point
             Player.setUsed_Point(3);
@@ -116,7 +122,19 @@ public class BattlePane extends GridPane {
             // Change scene to MapPane and reset GameLoop
             MapPane.getInstance().setGameLoopState(true);
             MapPane.getInstance().createGameLoop();
-            MapPane.getInstance().getChildren().remove(this);
+            // Create a FadeTransition for the old scene
+            FadeTransition fadeOut = new FadeTransition(Duration.millis(1000), this);
+            fadeOut.setFromValue(1.0);
+            fadeOut.setToValue(0.0);
+            // Set an action to be performed when the fade out transition finishes
+            fadeOut.setOnFinished(e2 -> {
+                // Start the fade in transition
+                MapPane.getInstance().getChildren().remove(this);
+            });
+            // Start the fade out transition
+            fadeOut.play();
+
+            // Reset all monster's stat
             for (Base_Monster monster : Player.getMy_monster().getMonsters()){ // Reset stat for each monster
                 monster.setHp(monster.getMaxHp());
                 monster.setMana(monster.getMaxMana());
@@ -133,37 +151,81 @@ public class BattlePane extends GridPane {
         actionPane.update();
     }
     public void update() {
-        if(Player.getMy_monster().getMonsters().get(0).isDead() && Player.getMy_monster().getMonsters().get(1).isDead() && Player.getMy_monster().getMonsters().get(2).isDead()){
-            endBattle(false);
-        }
-        if(BattleFieldPane.getInstance().getEnemyMonster().isDead()){
-            endBattle(true);
-        }
-        if(Player.getUsed_Point() <= 0){
-            setPlayerTurn(false);
-        }
+        // Update the battlefield
+        battleFieldPane.update();
         if (turn) {
             // Player's turn
-            actionPane.setDisable(false);
+            if(!battleFieldPane.getMyMonster().isDead()){
+                actionPane.setDisable(false);
+            }
+
         } else {
             // Boss turn
             actionPane.setDisable(true);
-            System.out.println("Monster's turn");
-            Thread bossThread = new Thread(() -> {
+            startBossTurn();
+        }
+
+
+    }
+    public void checkGameState(){
+        Thread checkThread = new Thread(() -> {
+            while (!gameEnd) {
+                Platform.runLater(() -> {
+                    if(Player.getMy_monster().getMonsters().get(0).isDead() && Player.getMy_monster().getMonsters().get(1).isDead() && Player.getMy_monster().getMonsters().get(2).isDead()){
+                        endBattle(false);
+                    }
+                    if(BattleFieldPane.getInstance().getEnemyMonster().isDead()){
+                        endBattle(true);
+                        System.out.println("Boss Defeated");
+                    }
+                    if(Player.getUsed_Point() == 0 & turn){
+                        setPlayerTurn(false);
+                        System.out.println("Turn end");
+                    }
+                    System.out.println("CheckThread running"); // for debugging
+                });
+
                 try {
-                    Thread.sleep(2000);
+                    Thread.sleep(500); // Sleep for 0.5 second
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
+            }
+        });
+        checkThread.start();
+    }
+    public void startBossTurn(){
+        if (isBossTurnStarted.get()) {
+            return;
+        }
+        isBossTurnStarted.set(true);
+        Thread bossThread = new Thread(() -> {
+            try {
+                Thread.sleep(2000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            Platform.runLater(() -> {
+                // Boss's turn
+                // Boss use random ability (Attack, Guard, Unique Ability
                 String bossLog = "Boss use " + Base_Monster.Choose_Boss_Ability(BattleFieldPane.getInstance().getEnemyMonster());
-                BattleFieldPane.getInstance().getBattleLog().setText(bossLog);
+                BattleFieldPane.getInstance().handleBattle(bossLog);
+                System.out.println("Boss's turn");
+            });
+            try {
+                Thread.sleep(4000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            Platform.runLater(() -> {
+                // Boss's turn
+                // Boss use random ability (Attack, Guard, Unique Ability
                 setPlayerTurn(true);
             });
-        }
-        // Update the battlefield
-        battleFieldPane.update();
-
+        });
+        bossThread.start();
     }
+
     public void setPlayerTurn(Boolean turn) {
         if(turn){ // Player turn
             Player.setUsed_Point(3);
@@ -172,6 +234,7 @@ public class BattlePane extends GridPane {
                 monster.startTurn();
             }
             BattleFieldPane.getInstance().handleBattle("Your Turn");
+            isBossTurnStarted.set(false);
         }else{ // Boss turn
             BattleFieldPane.getInstance().getEnemyMonster().startTurn();
             BattleFieldPane.getInstance().handleBattle("Boss Turn");

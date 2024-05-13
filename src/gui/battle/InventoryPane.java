@@ -55,14 +55,17 @@ public class InventoryPane extends GridPane {
     }
 
     public void handleItem(Base_Item item){
-        if(item instanceof Base_Potion){
-            Base_Potion potion = (Base_Potion) item;
-            potion.use(Player.getActiveMonster()); // Done: Use on active monster
-        }else{
-            Base_Poison poison = (Base_Poison) item;
-            Base_Monster enemy = (Base_Monster) MapPane.getGameMap().getBoss();
-            poison.use(enemy); // Done: Use on active monster
-        }
+        Thread handleItemThread = new Thread(() -> {
+            if(item instanceof Base_Potion){
+                Base_Potion potion = (Base_Potion) item;
+                potion.use(Player.getActiveMonster()); // Done: Use on active monster
+            }else{
+                Base_Poison poison = (Base_Poison) item;
+                Base_Monster enemy = (Base_Monster) MapPane.getGameMap().getBoss();
+                poison.use(enemy); // Done: Use on active monster
+            }
+        });
+        handleItemThread.start();
     }
     public void handleHover(Base_Item item){
 

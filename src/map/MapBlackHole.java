@@ -26,4 +26,11 @@ public class MapBlackHole extends GameMap{
     }
 
 
+    @Override
+    public Boolean isCleared() {
+        return GameMap.blackHoleIsCleared;
+    }
+    public void setIsCleared(Boolean isCleared) {
+        GameMap.blackHoleIsCleared = isCleared;
+    }
 }

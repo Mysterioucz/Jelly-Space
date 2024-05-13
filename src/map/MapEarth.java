@@ -11,6 +11,7 @@ import javafx.scene.canvas.GraphicsContext;
 
 public class MapEarth extends GameMap {
 
+
     public MapEarth(){
         this.boundary = new EllipseBoundary(559,375,400,125);
         // set player position to initial position
@@ -32,4 +33,11 @@ public class MapEarth extends GameMap {
         boundary.drawBoundary(gc);
     }
 
+    @Override
+    public Boolean isCleared() {
+        return GameMap.earthIsCleared;
+    }
+public void setIsCleared(Boolean isCleared) {
+        GameMap.earthIsCleared = isCleared;
+    }
 }
