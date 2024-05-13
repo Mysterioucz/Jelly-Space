@@ -38,7 +38,7 @@ public class Faith extends Base_Monster implements Attackable, Guardable, Unique
     @Override
     public boolean guard(Base_Monster ChosenMonster) {
         if (this.getMana()>=400){
-            ChosenMonster.setDef(0);
+            ChosenMonster.setDmg(0);
             this.setMana(this.getMana() - 400);
             return true;
         }else{

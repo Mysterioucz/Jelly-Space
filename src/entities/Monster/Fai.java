@@ -10,7 +10,7 @@ public class Fai extends Base_Monster implements Attackable, Unique_Ability {
     private Image img = new Image(ClassLoader.getSystemResource("img/entities/monster/Fai/Idle.gif").toString());
 
     public Fai(int x,int y,boolean owned){
-        super("Fai", Elements.MACHINE,300,300,100,30,50,owned,x,y,96,96,200,null);
+        super("Fai", Elements.MACHINE,300,300,250,70,50,owned,x,y,96,96,200,null);
         setImage(img);
         setDead_img(getName());
         setIdle_ally_img(getName());
@@ -26,7 +26,7 @@ public class Fai extends Base_Monster implements Attackable, Unique_Ability {
             otherMonster.setMana(otherMonster.getMana() - this.getDmg());
             int netDmg = this.getDmg() - otherMonster.getDef();
             otherMonster.setHp(otherMonster.getHp() - netDmg);
-            this.setMana(this.getMana() - 200);
+            this.setMana(this.getMana() - 100);
             if (this.isOwned()){
                 Player.setUsed_Point(Player.getUsed_Point()-1);
             }
@@ -44,10 +44,10 @@ public class Fai extends Base_Monster implements Attackable, Unique_Ability {
 
     @Override
     public boolean unique_ability(Base_Monster monster) {
-        if (this.getMana()>=100){
+        if (this.getMana()>=0){
             monster.setHp(monster.getHp()+50);
             monster.setMana(monster.getMana()+50);
-            this.setMana(this.getMana()-100);
+            this.setMana(this.getMana());
             if (this.isOwned()){
                 Player.setUsed_Point(Player.getUsed_Point()-1);
             }

@@ -11,7 +11,7 @@ public class Chatrin extends Base_Monster implements Attackable, Guardable, Uniq
     private Image img = new Image(ClassLoader.getSystemResource("img/entities/monster/Chatrin/Idle.gif").toString()) ;
 
     public Chatrin(int x,int y){
-        super("Chatrin", Elements.EARTHLINGS,250,50,10,50,20,true,x,y,96,96,0,null);
+        super("Chatrin", Elements.EARTHLINGS,250,50,10,100,20,true,x,y,96,96,0,null);
         setImage(img);
         setDead_img(getName());
         setIdle_ally_img(getName());
@@ -22,7 +22,7 @@ public class Chatrin extends Base_Monster implements Attackable, Guardable, Uniq
 
     @Override
     public boolean attack(Base_Monster otherMonster) {
-        int dmgNet = this.getDmg()-otherMonster.getDef();
+        int dmgNet = Math.max(0,this.getDmg()-otherMonster.getDef());
         otherMonster.setHp(otherMonster.getHp()-dmgNet);
         if (this.isOwned()){
             Player.setUsed_Point(Player.getUsed_Point()-1);
