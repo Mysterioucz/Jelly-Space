@@ -23,7 +23,7 @@ public class Fei extends Base_Monster implements Unique_Ability {
     public boolean unique_ability(Base_Monster monster) {
         if (this.getMana() >= 50){
             int netDmg = this.getDmg();
-            this.setHp(getHp()-50);
+            this.setHp(getHp()-100);
             monster.setHp(monster.getHp()-netDmg);
             this.setMana(this.getMana()-50);
             if (this.isOwned()){
