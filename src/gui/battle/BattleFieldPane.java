@@ -4,14 +4,17 @@ import com.sun.webkit.graphics.WCGraphicsContext;
 import entities.Monster.Base_Monster;
 import entities.Player.Player;
 import gui.MapPane;
+import javafx.animation.PauseTransition;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.image.Image;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
+import javafx.util.Duration;
 
-public class BattleFieldPane extends StackPane {
+public class BattleFieldPane extends Pane {
     protected static BattleFieldPane instance;
     protected Base_Monster myMonster;
     protected Base_Monster enemyMonster;
@@ -20,6 +23,8 @@ public class BattleFieldPane extends StackPane {
     private Canvas battleCanvas;
     private GraphicsContext gc;
     private Text battleLog;
+    private Image activeMonsterImage;
+    private Image enemyMonsterImage;
 
     public BattleFieldPane() {
         // Done implement Player.getActiveMonster
@@ -30,21 +35,48 @@ public class BattleFieldPane extends StackPane {
     public void init(){
         setPrefSize(1250,300);
         setMaxSize(1250,300);
-
         // Set Background color
         Background bg = new Background(new BackgroundFill(Color.BLACK, new CornerRadii(15), null));
         setBackground(bg);
         setBorder(new Border(new BorderStroke(Color.WHITE, BorderStrokeStyle.SOLID, new CornerRadii(15), new BorderWidths(5))));
-        // Create Monster Detail
+        // Set Player's active monster and enemy monster Image
         setMyMonster(Player.getActiveMonster());
-        setMyMonsterDetail(new MonsterDetail(myMonster.getName(), String.valueOf(myMonster.getDmg()), String.valueOf(myMonster.getDef()), String.valueOf(myMonster.getHp()), String.valueOf(myMonster.getMana()))); // TODO Fix this shit
         enemyMonster = (Base_Monster) MapPane.getGameMap().getBoss();
-        enemyMonsterDetail = new MonsterDetail(enemyMonster.getName(), String.valueOf(enemyMonster.getDmg()), String.valueOf(enemyMonster.getDef()), String.valueOf(enemyMonster.getHp()), String.valueOf(enemyMonster.getMana()));
+        enemyMonsterImage = enemyMonster.getImage();
+        activeMonsterImage = myMonster.getIdle_ally_img();
+        // Create Monster Detail Text
+        createMonsterDetail();
         // Create battleCanvas and add it to Pane
-        battleCanvas = new Canvas(1250,300);
+        battleCanvas = new Canvas(1128,300);
         gc = battleCanvas.getGraphicsContext2D();
         getChildren().addLast(battleCanvas);
+
         instance = this;
+    }
+    public void createMonsterDetail(){
+        // Create Monster Detail
+        setMyMonsterDetail(new MonsterDetail(myMonster.getName(), String.valueOf(myMonster.getDmg()), String.valueOf(myMonster.getDef()), String.valueOf(myMonster.getHp()), String.valueOf(myMonster.getMana()))); // TODO Fix this shit
+        myMonsterDetail.setLayoutX(100 + activeMonsterImage.getWidth() * 2);
+        myMonsterDetail.setLayoutY(activeMonsterImage.getHeight() - 5);
+        enemyMonsterDetail = new MonsterDetail(enemyMonster.getName(), String.valueOf(enemyMonster.getDmg()), String.valueOf(enemyMonster.getDef()), String.valueOf(enemyMonster.getHp()), String.valueOf(enemyMonster.getMana()));
+        enemyMonsterDetail.setLayoutX(850 - enemyMonsterImage.getWidth());
+        enemyMonsterDetail.setLayoutY(enemyMonsterImage.getHeight() - 5);
+        getChildren().addAll(myMonsterDetail,enemyMonsterDetail);
+    }
+    public void update(){
+        if(Player.getUsed_Point() <= 0){
+            BattlePane.getInstance().setPlayerTurn(false);
+        }
+        BattleFieldPane.getInstance().setMyMonster(Player.getActiveMonster());
+        getChildren().remove(myMonsterDetail);
+        getChildren().remove(enemyMonsterDetail);
+        createMonsterDetail();
+
+    }
+    public void draw(){
+        gc.clearRect(0,0,battleCanvas.getWidth(),battleCanvas.getHeight()); // Clear the old element before draw a new one
+        gc.drawImage(activeMonsterImage,100,50,192,192);
+        gc.drawImage(enemyMonsterImage,850,50,192,192);
     }
     public void handleBattle(String detail){
         // Remove old battleLog
@@ -53,18 +85,40 @@ public class BattleFieldPane extends StackPane {
         battleLog = new Text(detail);
         battleLog.setFont(Font.font("VCR OSD Mono", 20));
         battleLog.setFill(Color.WHITE);
+        battleLog.setLayoutX(getWidth()/3);
+        battleLog.setLayoutY(100);
         getChildren().addLast(battleLog);
-    }
-    public void draw(){
-        gc.clearRect(0,0,getWidth(),getHeight()); // Clear the old element before draw a new one
-        gc.drawImage(myMonster.getImage(),100,50,192,192);
+        // set duration to show the battle log
+        PauseTransition pause = new PauseTransition(Duration.seconds(2));
+        pause.setOnFinished(e -> getChildren().remove(battleLog));
+        pause.play();
     }
 
     public void setMyMonster(Base_Monster myMonster) {
-        this.myMonster = myMonster;
+        if(this.myMonster != myMonster){
+            System.out.println("Monster Changed");
+            this.myMonster = myMonster;
+            setActiveMonsterImage(myMonster.getIdle_ally_img());
+        }
     }
     public void setMyMonsterDetail(MonsterDetail monsterDetail){
         myMonsterDetail = monsterDetail;
+    }
+
+    public Image getActiveMonsterImage() {
+        return activeMonsterImage;
+    }
+
+    public void setActiveMonsterImage(Image activeMonsterImage) {
+        this.activeMonsterImage = activeMonsterImage;
+    }
+
+    public Image getEnemyMonsterImage() {
+        return enemyMonsterImage;
+    }
+
+    public void setEnemyMonsterImage(Image enemyMonsterImage) {
+        this.enemyMonsterImage = enemyMonsterImage;
     }
 
     public static BattleFieldPane getInstance(){

@@ -8,6 +8,7 @@ import entities.Monster.Fai;
 import entities.Monster.TU_Force;
 import entities.Player.Player;
 import gui.MapPane;
+import javafx.animation.PauseTransition;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.geometry.VPos;
@@ -17,33 +18,40 @@ import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
+import javafx.util.Duration;
 
 
 public class ActionPane extends GridPane {
     protected static ActionPane instance;
     protected Text actionText;
     protected Text itemDetail;
+    private Text actionPoint;
     protected ImageView attackButton;
     protected ImageView GuardButton;
     protected ImageView UniqueButton;
     protected  MonsterDetail monsterDetail;
     private Base_Monster boss;
-    private Base_Monster myMonster;
     private int cellHeight = 78;
+    private int cellWidth = 220;
 
 
     public ActionPane() {
         super();
         init();
         boss = (Base_Monster) MapPane.getGameMap().getBoss();
-        myMonster = Player.getActiveMonster();
-        setGridLinesVisible(true); // for debugging
+//        setGridLinesVisible(true); // for debugging
         instance = this;
     }
 
     public void init() {
         setPrefSize(678,256);
         setMaxSize(678,256);
+        // Create column Constraints
+        for (int i = 0; i < 3; i++) {
+            ColumnConstraints column = new ColumnConstraints();
+            column.setPrefWidth(cellWidth);
+            getColumnConstraints().add(column); // Add the constraint to the column
+        }
         // Create row constraints
         for (int i = 0; i < 3; i++) {
             RowConstraints row = new RowConstraints();
@@ -76,7 +84,7 @@ public class ActionPane extends GridPane {
         textContainer.setPrefSize(300,50);
         textContainer.setSpacing(10);
         textContainer.setMaxSize(300,50);
-        add(textContainer, 1, 0);
+        add(textContainer, 1, 0,2,1);
         // Create Monster Detail
         monsterDetail = new MonsterDetail("XXXX", "XX", "XX", "XX", "XX");
         add(monsterDetail, 1, 1,1,2);
@@ -91,6 +99,9 @@ public class ActionPane extends GridPane {
         attackButton.setOnMouseClicked(e -> handleAttack());
         GuardButton.setOnMouseClicked(e -> handleGuard());
         UniqueButton.setOnMouseClicked(e -> handleUnique());
+        attackButton.setOnMouseEntered(e -> handleHover(Player.getActiveMonster(),"Attack"));
+        GuardButton.setOnMouseEntered(e -> handleHover(Player.getActiveMonster(),"Guard"));
+        UniqueButton.setOnMouseEntered(e -> handleHover(Player.getActiveMonster(),"Unique"));
         add(attackButton,0,0);
         add(GuardButton,0,1);
         add(UniqueButton,0,2);
@@ -103,42 +114,71 @@ public class ActionPane extends GridPane {
 
     }
     public void createActionPoint(){
-        Text actionPoint = new Text("Action Point: " + String.valueOf(Player.getACTION_POINT())+"/3");
+        // if actionPoint already exist, remove it
+        if(getChildren().contains(actionPoint)){
+            getChildren().remove(actionPoint);
+        }
+        actionPoint = new Text("Action Point: " + (Player.getUsed_Point())+"/3");
         actionPoint.setFont(Font.font("VCR OSD Mono", 20));
         actionPoint.setFill(Color.WHITE);
         actionPoint.setTranslateX(-20);
         add(actionPoint, 2, 2);
     }
+    public void handleHover(Base_Monster monster,String method){
+        switch (method){
+            case "Attack":
+                if(monster instanceof Attackable) {
+                    actionText.setText("Attack: Single Target");
+                }else{
+                    actionText.setText("This monster can't attack");
+                    }
+                break;
+            case "Guard":
+                if(monster instanceof Guardable) {
+                    actionText.setText("Guard: Guard yourself");
+                }else{
+                    actionText.setText("This monster can't guard");
+                }
+                break;
+            case "Unique":
+                // TODO Change the text to the unique ability of activeMonster by using getUniqueDesc()
+                actionText.setText("Unique ability: Use unique ability");
+                break;
+        }
+
+    }
+
     // Done implement handleAttack, handleGuard, handleUnique
     public void handleAttack(){
+        Base_Monster myMonster = Player.getActiveMonster();
         if(myMonster instanceof Attackable){
             System.out.println("Attack");
             // Create Action text in BattlefieldPane
-            BattleFieldPane.getInstance().handleBattle("Attack");
+            BattleFieldPane.getInstance().handleBattle(myMonster.getName() + " use Attack! ");
             // Attack the boss
             ((Attackable) myMonster).attack(boss);
-            // Set player turn to false
-            BattlePane.getInstance().setPlayerTurn(false);
+            createActionPoint(); // update action point
         }else{
             System.out.println("This monster can't attack");
         }
     }
     public void handleGuard(){
+        Base_Monster myMonster = Player.getActiveMonster();
         if(myMonster instanceof Guardable){
             System.out.println("Guard");
             // Create Action text in BattlefieldPane
-            BattleFieldPane.getInstance().handleBattle("Guard");
+            BattleFieldPane.getInstance().handleBattle(myMonster.getName() + " use Guard! ");
             // Guard the boss
             ((Guardable) myMonster).guard(myMonster);
-            // Set player turn to false
-            BattlePane.getInstance().setPlayerTurn(false);
+            createActionPoint(); // update action point
         }
 
     }
     public void handleUnique(){
+        Base_Monster myMonster = Player.getActiveMonster();
         System.out.println("Unique");
         // Create Action text in BattlefieldPane
-        BattleFieldPane.getInstance().handleBattle("Unique");
+        BattleFieldPane.getInstance().handleBattle(myMonster.getName() + " use Unique Ability! ");
         // use Unique ability on the boss
         if(myMonster instanceof Fai || myMonster instanceof TU_Force){
             // Buff themselves
@@ -147,9 +187,15 @@ public class ActionPane extends GridPane {
             // Debuff/Attack the boss
             ((Unique_Ability) myMonster).unique_ability(boss);
         }
-        // Set player turn to false
-        BattlePane.getInstance().setPlayerTurn(false);
-
+        createActionPoint(); // update action point
+        // Change the active monster image to the special image
+        BattleFieldPane.getInstance().setActiveMonsterImage(myMonster.getSpecial_ally_img());
+        // Create a PauseTransition
+        PauseTransition pause = new PauseTransition(Duration.seconds(2));
+        // Set the action to perform after the pause
+        pause.setOnFinished(event -> BattleFieldPane.getInstance().setActiveMonsterImage(myMonster.getIdle_ally_img()));
+        // Start the pause
+        pause.play();
     }
     public void setItemDetail(String detail){
         itemDetail.setText("Item Detail: " + detail);

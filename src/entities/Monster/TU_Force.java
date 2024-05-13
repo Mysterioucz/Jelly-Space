@@ -27,7 +27,7 @@ public class TU_Force extends Base_Monster implements Attackable, Unique_Ability
             this.setMana(this.getMana() - 100);
             if (this.isOwned()){
                 int netDmg = this.getDmg()-otherMonster.getDef();
-                Player.setUsed_Point(Player.getUsed_Point()+1);
+                Player.setUsed_Point(Player.getUsed_Point()-1);
                 for (Base_Monster e: Player.getMy_monster().getMonsters()){
                     netDmg = netDmg + e.getDmg()/2;
                 }
@@ -56,7 +56,7 @@ public class TU_Force extends Base_Monster implements Attackable, Unique_Ability
             monster.setDmg(monster.getDmg()+100);
             this.setMana(this.getMana() - 300);
             if (this.isOwned()){
-                Player.setUsed_Point(Player.getUsed_Point()+2);
+                Player.setUsed_Point(Player.getUsed_Point()-2);
             }
             return true;
         }else{

@@ -26,7 +26,7 @@ public class Fei extends Base_Monster implements Unique_Ability {
             monster.setHp(monster.getHp()-netDmg);
             this.setMana(this.getMana()-200);
             if (this.isOwned()){
-                Player.setUsed_Point(Player.getUsed_Point()+1);
+                Player.setUsed_Point(Player.getUsed_Point()-1);
 
             }
             return true;

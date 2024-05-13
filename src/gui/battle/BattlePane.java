@@ -1,5 +1,6 @@
 package gui.battle;
 
+import javafx.application.Platform;
 import gui.MapSelectPane;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
@@ -24,7 +25,7 @@ public class BattlePane extends GridPane {
         super();
         init();
         startBattle();
-
+//        setGridLinesVisible(true); // for debugging
     }
     public void init(){
         setPrefSize(1280,720);
@@ -73,7 +74,10 @@ public class BattlePane extends GridPane {
     public void startBattle(){
         battleLoop = new Thread(() -> {
             while (running) {
-                // Update the battle field
+                // Update the battlefield
+                Platform.runLater(() -> {
+                    update();
+                });
                 draw();
                 if (turn) {
                     // Player's turn
@@ -104,7 +108,11 @@ public class BattlePane extends GridPane {
         // Draw the battlefield
         battleFieldPane.draw();
     }
+    public void update(){
+        // Update the battlefield
+        battleFieldPane.update();
 
+    }
     public void setPlayerTurn(Boolean turn) {
         this.turn = turn;
     }
