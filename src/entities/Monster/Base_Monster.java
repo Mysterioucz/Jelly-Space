@@ -77,20 +77,20 @@ public abstract class Base_Monster extends Sprite {
         }
     }
 
-    public static String toString(String amount,String type){
+    public static String toString(String amount,String type,int point){
         if (type == "b"){
             if (amount == "m"){
-                return "Buff --> Multiple Targets";
+                return "Buff --> Multiple Targets"+" ("+point+")";
             }else if (amount == "s"){
-                return "Buff --> Single Target";
+                return "Buff --> Single Target"+" ("+point+")";
             } else{
                 return null;
             }
         }else if (type == "d"){
             if (amount == "m"){
-                return "Damage --> Multiple Targets";
+                return "Damage --> Multiple Targets"+" ("+point+")";
             }else if (amount == "s"){
-                return "Damage --> Single Target";
+                return "Damage --> Single Target"+" ("+point+")";
             } else{
                 return null;
             }
