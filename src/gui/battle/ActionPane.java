@@ -117,6 +117,8 @@ public class ActionPane extends GridPane {
             BattleFieldPane.getInstance().handleBattle("Attack");
             // Attack the boss
             ((Attackable) myMonster).attack(boss);
+            // Set player turn to false
+            BattlePane.getInstance().setPlayerTurn(false);
         }else{
             System.out.println("This monster can't attack");
         }
@@ -128,6 +130,8 @@ public class ActionPane extends GridPane {
             BattleFieldPane.getInstance().handleBattle("Guard");
             // Guard the boss
             ((Guardable) myMonster).guard(myMonster);
+            // Set player turn to false
+            BattlePane.getInstance().setPlayerTurn(false);
         }
 
     }
@@ -143,7 +147,8 @@ public class ActionPane extends GridPane {
             // Debuff/Attack the boss
             ((Unique_Ability) myMonster).unique_ability(boss);
         }
-
+        // Set player turn to false
+        BattlePane.getInstance().setPlayerTurn(false);
 
     }
     public void setItemDetail(String detail){

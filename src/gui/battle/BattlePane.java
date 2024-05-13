@@ -23,6 +23,7 @@ public class BattlePane extends GridPane {
     public BattlePane() {
         super();
         init();
+        startBattle();
 
     }
     public void init(){
@@ -72,13 +73,24 @@ public class BattlePane extends GridPane {
     public void startBattle(){
         battleLoop = new Thread(() -> {
             while (running) {
+                // Update the battle field
+                draw();
                 if (turn) {
                     // Player's turn
                     actionPane.setDisable(false);
                 } else {
                     // Monster's turn
                     actionPane.setDisable(true);
+                    System.out.println("Monster's turn");
+                    setPlayerTurn(true);
                 }
+                // For Fix FPS
+                try {
+                    Thread.sleep(1000 / 60); // Sleep for approximately 60 FPS
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                System.out.println("BattleLoop running");
             }
         });
         battleLoop.start();
@@ -86,6 +98,15 @@ public class BattlePane extends GridPane {
 
     public void endBattle(){
         running = false;
+    }
+
+    public void draw(){
+        // Draw the battlefield
+        battleFieldPane.draw();
+    }
+
+    public void setPlayerTurn(Boolean turn) {
+        this.turn = turn;
     }
 
     public static BattlePane getInstance(){

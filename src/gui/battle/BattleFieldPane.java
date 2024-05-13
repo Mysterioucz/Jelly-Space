@@ -1,8 +1,11 @@
 package gui.battle;
 
+import com.sun.webkit.graphics.WCGraphicsContext;
 import entities.Monster.Base_Monster;
 import entities.Player.Player;
 import gui.MapPane;
+import javafx.scene.canvas.Canvas;
+import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
@@ -14,10 +17,17 @@ public class BattleFieldPane extends StackPane {
     protected Base_Monster enemyMonster;
     protected MonsterDetail myMonsterDetail;
     protected MonsterDetail enemyMonsterDetail;
+    private Canvas battleCanvas;
+    private GraphicsContext gc;
+    private Text battleLog;
 
     public BattleFieldPane() {
         // Done implement Player.getActiveMonster
         super();
+        init();
+        draw();
+    }
+    public void init(){
         setPrefSize(1250,300);
         setMaxSize(1250,300);
 
@@ -30,14 +40,24 @@ public class BattleFieldPane extends StackPane {
         setMyMonsterDetail(new MonsterDetail(myMonster.getName(), String.valueOf(myMonster.getDmg()), String.valueOf(myMonster.getDef()), String.valueOf(myMonster.getHp()), String.valueOf(myMonster.getMana()))); // TODO Fix this shit
         enemyMonster = (Base_Monster) MapPane.getGameMap().getBoss();
         enemyMonsterDetail = new MonsterDetail(enemyMonster.getName(), String.valueOf(enemyMonster.getDmg()), String.valueOf(enemyMonster.getDef()), String.valueOf(enemyMonster.getHp()), String.valueOf(enemyMonster.getMana()));
+        // Create battleCanvas and add it to Pane
+        battleCanvas = new Canvas(1250,300);
+        gc = battleCanvas.getGraphicsContext2D();
+        getChildren().addLast(battleCanvas);
         instance = this;
-
     }
     public void handleBattle(String detail){
-        Text battleLog = new Text(detail);
+        // Remove old battleLog
+        getChildren().remove(battleLog);
+        // Create & add new battle log
+        battleLog = new Text(detail);
         battleLog.setFont(Font.font("VCR OSD Mono", 20));
         battleLog.setFill(Color.WHITE);
         getChildren().addLast(battleLog);
+    }
+    public void draw(){
+        gc.clearRect(0,0,getWidth(),getHeight()); // Clear the old element before draw a new one
+        gc.drawImage(myMonster.getImage(),100,50,192,192);
     }
 
     public void setMyMonster(Base_Monster myMonster) {
