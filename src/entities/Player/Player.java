@@ -11,9 +11,9 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
-import gui.MapPane;
+import gui.mapPane.MapPane;
 
-import static gui.MapPane.keyHandler;// import static constant
+import static gui.mapPane.MapPane.keyHandler;// import static constant
 
 public class Player extends Sprite {
     private static String name;

@@ -2,10 +2,7 @@ package map;
 
 import boundaries.*;
 import entities.Monster.TU_Force;
-import entities.Player.Player;
 import entities.Player.Rocket;
-import entities.Sprite;
-import gui.MapPane;
 import javafx.scene.canvas.GraphicsContext;
 
 public class MapPlanet1 extends GameMap{

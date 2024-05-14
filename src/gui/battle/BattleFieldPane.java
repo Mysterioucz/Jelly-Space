@@ -1,9 +1,8 @@
 package gui.battle;
 
-import com.sun.webkit.graphics.WCGraphicsContext;
 import entities.Monster.Base_Monster;
 import entities.Player.Player;
-import gui.MapPane;
+import gui.mapPane.MapPane;
 import javafx.animation.PauseTransition;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;

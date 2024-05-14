@@ -1,11 +1,9 @@
-package gui;
+package gui.mapPane;
 
-import javafx.geometry.Rectangle2D;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
-import javafx.stage.Screen;
 
 public class CongratulationPane extends Pane {
     public CongratulationPane() {

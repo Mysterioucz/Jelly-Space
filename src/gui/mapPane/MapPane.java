@@ -1,11 +1,9 @@
-package gui;
+package gui.mapPane;
 
 import inputs.KeyboardInputs;
 import javafx.animation.FadeTransition;
 import javafx.application.Platform;
-import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
@@ -13,7 +11,6 @@ import javafx.scene.layout.*;
 import entities.Player.Player;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
-import javafx.scene.paint.Color;
 import gui.battle.BattlePane;
 import javafx.util.Duration;
 import main.Main;

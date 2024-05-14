@@ -2,14 +2,13 @@ package gui.battle;
 
 import entities.Monster.Base_Monster;
 import entities.Player.Player;
-import gui.CongratulationPane;
-import gui.MapPane;
+import gui.mapPane.CongratulationPane;
+import gui.mapPane.MapPane;
 import javafx.animation.*;
 import javafx.application.Platform;
-import gui.MapSelectPane;
+import gui.mapPane.MapSelectPane;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
-import javafx.geometry.Pos;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
 import javafx.scene.media.Media;

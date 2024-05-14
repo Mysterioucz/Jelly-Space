@@ -7,7 +7,7 @@ import entities.Monster.Base_Monster;
 import entities.Monster.Fai;
 import entities.Monster.TU_Force;
 import entities.Player.Player;
-import gui.MapPane;
+import gui.mapPane.MapPane;
 import javafx.animation.PauseTransition;
 import javafx.geometry.HPos;
 import javafx.geometry.VPos;

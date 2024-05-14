@@ -1,11 +1,6 @@
 package main;
 
-import gui.RocketPane;
-import gui.StartPane;
-import gui.battle.ActionPane;
-import gui.battle.BattlePane;
-import gui.battle.MonsterPane;
-import inputs.KeyboardInputs;
+import gui.mapPane.StartPane;
 import javafx.animation.FadeTransition;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
@@ -15,7 +10,6 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.StackPane;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;

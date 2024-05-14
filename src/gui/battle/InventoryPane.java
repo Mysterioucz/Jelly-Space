@@ -5,7 +5,7 @@ import Items.Base.Base_Poison;
 import Items.Base.Base_Potion;
 import entities.Monster.Base_Monster;
 import entities.Player.Player;
-import gui.MapPane;
+import gui.mapPane.MapPane;
 import javafx.application.Platform;
 import javafx.geometry.HPos;
 import javafx.geometry.VPos;

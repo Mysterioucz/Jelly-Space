@@ -1,4 +1,4 @@
-package gui;
+package gui.mapPane;
 
 import javafx.geometry.HPos;
 import javafx.geometry.VPos;

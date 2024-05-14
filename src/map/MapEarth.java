@@ -1,12 +1,8 @@
 package map;
 
 import boundaries.EllipseBoundary;
-import entities.Monster.Base_Monster;
 import entities.Monster.Chatrin;
-import entities.Player.Player;
 import entities.Player.Rocket;
-import entities.Sprite;
-import gui.MapPane;
 import javafx.scene.canvas.GraphicsContext;
 
 public class MapEarth extends GameMap {
