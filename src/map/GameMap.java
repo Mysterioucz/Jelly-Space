@@ -5,6 +5,7 @@ import entities.Monster.Base_Monster;
 import entities.Player.Player;
 import entities.Player.Rocket;
 import entities.Sprite;
+import gui.MapPane;
 import javafx.scene.canvas.GraphicsContext;
 
 public abstract class GameMap {
@@ -41,6 +42,13 @@ public abstract class GameMap {
     }
     public Sprite getBoss(){
         return boss;
+    }
+    public void resetBoss(){
+        Base_Monster boss = (Base_Monster) this.boss;
+        boss.setHp(boss.getMaxHp());
+        boss.setMana(boss.getMaxMana());
+        boss.setDef(boss.getBaseDef());
+        boss.setDmg(boss.getBaseDmg());
     }
     public Rocket getRocket(){
         return rocket;

@@ -86,6 +86,8 @@ public class RocketPane extends GridPane {
         cancelBtn.setPrefHeight(BTN_HEIGHT);
         confirmBtn.setBackground(btnIdle);
         cancelBtn.setBackground(btnIdle);
+        confirmBtn.setFont(Font.font("VCR OSD Mono", 20));
+        cancelBtn.setFont(Font.font("VCR OSD Mono", 20));
         confirmBtn.setOnMouseEntered(e -> confirmBtn.setBackground(btnHover));
         confirmBtn.setOnMouseExited(e -> confirmBtn.setBackground(btnIdle));
         cancelBtn.setOnMouseEntered(e -> cancelBtn.setBackground(btnHover));
