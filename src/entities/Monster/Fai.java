@@ -11,7 +11,7 @@ public class Fai extends Base_Monster implements Attackable, Unique_Ability {
     private Image img = new Image(ClassLoader.getSystemResource("img/entities/monster/Fai/Idle.gif").toString());
 
     public Fai(int x,int y,boolean owned){
-        super("Fai", Elements.MACHINE,300,300,250,70,50,owned,x,y,96,96,200,null);
+        super("Fai", Elements.MACHINE,300,300,150,70,50,owned,x,y,96,96,200,null);
         setImage(img);
         setDead_img(getName());
         setIdle_ally_img(getName());
@@ -23,11 +23,11 @@ public class Fai extends Base_Monster implements Attackable, Unique_Ability {
 
     @Override
     public boolean attack(Base_Monster otherMonster) {
-        if (this.getMana() >= 100) {
-            otherMonster.setMana(otherMonster.getMana() - this.getDmg());
+        if (this.getMana() >= 50) {
+            otherMonster.setMana(otherMonster.getMana() - 20);
             int netDmg = Math.max(0,(this.getDmg() - otherMonster.getDef()));
             otherMonster.setHp(otherMonster.getHp() - netDmg);
-            this.setMana(this.getMana() - 100);
+            this.setMana(this.getMana() - 50);
             if (this.isOwned()){
                 Player.setUsed_Point(Player.getUsed_Point()-1);
             }
@@ -41,17 +41,20 @@ public class Fai extends Base_Monster implements Attackable, Unique_Ability {
 
     @Override
     public String getAttack() {
-        return Base_Monster.toString("s","d",100,"");
+        return Base_Monster.toString("s","d",50,"");
     }
 
     @Override
     public boolean unique_ability(Base_Monster monster) {
-        if (this.getMana()>=0){
+        if (this.getMana()>=100){
             monster.setHp(monster.getHp()+50);
             monster.setMana(monster.getMana()+50);
-            this.setMana(this.getMana());
+            this.setMana(this.getMana()-100);
             if (this.isOwned()){
                 Player.setUsed_Point(Player.getUsed_Point()-1);
+                for (Base_Monster e: Player.getMy_monster().getMonsters()){
+                    e.setHp(e.getHp()+50);
+                }
             }
             return true;
         }else{
@@ -63,6 +66,6 @@ public class Fai extends Base_Monster implements Attackable, Unique_Ability {
 
     @Override
     public String getUnique() {
-        return Base_Monster.toString("s","b",0,"");
+        return Base_Monster.toString("s","b",100,"");
     }
 }

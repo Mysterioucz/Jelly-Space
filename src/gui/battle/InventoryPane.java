@@ -79,4 +79,7 @@ public class InventoryPane extends GridPane {
         return instance;
     }
 
+    public static void update(){
+
+    }
 }
