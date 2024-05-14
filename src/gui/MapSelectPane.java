@@ -16,6 +16,7 @@ public class MapSelectPane extends GridPane {
 
     public MapSelectPane() {
         super();
+        mapName = null;
         // Set background image
         Image img = new Image(ClassLoader.getSystemResource("img/background/mapSelect.png").toString());
         BackgroundSize backgroundSize = new BackgroundSize(100, 100, true, true, false, true);
@@ -87,10 +88,10 @@ public class MapSelectPane extends GridPane {
 
     private void addPlanetClickHandler(ImageView imageView, String planetName) {
         imageView.setOnMouseClicked(event -> {
+            if(mapName != null) return;
             System.out.println("Clicked on " + planetName);
             mapName = planetName;
             Main.changeSceneStatic(new MapTransitionPane(), true);
-
         });
     }
 }

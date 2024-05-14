@@ -34,7 +34,7 @@ public class Main extends Application{
         scene.getStylesheets().add(ClassLoader.getSystemResource("style.css").toExternalForm()); // Load custom CSS
         primaryStage.setScene(scene);
         primaryStage.setTitle("Jelly Space");
-
+        primaryStage.setResizable(false); // prevent the window from being resized
         // Set aspect ratio to 16:9
         primaryStage.widthProperty().addListener(new ChangeListener<Number>() {
             @Override
