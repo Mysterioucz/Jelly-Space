@@ -47,7 +47,6 @@ public class Fai extends Base_Monster implements Attackable, Unique_Ability {
     @Override
     public boolean unique_ability(Base_Monster monster) {
         if (this.getMana()>=100){
-            monster.setHp(monster.getHp()+50);
             monster.setMana(monster.getMana()+50);
             this.setMana(this.getMana()-100);
             if (this.isOwned()){

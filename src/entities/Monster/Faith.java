@@ -10,7 +10,7 @@ public class Faith extends Base_Monster implements Attackable, Guardable, Unique
     private Image img = new Image(ClassLoader.getSystemResource("img/entities/monster/Faith/Idle.gif").toString());
 
     public Faith(int x, int y){
-        super("Faith", null,1500,1000,300,100,60,false,x,y,192,192,0,null);
+        super("Faith", null,1500,1000,250,150,60,false,x,y,192,192,0,null);
         setImage(img);
         setIdle_battle_img(getName());
         setSpecial_img(getName());
@@ -21,7 +21,10 @@ public class Faith extends Base_Monster implements Attackable, Guardable, Unique
     public boolean attack(Base_Monster otherMonster) {
         // True Damage
         if (getMana()>=300){
-            otherMonster.setHp(otherMonster.getHp()-this.getDmg());
+            int netDmg = Math.max(0,this.getDmg()+this.getDef()-otherMonster.getDef());
+            this.setDef(0);
+            this.setManaReg(250);
+            otherMonster.setHp(otherMonster.getHp()-netDmg);
             this.setMana(this.getMana() - 300);
             return true;
         }else{
@@ -37,12 +40,18 @@ public class Faith extends Base_Monster implements Attackable, Guardable, Unique
 
     @Override
     public boolean guard(Base_Monster ChosenMonster) {
-        if (this.getMana()>=400){
-            ChosenMonster.setDmg(0);
-            this.setMana(this.getMana() - 400);
-            return true;
-        }else{
-            System.out.println("You don't have enough mana");
+        if (this.getDef()!=60) {
+            if (this.getMana() >= 400) {
+                this.setDef(this.getDef() + 20);
+                this.setManaReg(this.getManaReg()+100);
+                ChosenMonster.setDmg(0);
+                this.setMana(this.getMana() - 400);
+                return true;
+            } else {
+                System.out.println("You don't have enough mana");
+                return false;
+            }
+        }else {
             return false;
         }
     }
