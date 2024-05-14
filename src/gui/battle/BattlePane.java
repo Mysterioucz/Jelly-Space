@@ -3,8 +3,7 @@ package gui.battle;
 import entities.Monster.Base_Monster;
 import entities.Player.Player;
 import gui.MapPane;
-import javafx.animation.FadeTransition;
-import javafx.animation.PauseTransition;
+import javafx.animation.*;
 import javafx.application.Platform;
 import gui.MapSelectPane;
 import javafx.geometry.HPos;
@@ -107,14 +106,15 @@ public class BattlePane extends GridPane {
 
     public void endBattle(Boolean win){
         // Done when battle end reset all stat of myMonster and show message that player got defeated for 5 second
-        gameEnd = true;
         PauseTransition pause = new PauseTransition(javafx.util.Duration.seconds(5));
         if(win){
             BattleFieldPane.getInstance().handleBattle("You win! returning to map in 5 seconds");
             MapPane.getGameMap().setIsCleared(true);
         }else{
             BattleFieldPane.getInstance().handleBattle("You got defeated try again next time");
+            MapPane.getGameMap().resetBoss(); // Reset boss stats
         }
+        gameEnd = true;
         pause.setOnFinished(e -> {
             // Reset Player's used point
             Player.setUsed_Point(3);
@@ -133,6 +133,7 @@ public class BattlePane extends GridPane {
             fadeOut.setOnFinished(e2 -> {
                 // Start the fade in transition
                 MapPane.getInstance().getChildren().remove(this);
+                MapPane.getInstance().playMusic(); // Play Music
             });
             // Start the fade out transition
             fadeOut.play();
@@ -254,6 +255,17 @@ public class BattlePane extends GridPane {
         mediaPlayer.setVolume(0.05);
         mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
         mediaPlayer.play();
+        // Create a new timeline
+        Timeline timeline = new Timeline();
+
+        // Add a key frame at the start with the current volume
+        timeline.getKeyFrames().add(new KeyFrame(Duration.ZERO, new KeyValue(mediaPlayer.volumeProperty(), 0)));
+
+        // Add a key frame at the end with the volume set to 0
+        timeline.getKeyFrames().add(new KeyFrame(Duration.seconds(2), new KeyValue(mediaPlayer.volumeProperty(), mediaPlayer.getVolume())));
+
+        // Play the timeline
+        timeline.play();
     }
 
     public static BattlePane getInstance(){
