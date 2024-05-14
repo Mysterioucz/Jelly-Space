@@ -21,9 +21,9 @@ public class Faith extends Base_Monster implements Attackable, Guardable, Unique
     public boolean attack(Base_Monster otherMonster) {
         // True Damage
         if (getMana()>=300){
-            int netDmg = Math.max(0,this.getDmg()+this.getDef()-otherMonster.getDef());
+            this.setDmg(this.getDmg()+10);
+            int netDmg = Math.max(0,this.getDmg()+this.getDef()/2-otherMonster.getDef());
             this.setDef(0);
-            this.setManaReg(250);
             otherMonster.setHp(otherMonster.getHp()-netDmg);
             this.setMana(this.getMana() - 300);
             return true;
@@ -40,10 +40,9 @@ public class Faith extends Base_Monster implements Attackable, Guardable, Unique
 
     @Override
     public boolean guard(Base_Monster ChosenMonster) {
-        if (this.getDef()!=60) {
+        if (this.getDef()<=60) {
             if (this.getMana() >= 400) {
-                this.setDef(this.getDef() + 20);
-                this.setManaReg(this.getManaReg()+100);
+                this.setDef(this.getDef()+60);
                 ChosenMonster.setDmg(0);
                 this.setMana(this.getMana() - 400);
                 return true;
