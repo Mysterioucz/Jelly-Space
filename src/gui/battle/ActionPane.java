@@ -128,7 +128,7 @@ public class ActionPane extends GridPane {
         switch (method){
             case "Attack":
                 if(monster instanceof Attackable) {
-                    actionText.setText("Attack: Single Target");
+                    actionText.setText("Attack: " + ((Attackable) monster).getAttack());
                 }else{
                     actionText.setText("This monster can't attack");
                     }
@@ -210,9 +210,6 @@ public class ActionPane extends GridPane {
         this.monsterDetail = monsterDetail;
         add(monsterDetail, 1, 1,1,2);
 //        System.out.println("Monster Detail set");
-    }
-    public void setActionText(String action){
-        actionText.setText(action);
     }
 
     public static ActionPane getInstance(){

@@ -1,7 +1,6 @@
 package entities.Monster;
 
 import entities.Monster.Abilities.Attackable;
-import entities.Monster.Abilities.Elements;
 import entities.Monster.Abilities.Unique_Ability;
 import entities.Player.Player;
 import gui.battle.BattleFieldPane;
@@ -9,15 +8,13 @@ import javafx.scene.image.Image;
 
 public class TU_Force extends Base_Monster implements Attackable, Unique_Ability {
     private Image img = new Image(ClassLoader.getSystemResource("img/entities/monster/TU_Force/Idle.gif").toString());
-    private Image single_img = new Image(ClassLoader.getSystemResource("img/entities/monster/TU_Force/single.gif").toString());
 
     public TU_Force(int x, int y, boolean owned){
-        super("TU_Force", Elements.ALIEN,1000,400,100,100,60,owned,x,y,188,100,200,null);
+        super("TU_Force",1000,400,100,100,60,owned,x,y,188,100,200,null);
         setImage(img);
         setDead_img(getName());
         setIdle_ally_img(getName());
         setIdle_battle_img(getName());
-        setSpecial_img(getName());
         setSpecial_ally_img(getName());
     }
 
@@ -74,7 +71,4 @@ public class TU_Force extends Base_Monster implements Attackable, Unique_Ability
         return Base_Monster.toString("s","b",1,"");
     }
 
-    public Image getSingle_img() {
-        return single_img;
-    }
 }

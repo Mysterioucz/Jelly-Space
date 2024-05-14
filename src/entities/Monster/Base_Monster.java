@@ -1,17 +1,14 @@
 package entities.Monster;
 
 import entities.Monster.Abilities.Attackable;
-import entities.Monster.Abilities.Elements;
 import entities.Monster.Abilities.Guardable;
 import entities.Monster.Abilities.Unique_Ability;
 import entities.Player.Player;
 import entities.Sprite;
-import gui.MapPane;
 import javafx.scene.image.Image;
 
 public abstract class Base_Monster extends Sprite {
     private String name;
-    private Elements element;
     private int maxHp;
     private int hp;
     private int maxMana;
@@ -22,16 +19,14 @@ public abstract class Base_Monster extends Sprite {
     private int def;
     private int manaReg;
     private boolean owned;
-    private Image special_img;
     private Image dead_img;
     private Image idle_ally_img;
     private Image idle_battle_img;
     private Image special_ally_img;
 
-    public Base_Monster(String name,Elements element,int maxHp,int maxMana,int manaReg,int baseDmg,int baseDef,boolean owned, double x, double y, double width, double height, double speed, Image img){
+    public Base_Monster(String name,int maxHp,int maxMana,int manaReg,int baseDmg,int baseDef,boolean owned, double x, double y, double width, double height, double speed, Image img){
         super(x,y,width,height,speed,img);
         this.name = name;
-        this.element = element;
         this.setMaxHp(maxHp);
         this.setHp(maxHp);
         this.setMaxMana(maxMana);
@@ -65,7 +60,7 @@ public abstract class Base_Monster extends Sprite {
             if (amount == "m"){
                 return "Explosion"+"(Mana:"+point+",HP=Damage)"+x;
             }else if (amount == "s"){
-                return "True Damgae"+"(Mana:"+point+",HP:-100)"+x;
+                return "True Damage"+"(Mana:"+point+",HP:-100)"+x;
             } else{
                 return null;
             }
@@ -184,13 +179,6 @@ public abstract class Base_Monster extends Sprite {
         return owned;
     }
 
-    public Image getSpecial_img() {
-        return special_img;
-    }
-
-    public void setSpecial_img(String name) {
-        this.special_img = new Image(ClassLoader.getSystemResource("img/entities/monster/"+name+"/special.gif").toString());;
-    }
 
     public Image getDead_img() {
         return dead_img;

@@ -1,6 +1,5 @@
 package entities.Monster;
 
-import entities.Monster.Abilities.Elements;
 import entities.Monster.Abilities.Unique_Ability;
 import entities.Player.Player;
 import gui.battle.BattleFieldPane;
@@ -10,12 +9,11 @@ public class Fei extends Base_Monster implements Unique_Ability {
     private Image img = new Image(ClassLoader.getSystemResource("img/entities/monster/Fei/Idle.gif").toString());
 
     public Fei(int x,int y,boolean owned){
-        super("Fei", Elements.EARTHLINGS,300,300,150,100,50,owned,x,y,96,96,200,null);
+        super("Fei",300,300,150,100,50,owned,x,y,96,96,200,null);
         setImage(img);
         setDead_img(getName());
         setIdle_ally_img(getName());
         setIdle_battle_img(getName());
-        setSpecial_img(getName());
         setSpecial_ally_img(getName());
     }
 

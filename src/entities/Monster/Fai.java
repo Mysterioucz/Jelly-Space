@@ -1,7 +1,6 @@
 package entities.Monster;
 
 import entities.Monster.Abilities.Attackable;
-import entities.Monster.Abilities.Elements;
 import entities.Monster.Abilities.Unique_Ability;
 import entities.Player.Player;
 import gui.battle.BattleFieldPane;
@@ -11,12 +10,11 @@ public class Fai extends Base_Monster implements Attackable, Unique_Ability {
     private Image img = new Image(ClassLoader.getSystemResource("img/entities/monster/Fai/Idle.gif").toString());
 
     public Fai(int x,int y,boolean owned){
-        super("Fai", Elements.MACHINE,300,300,150,70,50,owned,x,y,96,96,200,null);
+        super("Fai",300,300,150,70,50,owned,x,y,96,96,200,null);
         setImage(img);
         setDead_img(getName());
         setIdle_ally_img(getName());
         setIdle_battle_img(getName());
-        setSpecial_img(getName());
         setSpecial_ally_img(getName());
     }
 
@@ -41,7 +39,7 @@ public class Fai extends Base_Monster implements Attackable, Unique_Ability {
 
     @Override
     public String getAttack() {
-        return Base_Monster.toString("s","d",50,"");
+        return getDmg() + " Damage(Mana:50, Enemy Mana:-20)";
     }
 
     @Override

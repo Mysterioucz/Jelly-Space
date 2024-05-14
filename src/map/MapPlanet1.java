@@ -10,7 +10,6 @@ import javafx.scene.canvas.GraphicsContext;
 
 public class MapPlanet1 extends GameMap{
     private Boundary boundary2,boundary3;
-    private static Boolean isCleared = false;
 
     public MapPlanet1(){
         this.boundary = new InverseParabolicBoundary(976,400,0.0015); // tuned

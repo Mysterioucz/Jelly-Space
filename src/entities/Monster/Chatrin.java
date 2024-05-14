@@ -1,7 +1,6 @@
 package entities.Monster;
 
 import entities.Monster.Abilities.Attackable;
-import entities.Monster.Abilities.Elements;
 import entities.Monster.Abilities.Guardable;
 import entities.Monster.Abilities.Unique_Ability;
 import entities.Player.Player;
@@ -12,12 +11,11 @@ public class Chatrin extends Base_Monster implements Attackable, Guardable, Uniq
     private Image img = new Image(ClassLoader.getSystemResource("img/entities/monster/Chatrin/Idle.gif").toString()) ;
 
     public Chatrin(int x,int y){
-        super("Chatrin", Elements.EARTHLINGS,250,50,10,100,20,true,x,y,96,96,0,null);
+        super("Chatrin",250,50,10,100,20,true,x,y,96,96,0,null);
         setImage(img);
         setDead_img(getName());
         setIdle_ally_img(getName());
         setIdle_battle_img(getName());
-        setSpecial_img(getName());
         setSpecial_ally_img(getName());
     }
 
@@ -33,7 +31,7 @@ public class Chatrin extends Base_Monster implements Attackable, Guardable, Uniq
 
     @Override
     public String getAttack() {
-        return Base_Monster.toString("s","d",0,"");
+        return getDmg() + " Damage(Mana:0)" ;
     }
 
     @Override
@@ -52,10 +50,6 @@ public class Chatrin extends Base_Monster implements Attackable, Guardable, Uniq
         }
     }
 
-    @Override
-    public String getGuard() {
-        return Base_Monster.toString("s","b",30,"");
-    }
 
     @Override
     public boolean unique_ability(Base_Monster monster) {

@@ -1,13 +1,10 @@
 package gui;
 
-import javafx.animation.FadeTransition;
 import javafx.geometry.HPos;
 import javafx.geometry.VPos;
-import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
-import javafx.util.Duration;
 import main.Main;
 
 public class MapSelectPane extends GridPane {
@@ -47,11 +44,11 @@ public class MapSelectPane extends GridPane {
 
     public void initializePlanet(){
         // Create and configure ImageView for each planet
-        ImageView planetView1 = createPlanetView("img/planets/planet1.png", 200, 200, VPos.TOP, "Planet 1");
-        ImageView planetView2 = createPlanetView("img/planets/planet2.png", 200, 200, null, "Planet 2");
-        ImageView planetView3 = createPlanetView("img/planets/planet3.png", 200, 200, VPos.BOTTOM, "Planet 3");
-        ImageView earthView = createPlanetView("img/planets/earth.png", 200, 200, VPos.TOP, HPos.CENTER, "Earth");
-        ImageView blackholeView = createPlanetView("img/planets/Blackhole.png", 250, 250, null, HPos.CENTER, "Black Hole");
+        ImageView planetView1 = createPlanetView("img/planets/planet1.png", 200, 200, VPos.TOP);
+        ImageView planetView2 = createPlanetView("img/planets/planet2.png", 200, 200, null);
+        ImageView planetView3 = createPlanetView("img/planets/planet3.png", 200, 200, VPos.BOTTOM);
+        ImageView earthView = createPlanetView("img/planets/earth.png", 200, 200, VPos.TOP, HPos.CENTER);
+        ImageView blackholeView = createPlanetView("img/planets/Blackhole.png", 250, 250, null, HPos.CENTER);
 
         // Set planet position
         setHgap(20);
@@ -72,11 +69,11 @@ public class MapSelectPane extends GridPane {
         add(blackholeView, 2, 1,2,1);
     }
 
-    private ImageView createPlanetView(String imagePath, int width, int height, VPos vPos, String planetName) {
-        return createPlanetView(imagePath, width, height, vPos, null, planetName);
+    private ImageView createPlanetView(String imagePath, int width, int height, VPos vPos) {
+        return createPlanetView(imagePath, width, height, vPos, null);
     }
 
-    private ImageView createPlanetView(String imagePath, int width, int height, VPos vPos, HPos hPos, String planetName) {
+    private ImageView createPlanetView(String imagePath, int width, int height, VPos vPos, HPos hPos) {
         Image planet = new Image(ClassLoader.getSystemResource(imagePath).toString());
         ImageView planetView = new ImageView(planet);
         planetView.setFitWidth(width);

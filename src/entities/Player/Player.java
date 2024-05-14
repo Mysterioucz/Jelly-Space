@@ -1,25 +1,17 @@
 package entities.Player;
 
-import Items.Poisons.Mana_Poison;
 import Items.Poisons.Mega_Health_Poison;
-import Items.Poisons.Mega_Mana_Poison;
 import Items.Potions.Health_Potion;
 import Items.Potions.Mana_Potion;
 import Items.Potions.Mega_Health_Potion;
 import Items.Potions.Mega_Mana_Potion;
-import boundaries.Boundary;
 import entities.Monster.*;
 import entities.Sprite;
-import inputs.KeyboardInputs;
-import javafx.scene.Scene;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import gui.MapPane;
-
-import java.util.ArrayList;
-import java.util.Map;
 
 import static gui.MapPane.keyHandler;// import static constant
 
@@ -47,7 +39,7 @@ public class Player extends Sprite {
         Used_Point = 3;
         activeMonster = my_monster.getMonsters().getFirst();
 
-        //For test only**************************************************************************************
+        //********************************** initialize player monster ******************************************
         my_monster.addMonster(new Fai(0,0,true));
         my_monster.addMonster(new Fei(0,0,true));
 

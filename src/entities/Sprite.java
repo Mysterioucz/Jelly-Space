@@ -14,9 +14,6 @@ public class Sprite {
     private double height; // Height of the sprite
     private double speed;
     private Image image;
-    private Image[] frames;
-    private ImageView imageView;
-    private AnimationTimer timer;
 
     public Sprite(double x, double y, double width, double height,double speed,Image img) {
         // Constructor for the sprite with Gif image
@@ -32,10 +29,6 @@ public class Sprite {
         // Move the sprite by dx and dy
         x = newX;
         y = newY;
-    }
-    public boolean isColliding(Sprite other) {
-        // Check if this sprite is colliding with another sprite
-        return x < other.x + other.width && x + width > other.x && y < other.y + other.height && y + height > other.y;
     }
 
     // Getter & Setter for each field

@@ -14,10 +14,6 @@ public class Rocket extends Sprite {
         super(x,y,175,170,0,null);
         setRocket(rocketColor);
     }
-    public void reset(){
-        this.setX(0);
-        this.setY(0);
-    }
 
     public void setRocket(String color){
         if(color.equals("purple")){

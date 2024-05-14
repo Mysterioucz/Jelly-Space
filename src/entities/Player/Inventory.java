@@ -20,18 +20,6 @@ public class Inventory {
         }
     }
 
-    public void deleteUsedItem(){
-        int i = 0;
-        while (i<Items.size()){
-            if (Items.get(i).isUsed()){
-                Items.remove(i);
-                System.out.println("Item deleted");
-            }else {
-                i ++;
-            }
-        }
-    }
-
     public ArrayList<Base_Item> getItems() {
         return Items;
     }
