@@ -6,6 +6,7 @@ import Items.Base.Base_Potion;
 import entities.Monster.Base_Monster;
 import entities.Player.Player;
 import gui.MapPane;
+import javafx.application.Platform;
 import javafx.geometry.HPos;
 import javafx.geometry.VPos;
 import javafx.scene.image.ImageView;
@@ -56,6 +57,11 @@ public class InventoryPane extends GridPane {
 
     public void handleItem(Base_Item item){
         Thread handleItemThread = new Thread(() -> {
+            if(item.isUsed()){
+                Platform.runLater(() -> BattleFieldPane.getInstance().handleBattle("Item has been used"));
+                return;
+            }
+            item.setUsed(true);
             if(item instanceof Base_Potion){
                 Base_Potion potion = (Base_Potion) item;
                 potion.use(Player.getActiveMonster()); // Done: Use on active monster
@@ -64,9 +70,11 @@ public class InventoryPane extends GridPane {
                 Base_Monster enemy = (Base_Monster) MapPane.getGameMap().getBoss();
                 poison.use(enemy); // Done: Use on active monster
             }
+            Platform.runLater(() -> update()); //  Update item images
         });
         handleItemThread.start();
     }
+
     public void handleHover(Base_Item item){
 
         // Done make Item detail in ActionPane Change to current item detail that mouse hovering
@@ -79,7 +87,25 @@ public class InventoryPane extends GridPane {
         return instance;
     }
 
-    public static void update(){
-
+    public void update(){
+        for(int i =0 ; i < Player.getInventory().getItems().size() ; i++){
+            Base_Item item = Player.getInventory().getItems().get(i);
+            if(item.isUsed()){ // Change the image to used image
+                ImageView itemImage = new ImageView(item.getUsedImage());
+                itemImage.setFitHeight(64); // Set the image height
+                itemImage.setFitWidth(64);// Set the image width
+                itemImage.setOnMouseEntered(e -> handleHover(item));
+                itemImage.setOnMouseClicked(e -> handleItem(item));
+                add(itemImage,i,0);
+                setValignment(itemImage, VPos.CENTER);
+                setHalignment(itemImage, HPos.CENTER);
+            }
+        }
+    }
+    public void resetItem(){
+        for(int i =0 ; i < Player.getInventory().getItems().size() ; i++){
+            Base_Item item = Player.getInventory().getItems().get(i);
+            item.setUsed(false);
+        }
     }
 }

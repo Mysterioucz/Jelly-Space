@@ -7,7 +7,7 @@ import javafx.scene.image.Image;
 public class Mana_Potion extends Base_Potion {
     public Mana_Potion() {
         super(Type.MANA,50);
-        image = new Image(ClassLoader.getSystemResource("img/potions/M" +
-                "_Potion.png").toString());
+        image = new Image(ClassLoader.getSystemResource("img/potions/M_Potion.png").toString());
+        usedImage = new Image(ClassLoader.getSystemResource("img/potions/M_Potion_isUsed.png").toString());
     }
 }

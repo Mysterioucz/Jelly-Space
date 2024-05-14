@@ -52,6 +52,6 @@ public class MapPlanet2 extends GameMap{
     }
 
     public void setIsCleared(Boolean isCleared) {
-        MapPlanet2.isCleared = isCleared;
+        GameMap.planet2IsCleared = isCleared;
     }
 }

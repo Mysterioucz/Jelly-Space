@@ -25,6 +25,7 @@ public class Inventory {
         while (i<Items.size()){
             if (Items.get(i).isUsed()){
                 Items.remove(i);
+                System.out.println("Item deleted");
             }else {
                 i ++;
             }

@@ -48,7 +48,7 @@ public class MapPane extends StackPane {
         gc.clearRect(0, 0, getPrefWidth(), getPrefHeight());
         player.draw(gc);
         gameMap.draw(gc);
-        gameMap.drawBoundary(gc); // for debugging map boundaries
+//        gameMap.drawBoundary(gc); // for debugging map boundaries
 
     }
     public void handleCollideWithRocket(){
@@ -131,7 +131,7 @@ public class MapPane extends StackPane {
         gameLoop = new Thread(() -> {
             while (running) {
                 Platform.runLater(() -> {
-                    System.out.println("GameLoop Running");
+//                    System.out.println("GameLoop Running"); // For Debugging
                     update();
                     draw();
                 });

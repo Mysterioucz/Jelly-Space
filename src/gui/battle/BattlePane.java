@@ -2,6 +2,7 @@ package gui.battle;
 
 import entities.Monster.Base_Monster;
 import entities.Player.Player;
+import gui.CongratulationPane;
 import gui.MapPane;
 import javafx.animation.*;
 import javafx.application.Platform;
@@ -15,6 +16,7 @@ import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.util.Duration;
 import main.Main;
+import map.GameMap;
 
 import java.util.concurrent.atomic.AtomicBoolean;
 
@@ -132,8 +134,16 @@ public class BattlePane extends GridPane {
             // Set an action to be performed when the fade out transition finishes
             fadeOut.setOnFinished(e2 -> {
                 // Start the fade in transition
-                MapPane.getInstance().getChildren().remove(this);
-                MapPane.getInstance().playMusic(); // Play Music
+                if(GameMap.gameCleared()) {
+                    // Done if game is cleared go to congratulation scene
+                    Main.changeSceneStatic(new CongratulationPane(), true);
+                    System.out.println("Game Cleared");
+                }else{
+                    // if game not completely cleared return to current map
+                    MapPane.getInstance().getChildren().remove(this);
+                    MapPane.getInstance().playMusic(); // Play Music
+                }
+
             });
             // Start the fade out transition
             fadeOut.play();
@@ -145,6 +155,8 @@ public class BattlePane extends GridPane {
                 monster.setDef(monster.getBaseDef());
                 monster.setDmg(monster.getBaseDmg());
             }
+            // Reset all item's used state
+            inventoryPane.resetItem();
         });
         pause.play();
         Main.fadeAudio(mediaPlayer,2); // Fade out the music

@@ -89,14 +89,7 @@ public class MapSelectPane extends GridPane {
         imageView.setOnMouseClicked(event -> {
             System.out.println("Clicked on " + planetName);
             mapName = planetName;
-            FadeTransition ft = new FadeTransition(Duration.millis(1000), this); // set FadeTransition
-            ft.setFromValue(1.0);
-            ft.setToValue(0.0);
-            ft.setOnFinished(e2 -> {
-                Main.changeSceneStatic(new MapTransitionPane(), true); // Change the root of the scene to the new MapPane after the fade out
-
-                    });
-            ft.play();
+            Main.changeSceneStatic(new MapTransitionPane(), true);
 
         });
     }

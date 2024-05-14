@@ -12,7 +12,7 @@ public class TU_Force extends Base_Monster implements Attackable, Unique_Ability
     private Image single_img = new Image(ClassLoader.getSystemResource("img/entities/monster/TU_Force/single.gif").toString());
 
     public TU_Force(int x, int y, boolean owned){
-        super("TU_Force", Elements.ALIEN,1000,400,50,100,60,owned,x,y,188,100,200,null);
+        super("TU_Force", Elements.ALIEN,1000,400,100,100,60,owned,x,y,188,100,200,null);
         setImage(img);
         setDead_img(getName());
         setIdle_ally_img(getName());

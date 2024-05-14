@@ -68,6 +68,9 @@ public abstract class GameMap {
 
     public abstract void setIsCleared(Boolean b);
     public abstract Boolean isCleared();
+    public static Boolean gameCleared(){
+        return blackHoleIsCleared&&earthIsCleared&&planet1IsCleared&&planet2IsCleared&&planet3IsCleared;
+    }
 }
 
 

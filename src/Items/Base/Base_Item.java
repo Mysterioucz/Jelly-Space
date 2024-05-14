@@ -7,6 +7,7 @@ public abstract class Base_Item {
     private boolean isUsed;
     private int power;
     protected Image image;
+    protected Image usedImage;
 
     public String toString(){
         if (type == Type.HEALTH){
@@ -52,6 +53,10 @@ public abstract class Base_Item {
 
     public Image getImage() {
         return image;
+    }
+
+    public Image getUsedImage() {
+        return usedImage;
     }
 
     public Type getType() {

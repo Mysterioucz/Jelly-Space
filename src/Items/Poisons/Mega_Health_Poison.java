@@ -9,5 +9,6 @@ public class Mega_Health_Poison extends Base_Poison {
 
         super(Type.HEALTH,100);
         image = new Image(ClassLoader.getSystemResource("img/potions/MH_Poison.png").toString());
+        usedImage = new Image(ClassLoader.getSystemResource("img/potions/MH_Poison_isUsed.png").toString());
     }
 }

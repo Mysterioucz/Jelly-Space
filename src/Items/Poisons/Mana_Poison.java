@@ -9,5 +9,6 @@ public class Mana_Poison extends Base_Poison {
 
         super(Type.MANA,50);
         image = new Image(ClassLoader.getSystemResource("img/potions/M_Poison.png").toString());
+        usedImage = new Image(ClassLoader.getSystemResource("img/potions/M_Poison_isUsed.png").toString());
     }
 }

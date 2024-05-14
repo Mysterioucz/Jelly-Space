@@ -10,7 +10,7 @@ public class KeyboardInputs implements EventHandler<KeyEvent> {
 
     @Override
     public void handle(KeyEvent event) {
-        System.out.println("Key Pressed");
+//        System.out.println("Key Pressed");
         if (event.getEventType() == KeyEvent.KEY_PRESSED) {
             switch (event.getCode()) {
                 case W:
