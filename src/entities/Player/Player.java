@@ -54,7 +54,7 @@ public class Player extends Sprite {
         inventory.addItem(new Health_Potion());
         inventory.addItem(new Mega_Health_Potion());
         inventory.addItem(new Mana_Potion());
-        inventory.addItem(new Mega_Mana_Poison());
+        inventory.addItem(new Mega_Mana_Potion());
         inventory.addItem(new Mega_Health_Poison());
         //***************************************************************************************************
     }
