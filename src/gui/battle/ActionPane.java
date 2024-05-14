@@ -10,7 +10,6 @@ import entities.Player.Player;
 import gui.MapPane;
 import javafx.animation.PauseTransition;
 import javafx.geometry.HPos;
-import javafx.geometry.Insets;
 import javafx.geometry.VPos;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;

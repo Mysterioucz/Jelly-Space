@@ -22,16 +22,16 @@ public class Player extends Sprite {
     private static final int ACTION_POINT = 3;
     private static int Used_Point;
     private static Player player;
-    private static final int width = 80;
-    private static final int height = 80;
-    private static final Image imgRight = new Image(ClassLoader.getSystemResource("img/entities/player/right.gif").toString());
-    private static final Image imgLeft = new Image(ClassLoader.getSystemResource("img/entities/player/left.gif").toString());
+    private static final int WIDTH = 80;
+    private static final int HEIGHT = 80;
+    private static final Image IMG_RIGHT = new Image(ClassLoader.getSystemResource("img/entities/player/right.gif").toString());
+    private static final Image IMG_LEFT = new Image(ClassLoader.getSystemResource("img/entities/player/left.gif").toString());
     private static double newX, newY;
     private static Rectangle playerRect, bossRect, rocketRect;
     private static Base_Monster activeMonster;
 
     public Player(String name,double x, double y, double width, double height){
-        super(x,y,width,height,2,imgRight); // set initial image to be right
+        super(x,y,width,height,2, IMG_RIGHT); // set initial image to be right
         Player.name = name;
         my_monster = new My_Monster();
         inventory = new Inventory();
@@ -70,10 +70,10 @@ public class Player extends Sprite {
             newY += getSpeed();
         }else if(keyHandler.left){
             newX -= getSpeed();
-            setImage(imgLeft);
+            setImage(IMG_LEFT);
         } else if (keyHandler.right) {
             newX += getSpeed();
-            setImage(imgRight);
+            setImage(IMG_RIGHT);
         }
         // Create rectangles for the player, the boss and rocket
         createEntitiesBound();
@@ -148,7 +148,7 @@ public class Player extends Sprite {
 
     public static Player getPlayer() {
         if(player == null){
-            player = new Player("Player",50,360,Player.width,Player.height);
+            player = new Player("Player",50,360,Player.WIDTH,Player.HEIGHT);
         }
         return player;
     }
