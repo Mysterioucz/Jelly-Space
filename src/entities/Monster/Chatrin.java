@@ -69,6 +69,6 @@ public class Chatrin extends Base_Monster implements Attackable, Guardable, Uniq
 
     @Override
     public String getUnique() {
-        return Base_Monster.toString("s","d",0,"");
+        return Base_Monster.toString("m","d",0,"");
     }
 }

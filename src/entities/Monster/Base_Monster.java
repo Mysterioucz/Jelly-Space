@@ -57,15 +57,15 @@ public abstract class Base_Monster extends Sprite {
             if (amount == "m"){
                 return "Buff --> "+"(Mana: "+point+")"+x;
             }else if (amount == "s"){
-                return "Buff --> "+"(Mana: "+point+")"+x;
+                return "Heal allies "+"(Mana: "+point+")"+x;
             } else{
                 return null;
             }
         }else if (type == "d"){
             if (amount == "m"){
-                return "Damage --> "+"(Mana: "+point+")"+x;
+                return "Explosion"+"(Mana:"+point+",HP=Damage)"+x;
             }else if (amount == "s"){
-                return "Damage --> "+"(Mana: "+point+")"+x;
+                return "True Damgae"+"(Mana:"+point+",HP:-100)"+x;
             } else{
                 return null;
             }

@@ -53,7 +53,9 @@ public class Fai extends Base_Monster implements Attackable, Unique_Ability {
             if (this.isOwned()){
                 Player.setUsed_Point(Player.getUsed_Point()-1);
                 for (Base_Monster e: Player.getMy_monster().getMonsters()){
-                    e.setHp(e.getHp()+50);
+                    if (!e.isDead()) {
+                        e.setHp(e.getHp() + 50);
+                    }
                 }
             }
             return true;

@@ -2,6 +2,7 @@ package Items.Base;
 
 import entities.Monster.Base_Monster;
 import entities.Player.Player;
+import gui.battle.BattleFieldPane;
 
 public abstract class Base_Poison extends Base_Item implements Splashable{
 
@@ -12,10 +13,12 @@ public abstract class Base_Poison extends Base_Item implements Splashable{
 
     @Override
     public void use(Base_Monster monster) {
-        if (getType() == Type.HEALTH){
-            monster.setHp(monster.getHp()-getPower());
-        } else if (getType() == Type.MANA) {
-            monster.setMana(monster.getMana()-getPower());
+        if (!monster.isDead()) {
+            if (getType() == Type.HEALTH) {
+                monster.setHp(monster.getHp() - getPower());
+            } else if (getType() == Type.MANA) {
+                monster.setMana(monster.getMana() - getPower());
+            }
         }
     }
 }
