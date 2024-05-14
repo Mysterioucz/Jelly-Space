@@ -190,7 +190,10 @@ public class ActionPane extends GridPane {
         // Create a PauseTransition
         PauseTransition pause = new PauseTransition(Duration.seconds(2));
         // Set the action to perform after the pause
-        pause.setOnFinished(event -> BattleFieldPane.getInstance().setActiveMonsterImage(myMonster.getIdle_ally_img()));
+        pause.setOnFinished(event -> {
+                Base_Monster activeMonster = Player.getActiveMonster(); // Get the current active monster in case if player change monster between the pause
+                BattleFieldPane.getInstance().setActiveMonsterImage(activeMonster.getIdle_ally_img());
+                });
         // Start the pause
         pause.play();
     }

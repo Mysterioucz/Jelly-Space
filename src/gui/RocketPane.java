@@ -97,6 +97,7 @@ public class RocketPane extends GridPane {
     }
     public void confirmLaunch() {
         Main.changeSceneStatic(new MapSelectPane(), true);
+        MapPane.getInstance().stopMusic();
     }
     public void cancelLaunch() {
         // Reset player position and resume game loop

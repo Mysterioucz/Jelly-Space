@@ -78,7 +78,7 @@ public class MapPane extends StackPane {
             fadeIn.play();
             battlePane.requestFocus();
             getChildren().addLast(battlePane);
-            Main.fadeAudio(mediaPlayer,2);
+            stopMusic();
         });
         // Start the fade out transition
         fadeOut.play();
@@ -152,6 +152,9 @@ public class MapPane extends StackPane {
         mediaPlayer.setVolume(0.05);
         mediaPlayer.setCycleCount(MediaPlayer.INDEFINITE);
         mediaPlayer.play();
+    }
+    public void stopMusic(){
+        Main.fadeAudio(mediaPlayer,2);
     }
 
 
