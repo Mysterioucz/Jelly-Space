@@ -91,7 +91,7 @@ public class Player extends Sprite {
     public void draw(GraphicsContext gc){
         gc.drawImage(getImage(),getX(),getY(),getWidth(),getHeight());
         // draw Player boundary, boss boundary and rocket boundary
-//        drawBoundary(gc); // for debugging
+        drawBoundary(gc); // for debugging
     }
     public void drawBoundary(GraphicsContext gc){
         Sprite boss = MapPane.getGameMap().getBoss();

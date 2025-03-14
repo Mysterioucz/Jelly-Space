@@ -45,8 +45,7 @@ public class MapPane extends StackPane {
         gc.clearRect(0, 0, getPrefWidth(), getPrefHeight());
         player.draw(gc);
         gameMap.draw(gc);
-//        gameMap.drawBoundary(gc); // for debugging map boundaries
-
+        gameMap.drawBoundary(gc); // for debugging map boundaries
     }
     public void handleCollideWithRocket(){
         // When the player collides with the rocket, fade out the current scene and change the root of the scene to the new MapSelectPane
