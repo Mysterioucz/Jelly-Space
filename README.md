@@ -73,4 +73,4 @@ java --module-path "path-to-javafx-sdk/lib" --add-modules javafx.controls,javafx
 
 ## 👨‍💻 Authors  
 - **Chatrin Yoonchalard** – [@Mysterioucz](https://github.com/Mysterioucz)  
-- **Chayaphon Kultanon**  
+- **Chayaphon Kultanon** - [@ChayaphonKultanon](https://github.com/ChayaphonKultanon)
