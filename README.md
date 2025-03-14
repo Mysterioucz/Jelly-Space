@@ -1,7 +1,3 @@
-Here’s a **GitHub README** draft for your **Jelly Space** project:
-
----
-
 # 🪐 Jelly Space  
 
 **Jelly Space** is an exciting and adventurous turn-based strategy game set in a vibrant galaxy. Your mission is to travel across various planets, battle powerful bosses, and restore peace to the cosmos.  
